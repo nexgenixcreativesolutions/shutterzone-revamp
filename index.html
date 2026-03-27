@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shutter Zone Media — Real Estate Photography & Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0d12;
+    --ink2: #111520;
+    --ink3: #1a2030;
+    --gold: #c8a96e;
+    --gold2: #e8c98a;
+    --steel: #8fa0b8;
+    --mist: #d4dce8;
+    --white: #f5f7fa;
+    --glass: rgba(255,255,255,0.04);
+    --glass2: rgba(255,255,255,0.08);
+    --border: rgba(200,169,110,0.2);
+    --border2: rgba(255,255,255,0.08);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--ink);
+    color: var(--mist);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announce {
+    background: var(--gold);
+    color: var(--ink);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .announce span { margin: 0 8px; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(10,13,18,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border2);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .nav-logo-text .brand { font-family: var(--font-display); font-size: 22px; color: var(--white); letter-spacing: 2px; }
+  .nav-logo-text .sub { font-size: 9px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--steel);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-ctas { display: flex; gap: 10px; }
+  .btn-ghost {
+    padding: 9px 20px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: var(--gold); color: var(--ink); }
+  .btn-solid {
+    padding: 9px 20px;
+    background: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-solid:hover { background: var(--gold2); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 80px 5% 80px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(200,169,110,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .hero-badge::before { content: '●'; font-size: 8px; color: var(--gold); animation: pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 6vw, 88px);
+    line-height: 0.95;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .hero h1 em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+  .hero-desc {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--steel);
+    max-width: 460px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+  .btn-hero {
+    padding: 16px 32px;
+    background: var(--gold);
+    color: var(--ink);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-hero:hover { background: var(--gold2); transform: translateY(-2px); }
+  .btn-hero-ghost {
+    padding: 16px 32px;
+    border: 1px solid var(--border2);
+    color: var(--mist);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-hero-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border2);
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-num { font-family: var(--font-display); font-size: 36px; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--steel); letter-spacing: 0.05em; margin-top: 4px; }
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-img-frame {
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border2);
+  }
+  .hero-img-bg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a2030 0%, #0d1420 40%, #1a2530 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+  }
+  .hero-float-card {
+    position: absolute;
+    bottom: -20px;
+    left: -30px;
+    background: rgba(10,13,18,0.95);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    backdrop-filter: blur(20px);
+    min-width: 200px;
+  }
+  .hero-float-card .card-label { font-size: 10px; color: var(--steel); letter-spacing: 0.1em; text-transform: uppercase; }
+  .hero-float-card .card-val { font-family: var(--font-display); font-size: 28px; color: var(--gold); letter-spacing: 1px; }
+  .hero-float-card .card-sub { font-size: 11px; color: var(--steel); }
+  .hero-float-card2 {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: var(--gold);
+    border-radius: 12px;
+    padding: 14px 18px;
+    min-width: 160px;
+  }
+  .hero-float-card2 .card-label { font-size: 10px; color: var(--ink); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  .hero-float-card2 .card-val { font-family: var(--font-display); font-size: 24px; color: var(--ink); letter-spacing: 1px; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 5%; }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 4vw, 64px);
+    line-height: 0.95;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .section-heading em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+  .section-sub { font-size: 15px; color: var(--steel); max-width: 520px; line-height: 1.7; }
+
+  /* ── LOGOS STRIP ── */
+  .logos-strip {
+    padding: 32px 5%;
+    background: var(--ink2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    overflow: hidden;
+  }
+  .logos-strip .strip-label {
+    font-size: 11px;
+    color: var(--steel);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .logos-track {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    flex: 1;
+  }
+  .logo-pill {
+    background: var(--glass);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-family: var(--font-display);
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--steel);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .logo-pill:hover { color: var(--white); border-color: var(--border); }
+
+  /* ── SERVICES ── */
+  .services { background: var(--ink); }
+  .services-header { margin-bottom: 60px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border2);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--ink2);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover { background: var(--ink3); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 56px;
+    color: rgba(200,169,110,0.1);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+  .service-icon { font-size: 32px; margin-bottom: 16px; }
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--white);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .service-desc { font-size: 14px; color: var(--steel); line-height: 1.7; }
+  .service-tag {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+  }
+
+  /* ── PROCESS ── */
+  .process { background: var(--ink2); }
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+  .process-steps { display: flex; flex-direction: column; gap: 0; }
+  .process-step {
+    display: flex;
+    gap: 24px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border2);
+    position: relative;
+  }
+  .process-step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 60px;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+  .process-step:hover .step-num { opacity: 1; }
+  .step-content {}
+  .step-title { font-family: var(--font-display); font-size: 22px; color: var(--white); letter-spacing: 1px; margin-bottom: 8px; }
+  .step-desc { font-size: 14px; color: var(--steel); line-height: 1.7; }
+  .process-visual {
+    background: var(--ink3);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+  .process-visual .big-icon { font-size: 80px; margin-bottom: 24px; display: block; }
+  .process-cta {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+  .process-cta span { color: var(--gold); }
+  .turnaround {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    text-align: left;
+  }
+  .turnaround-label { font-size: 10px; color: var(--steel); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .turnaround-val { font-family: var(--font-display); font-size: 36px; color: var(--gold); letter-spacing: 2px; }
+
+  /* ── FEATURES ── */
+  .features { background: var(--ink); }
+  .features-header { max-width: 600px; margin-bottom: 60px; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature-card {
+    background: var(--glass);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 32px 28px;
+    transition: all 0.3s;
+  }
+  .feature-card:hover { border-color: var(--border); transform: translateY(-4px); }
+  .feature-icon { font-size: 28px; margin-bottom: 16px; }
+  .feature-title { font-family: var(--font-display); font-size: 20px; color: var(--white); letter-spacing: 1px; margin-bottom: 10px; }
+  .feature-desc { font-size: 13px; color: var(--steel); line-height: 1.7; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--ink2); }
+  .testimonials-header { text-align: center; margin-bottom: 60px; }
+  .testimonials-header .section-tag { justify-content: center; }
+  .testimonials-header .section-tag::before { display: none; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .testimonial-card {
+    background: var(--ink3);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 32px 28px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .testimonial-card:hover { border-color: var(--border); }
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-family: var(--font-serif);
+    font-size: 80px;
+    color: rgba(200,169,110,0.15);
+    line-height: 1;
+  }
+  .stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+  .testimonial-text { font-size: 14px; color: var(--mist); line-height: 1.8; margin-bottom: 24px; font-style: italic; }
+  .testimonial-author { font-weight: 600; font-size: 14px; color: var(--white); }
+  .testimonial-role { font-size: 12px; color: var(--gold); margin-top: 2px; }
+
+  /* ── TRUST / PARTNERS ── */
+  .trust { background: var(--ink); }
+  .trust-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .trust-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .trust-stat {
+    background: var(--glass);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .trust-stat .num { font-family: var(--font-display); font-size: 48px; color: var(--gold); letter-spacing: 2px; line-height: 1; margin-bottom: 6px; }
+  .trust-stat .label { font-size: 12px; color: var(--steel); line-height: 1.5; }
+  .partner-logos { display: flex; flex-direction: column; gap: 16px; }
+  .partner-row { display: flex; gap: 16px; }
+  .partner-logo {
+    background: var(--glass);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-family: var(--font-display);
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: var(--steel);
+    flex: 1;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .partner-logo:hover { color: var(--white); border-color: var(--border); }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--gold);
+    padding: 80px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: 'SZM';
+    position: absolute;
+    font-family: var(--font-display);
+    font-size: 400px;
+    color: rgba(0,0,0,0.06);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    letter-spacing: 20px;
+    pointer-events: none;
+  }
+  .cta-banner h2 { font-family: var(--font-display); font-size: clamp(36px, 4vw, 60px); color: var(--ink); letter-spacing: 3px; margin-bottom: 16px; }
+  .cta-banner p { font-size: 16px; color: rgba(10,13,18,0.7); max-width: 480px; margin: 0 auto 36px; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-dark {
+    padding: 16px 36px;
+    background: var(--ink);
+    color: var(--gold);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-dark:hover { background: var(--ink2); }
+  .btn-outline-dark {
+    padding: 16px 36px;
+    border: 2px solid var(--ink);
+    color: var(--ink);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline-dark:hover { background: var(--ink); color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink2);
+    border-top: 1px solid var(--border2);
+    padding: 72px 5% 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+  .footer-brand .brand-name { font-family: var(--font-display); font-size: 28px; color: var(--white); letter-spacing: 3px; margin-bottom: 12px; }
+  .footer-brand .brand-tag { font-size: 10px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+  .footer-brand p { font-size: 13px; color: var(--steel); line-height: 1.7; max-width: 280px; }
+  .footer-contact { margin-top: 20px; }
+  .footer-contact a { display: block; font-size: 13px; color: var(--steel); text-decoration: none; margin-bottom: 6px; transition: color 0.2s; }
+  .footer-contact a:hover { color: var(--gold); }
+  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mist); margin-bottom: 20px; }
+  .footer-col a { display: block; font-size: 13px; color: var(--steel); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid var(--border2);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bottom p { font-size: 12px; color: var(--steel); }
+  .footer-social { display: flex; gap: 12px; }
+  .social-btn {
+    width: 36px;
+    height: 36px;
+    background: var(--glass);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .social-btn:hover { background: var(--gold); border-color: var(--gold); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 60px 5%; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-stats { justify-content: center; }
+    .hero-actions { justify-content: center; }
+    .hero-desc { margin: 0 auto 40px; }
+    .nav-links, .nav-ctas { display: none; }
+    .hamburger { display: flex; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .trust-inner { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .logos-strip { gap: 24px; }
+    .logos-track { gap: 24px; }
+  }
+  @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .trust-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  .hero-badge { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero h1 { animation: fadeUp 0.7s ease 0.2s both; }
+  .hero-desc { animation: fadeUp 0.7s ease 0.3s both; }
+  .hero-actions { animation: fadeUp 0.7s ease 0.4s both; }
+  .hero-stats { animation: fadeUp 0.7s ease 0.5s both; }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  ⭐ <span>Receive $30 Off Your First Listing</span> · CODE: <strong>NEWFRIEND30</strong> ⭐
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">📷</div>
+    <div class="nav-logo-text">
+      <span class="brand">SHUTTER ZONE</span>
+      <span class="sub">We See Things Differently</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#work">Our Work</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#">Staging Catalog</a></li>
+  </ul>
+  <div class="nav-ctas">
+    <a href="#" class="btn-ghost">Client Login</a>
+    <a href="#" class="btn-solid">Book Now →</a>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Real Estate Media · Wisconsin & Illinois</div>
+    <h1>Sell Listings <em>Faster</em> With Media That Converts</h1>
+    <p class="hero-desc">Professional real estate photography, cinematic video, and drone footage — engineered to make your listings stand out and close faster.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-hero">Book in Wisconsin →</a>
+      <a href="#" class="btn-hero-ghost">Book in Illinois →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">9,000+</span>
+        <span class="stat-label">Homes Shot</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1,000+</span>
+        <span class="stat-label">Realtor Partners</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">$130</span>
+        <span class="stat-label">Starting Price</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-frame">
+      <div class="hero-img-bg">🏡</div>
+    </div>
+    <div class="hero-float-card">
+      <div class="card-label">Next Delivery</div>
+      <div class="card-val">MORNING</div>
+      <div class="card-sub">Photos ready by 9AM</div>
+    </div>
+    <div class="hero-float-card2">
+      <div class="card-label">MLS Upload</div>
+      <div class="card-val">INCLUDED</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER LOGOS -->
+<div class="logos-strip">
+  <span class="strip-label">Trusted by</span>
+  <div class="logos-track">
+    <div class="logo-pill">KELLER WILLIAMS</div>
+    <div class="logo-pill">FIRST WEBER</div>
+    <div class="logo-pill">RE/MAX</div>
+    <div class="logo-pill">SHOREWEST</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-heading">Premium Media <em>Services</em></h2>
+    <p class="section-sub">Every service is designed to help real estate professionals close faster and command higher prices.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">📸</div>
+      <div class="service-title">Photography</div>
+      <p class="service-desc">HDR listing photography that captures every room in its best light. Edited, delivered, and MLS-ready by the next morning.</p>
+      <span class="service-tag">Most Popular</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">🎬</div>
+      <div class="service-title">Listing Videography</div>
+      <p class="service-desc">Cinematic walkthroughs with over 20 years of videography experience. A powerful, immersive experience with every project.</p>
+      <span class="service-tag">Cinematic Quality</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">🚁</div>
+      <div class="service-title">Drone Aerial</div>
+      <p class="service-desc">FAA-certified drone pilots capturing your listings from a unique bird's-eye perspective. Perfect for acreage, landscaping, and amenities.</p>
+      <span class="service-tag">FAA Certified</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">🏠</div>
+      <div class="service-title">Virtual Staging</div>
+      <p class="service-desc">Empty listing? No problem. Our virtual staging helps buyers picture themselves in the space — without the cost of physical furniture.</p>
+      <span class="service-tag">Sell Faster</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon">🔄</div>
+      <div class="service-title">Virtual 360 Tours</div>
+      <p class="service-desc">Let buyers explore your listing anytime, anywhere. Immersive 360° tours that keep buyers engaged 24/7 — even after hours.</p>
+      <span class="service-tag">Always On</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon">✨</div>
+      <div class="service-title">Virtual Declutter & Reno</div>
+      <p class="service-desc">We remove distracting items, virtually renovate rooms, and add furniture — showing buyers the full potential of the listing.</p>
+      <span class="service-tag">Free Basic Editing</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div>
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-heading">A Simple <em>3-Step</em> Process</h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Schedule Your Appointment</div>
+          <p class="step-desc">Book online in minutes from your computer, smartphone, or tablet. Track current and past listings through your back-office portal.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Photographer Shoots Your Listing</div>
+          <p class="step-desc">Our team arrives at your chosen date and time. We handle everything — photography, video, drone — in one seamless session.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Receive Media the Next Morning</div>
+          <p class="step-desc">Photos delivered and MLS-uploaded by 9AM the following morning. No waiting, no chasing. Just results.</p>
+        </div>
+      </div>
+    </div>
+    <div class="process-visual">
+      <span class="big-icon">⚡</span>
+      <div class="process-cta">From booking to<br><span>MLS-ready</span></div>
+      <div class="turnaround">
+        <div class="turnaround-label">Typical Turnaround</div>
+        <div class="turnaround-val">NEXT MORNING</div>
+      </div>
+      <br>
+      <a href="#" class="btn-hero" style="display:inline-flex;margin-top:12px;">Book Your Session →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="work">
+  <div class="features-header">
+    <div class="section-tag">Why Choose Us</div>
+    <h2 class="section-heading">Built for <em>Realtors</em></h2>
+    <p class="section-sub">Everything we do is designed to make your workflow faster, your listings look better, and your clients happier.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">☀️</div>
+      <div class="feature-title">Next Morning Delivery</div>
+      <p class="feature-desc">Edited photos and videos delivered by 9AM the morning after your shoot — ready to list immediately.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏡</div>
+      <div class="feature-title">MLS Upload Included</div>
+      <p class="feature-desc">We upload directly to MLS on your behalf. One less thing on your to-do list.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📞</div>
+      <div class="feature-title">7-Day Client Support</div>
+      <p class="feature-desc">Phone, email, and text support Monday–Friday 9–5, weekends 10–2. Someone is always there to help.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💻</div>
+      <div class="feature-title">Online Booking Portal</div>
+      <p class="feature-desc">Book, track listings, manage payments, and download files — all from your personal back-office dashboard.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <div class="feature-title">Flexible Availability</div>
+      <p class="feature-desc">Our team approach expands coverage so we can accommodate even the most demanding schedules.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎁</div>
+      <div class="feature-title">Free Basic Editing</div>
+      <p class="feature-desc">Every shoot includes free sky replacement, window brightening, screen pop, and virtual twilight at no extra charge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-header">
+    <div class="section-tag">Client Reviews</div>
+    <h2 class="section-heading">What Our <em>Clients</em> Say</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">AMAZING customer service. Someone is always available to talk to — text, phone, or email. Their team is always there, even with short notice. They have gone above and beyond more times than I can mention.</p>
+      <div class="testimonial-author">Jane</div>
+      <div class="testimonial-role">Realtor Partner</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">SZM was easy to work with. Online scheduling and payments made it a snap to set up. My photos were beautiful and uploaded by the next morning into the MLS. I couldn't be happier with the entire experience!</p>
+      <div class="testimonial-author">Mary Beth</div>
+      <div class="testimonial-role">Real Estate Agent</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">SZM is the absolute best real estate media company I have ever worked with. Organized, excellent communication, and the photos are always unreal. The editing is phenomenal.</p>
+      <div class="testimonial-author">Alison</div>
+      <div class="testimonial-role">Listing Agent</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="trust-inner">
+    <div>
+      <div class="section-tag">By the Numbers</div>
+      <h2 class="section-heading">Trusted Among <em>Industry Leaders</em></h2>
+      <p class="section-sub" style="margin-bottom:40px;">Built on relationships, driven by results. We're proud to be the media partner of choice for top realtors across Wisconsin and Illinois.</p>
+      <div class="trust-stats">
+        <div class="trust-stat"><div class="num">9K+</div><div class="label">Homes Shot</div></div>
+        <div class="trust-stat"><div class="num">1K+</div><div class="label">Realtor Partners</div></div>
+        <div class="trust-stat"><div class="num">20+</div><div class="label">Years Experience</div></div>
+        <div class="trust-stat"><div class="num">2</div><div class="label">States Covered</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="partner-logos">
+        <p style="font-size:11px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Our Partners</p>
+        <div class="partner-row">
+          <div class="partner-logo">KW</div>
+          <div class="partner-logo">FIRST WEBER</div>
+        </div>
+        <div class="partner-row">
+          <div class="partner-logo">RE/MAX</div>
+          <div class="partner-logo">SHOREWEST</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>READY TO MAXIMIZE YOUR LISTINGS?</h2>
+  <p>Join over 1,000 real estate professionals who trust Shutter Zone Media to make their listings shine.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-dark">Book in Wisconsin</a>
+    <a href="#" class="btn-outline-dark">Book in Illinois</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="brand-name">SHUTTER ZONE MEDIA</div>
+      <div class="brand-tag">We See Things Differently</div>
+      <p>Professional real estate photography, video, and drone services for realtors across Wisconsin and Illinois.</p>
+      <div class="footer-contact">
+        <a href="tel:4143759151">📞 414.375.9151</a>
+        <a href="mailto:info@shutterzonemedia.com">✉ Info@shutterzonemedia.com</a>
+        <a href="#">📍 3216 S 92nd St, Suite 104, Milwaukee, WI 53227</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Photography</a>
+      <a href="#">Listing Videography</a>
+      <a href="#">Drone Aerial</a>
+      <a href="#">Virtual Staging</a>
+      <a href="#">Virtual 360 Tours</a>
+      <a href="#">Virtual Declutter</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Join Our Team</a>
+      <a href="#">Staging Catalog</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Downloadable Files</a>
+    </div>
+    <div class="footer-col">
+      <h4>Office Hours</h4>
+      <a href="#">Mon–Fri: 9am–5pm</a>
+      <a href="#">Sat & Sun: 10am–2pm</a>
+      <br>
+      <h4>Book Now</h4>
+      <a href="#">Book in Wisconsin →</a>
+      <a href="#">Book in Illinois →</a>
+      <a href="#">Client Login →</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Shutter Zone Media. All Rights Reserved.</p>
+    <div class="footer-social">
+      <a href="#" class="social-btn">▶</a>
+      <a href="#" class="social-btn">f</a>
+      <a href="#" class="social-btn">📷</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .feature-card, .testimonial-card, .process-step, .trust-stat').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
