@@ -1,938 +1,930 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shutter Zone Media — Website Revamp Proposal | NexGenix</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Montserrat+Alternates:wght@300;400;500;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<style>
-:root {
-  --neon: #39FF14;
-  --neon-dim: rgba(57,255,20,0.10);
-  --neon-glow: rgba(57,255,20,0.25);
-  --neon-border: rgba(57,255,20,0.22);
-  --yellow: #e8d44d;
-  --yellow-dim: rgba(232,212,77,0.12);
-  --red: #ff4040;
-  --bg: #060609;
-  --surface: rgba(14,18,28,0.88);
-  --surface-2: rgba(20,26,40,0.75);
-  --border: rgba(57,255,20,0.18);
-  --border-dim: rgba(255,255,255,0.07);
-  --text: #e2e8f0;
-  --text-muted: #6b7280;
-  --radius: 0.875rem;
-  --radius-sm: 0.5rem;
-  --font-head: 'Orbitron', sans-serif;
-  --font-body: 'Montserrat Alternates', sans-serif;
-  --font-mono: 'Courier New', monospace;
-  --font-count: 'Silkscreen', sans-serif;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SZM Website Revamp Proposal | NexGenix Creative Solutions</title>
+  <link rel="icon" type="image/x-icon" href="https://nexgenixcreativesolutions.github.io/assets/images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* =====================================================
+       DESIGN TOKENS — exact NexGenix palette
+    ===================================================== */
+    :root {
+      --neon:        #39FF14;
+      --neon-dim:    rgba(57,255,20,0.10);
+      --neon-mid:    rgba(57,255,20,0.18);
+      --neon-glow:   rgba(57,255,20,0.28);
+      --yellow:      #e8d44d;
+      --yellow-dim:  rgba(232,212,77,0.12);
+      --red:         #ff4040;
+      --red-dim:     rgba(255,64,64,0.10);
+      --bg:          #060609;
+      --bg2:         #080b12;
+      --surface:     rgba(14,18,28,0.90);
+      --surface2:    rgba(20,26,40,0.80);
+      --border:      rgba(57,255,20,0.18);
+      --border-dim:  rgba(255,255,255,0.07);
+      --text:        #e2e8f0;
+      --muted:       #6b7280;
+      --radius:      0.875rem;
+      --radius-sm:   0.5rem;
+      --f-head:      'Orbitron', sans-serif;
+      --f-body:      'Montserrat Alternates', sans-serif;
+      --f-mono:      'Courier New', monospace;
+      --f-count:     'Silkscreen', sans-serif;
+    }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+    /* =====================================================
+       RESET & BASE
+    ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--f-body);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  overflow-x: hidden;
-  line-height: 1.6;
-}
+    /* =====================================================
+       FLOATING CODE BG
+    ===================================================== */
+    .code-bg {
+      position: fixed; inset: 0;
+      overflow: hidden; pointer-events: none; z-index: 0;
+    }
+    .code-line {
+      position: absolute; white-space: nowrap;
+      font-family: var(--f-mono); font-size: 13px;
+      color: rgba(57,255,20,0.22);
+      text-shadow: 0 0 8px rgba(57,255,20,0.18);
+      animation: scrollCode linear infinite; opacity: 0;
+    }
+    @keyframes scrollCode {
+      0%   { transform: translateX(110vw); opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { transform: translateX(-110%); opacity: 0; }
+    }
 
-/* ── FLOATING CODE BG ── */
-.floating-code-container {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-.code-line {
-  position: absolute;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: rgba(57,255,20,0.18);
-  text-shadow: 0 0 8px rgba(57,255,20,0.2);
-  animation: floatCode linear infinite;
-  opacity: 0;
-}
-@keyframes floatCode {
-  0%   { transform: translateX(100vw); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateX(-110%); opacity: 0; }
-}
+    /* =====================================================
+       NAV — exact match to NexGenix styles.css
+    ===================================================== */
+    #navbar {
+      position: sticky; top: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(6,6,9,0.96);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 40px rgba(57,255,20,0.06);
+    }
+    .nav-logo-wrap {
+      display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0;
+    }
+    .nav-logo-wrap img {
+      height: 36px; width: auto; object-fit: contain;
+    }
+    .nav-brand-text {
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .nav-brand-main {
+      font-family: var(--f-head);
+      font-size: 11px; font-weight: 800;
+      color: var(--neon);
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px var(--neon-glow);
+    }
+    .nav-brand-sub {
+      font-family: var(--f-mono);
+      font-size: 8px; color: var(--muted);
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .nav-doc-tag {
+      font-family: var(--f-mono); font-size: 10px;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-doc-tag span { color: var(--yellow); }
+    .hamburger {
+      display: none; flex-direction: column;
+      gap: 5px; cursor: pointer; padding: 4px;
+      background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--neon);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 6px var(--neon-glow);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── PAGE WRAPPER ── */
-.page {
-  max-width: 980px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  padding: 0 0 60px;
-}
+    /* Mobile nav drawer */
+    .nav-mobile-drawer {
+      display: none;
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: rgba(8,11,18,0.99);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      padding: 16px 5%;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .nav-mobile-drawer.open {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .drawer-links { list-style: none; }
+    .drawer-links li a {
+      display: block; padding: 12px 0;
+      border-bottom: 1px solid var(--border-dim);
+      font-family: var(--f-head); font-size: 11px;
+      font-weight: 600; letter-spacing: 0.08em;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .drawer-links li:last-child a { border-bottom: none; }
+    .drawer-links li a:hover { color: var(--neon); }
 
-/* ── COVER PAGE ── */
-.cover {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding: 0;
-  border-bottom: 1px solid var(--border);
-}
-.cover-glow {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(57,255,20,0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(232,212,77,0.04) 0%, transparent 60%);
-  pointer-events: none;
-}
-.cover-grid-lines {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(57,255,20,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(57,255,20,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-}
+    /* =====================================================
+       PAGE WRAPPER
+    ===================================================== */
+    .page { position: relative; z-index: 1; }
 
-/* Cover Top Bar */
-.cover-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 28px 52px;
-  border-bottom: 1px solid var(--border-dim);
-  position: relative;
-  z-index: 2;
-  background: rgba(6,6,9,0.7);
-  backdrop-filter: blur(12px);
-}
-.agency-brand {}
-.agency-name {
-  font-family: var(--font-head);
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--neon);
-  letter-spacing: 3px;
-  text-shadow: 0 0 14px var(--neon-glow);
-}
-.agency-sub {
-  font-size: 10px;
-  color: var(--text-muted);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-top: 3px;
-  font-family: var(--font-mono);
-}
-.cover-doc-id {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  text-align: right;
-}
-.cover-doc-id span { color: var(--yellow); }
+    /* =====================================================
+       COVER
+    ===================================================== */
+    .cover {
+      min-height: calc(100vh - 64px);
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 60px 5% 80px;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .cover-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 60% at 15% 55%, rgba(57,255,20,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 85% 20%, rgba(232,212,77,0.04) 0%, transparent 55%);
+    }
+    .cover-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(57,255,20,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,255,20,0.025) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .cover-content { position: relative; z-index: 2; max-width: 800px; }
 
-/* Cover Body */
-.cover-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 72px 52px 60px;
-  position: relative;
-  z-index: 2;
-}
-.cover-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--neon-dim);
-  border: 1px solid var(--neon-border);
-  border-radius: 100px;
-  padding: 6px 18px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--neon);
-  margin-bottom: 36px;
-  width: fit-content;
-  font-family: var(--font-head);
-}
-.cover-badge::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--neon);
-  box-shadow: 0 0 8px var(--neon);
-  animation: blink 1.8s ease infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .cover-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--neon-dim);
+      border: 1px solid var(--neon-mid);
+      border-radius: 100px;
+      padding: 5px 16px;
+      font-family: var(--f-head); font-size: 9px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--neon); margin-bottom: 28px;
+    }
+    .cover-eyebrow .pulse {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--neon); box-shadow: 0 0 8px var(--neon);
+      animation: pulse 1.8s ease infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.8)} }
 
-.cover-title {
-  font-family: var(--font-head);
-  font-size: clamp(52px, 8vw, 96px);
-  font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: 4px;
-  color: #fff;
-  margin-bottom: 8px;
-}
-.cover-title .neon { color: var(--neon); text-shadow: 0 0 30px var(--neon-glow), 0 0 60px rgba(57,255,20,0.15); }
-.cover-title .yellow { color: var(--yellow); text-shadow: 0 0 20px rgba(232,212,77,0.3); }
+    .cover-title {
+      font-family: var(--f-head);
+      font-size: clamp(42px, 9vw, 100px);
+      font-weight: 900; line-height: 0.88;
+      letter-spacing: 3px; color: #fff;
+      margin-bottom: 6px;
+    }
+    .cover-title .t-neon {
+      color: var(--neon);
+      text-shadow: 0 0 30px var(--neon-glow), 0 0 80px rgba(57,255,20,0.12);
+    }
+    .cover-title .t-yellow {
+      color: var(--yellow);
+      text-shadow: 0 0 20px rgba(232,212,77,0.35);
+    }
+    .cover-tagline {
+      font-family: var(--f-mono); font-size: 11px;
+      color: var(--muted); letter-spacing: 0.22em;
+      text-transform: uppercase; margin: 18px 0 44px;
+    }
+    .cover-tagline::before { content: '// '; color: var(--neon); }
 
-.cover-subtitle {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-muted);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 52px;
-  margin-top: 16px;
-}
+    /* Meta strip */
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      margin-bottom: 28px;
+    }
+    .meta-cell {
+      padding: 18px 20px;
+      border-right: 1px solid var(--border-dim);
+    }
+    .meta-cell:last-child { border-right: none; }
+    .meta-lbl {
+      font-family: var(--f-mono); font-size: 8px;
+      color: var(--muted); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .meta-val {
+      font-family: var(--f-head); font-size: 11px; font-weight: 700;
+      color: var(--text); letter-spacing: 0.04em;
+    }
+    .meta-val.neon  { color: var(--neon); text-shadow: 0 0 10px var(--neon-glow); }
+    .meta-val.gold  { color: var(--yellow); }
 
-.cover-meta {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--surface);
-  backdrop-filter: blur(12px);
-  margin-bottom: 36px;
-}
-.meta-item {
-  padding: 20px 24px;
-  border-right: 1px solid var(--border-dim);
-}
-.meta-item:last-child { border-right: none; }
-.meta-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--text-muted);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.meta-val {
-  font-family: var(--font-head);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: 0.05em;
-}
-.meta-val.neon { color: var(--neon); text-shadow: 0 0 10px var(--neon-glow); }
-.meta-val.yellow { color: var(--yellow); }
+    .cover-note {
+      font-family: var(--f-mono); font-size: 10px; color: var(--muted);
+    }
+    .cover-note::before { content: '> '; color: var(--neon); }
 
-.cover-validity {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.cover-validity::before { content: '//'; color: var(--neon); }
+    /* =====================================================
+       SECTION COMMON
+    ===================================================== */
+    .doc-section {
+      padding: 64px 5%;
+      border-bottom: 1px solid var(--border-dim);
+      position: relative;
+    }
+    .doc-section.alt { background: rgba(57,255,20,0.012); }
+    .doc-section::after {
+      content: '';
+      position: absolute; bottom: 0; left: 5%; right: 5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-mid), transparent);
+    }
+    .doc-section:last-of-type::after { display: none; }
 
-/* ── SECTION PAGES ── */
-.doc-section {
-  padding: 56px 52px;
-  border-bottom: 1px solid var(--border-dim);
-  position: relative;
-}
-.doc-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--neon-border), transparent);
-}
+    .s-num {
+      font-family: var(--f-head); font-size: 88px; font-weight: 900;
+      color: rgba(57,255,20,0.04); line-height: 1;
+      letter-spacing: 6px; user-select: none;
+      margin-bottom: -26px;
+    }
+    .s-title {
+      font-family: var(--f-head); font-size: clamp(18px,3vw,26px);
+      font-weight: 800; color: #fff;
+      letter-spacing: 2px; margin-bottom: 12px;
+      position: relative; z-index: 1;
+    }
+    .s-title .neon { color: var(--neon); text-shadow: 0 0 14px var(--neon-glow); }
+    .s-title .gold  { color: var(--yellow); }
+    .s-bar {
+      width: 44px; height: 2px;
+      background: linear-gradient(90deg, var(--neon), transparent);
+      border-radius: 2px; margin-bottom: 14px;
+      box-shadow: 0 0 10px var(--neon-glow);
+    }
+    .s-intro {
+      font-family: var(--f-mono); font-size: 12px;
+      color: var(--muted); line-height: 1.9;
+      max-width: 680px; margin-bottom: 0;
+    }
+    .s-intro::before { content: '// '; color: var(--neon); }
 
-.section-header { margin-bottom: 40px; }
+    /* =====================================================
+       AUDIT TABLE
+    ===================================================== */
+    .table-wrap { overflow-x: auto; margin-top: 24px; border-radius: var(--radius); }
+    .audit-tbl {
+      width: 100%; border-collapse: collapse;
+      border: 1px solid var(--border);
+      min-width: 560px;
+    }
+    .audit-tbl th {
+      background: rgba(57,255,20,0.08);
+      color: var(--neon); font-family: var(--f-head);
+      font-size: 9px; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 13px 16px;
+      text-align: left; border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .audit-tbl td {
+      padding: 13px 16px; font-size: 12px;
+      border-bottom: 1px solid var(--border-dim);
+      color: var(--muted); vertical-align: top;
+      background: var(--surface);
+      line-height: 1.7;
+    }
+    .audit-tbl tr:last-child td { border-bottom: none; }
+    .audit-tbl tr:hover td { background: rgba(57,255,20,0.025); }
+    .audit-tbl td:first-child {
+      font-family: var(--f-head); font-size: 9px;
+      color: var(--text); font-weight: 700;
+      letter-spacing: 0.06em; white-space: nowrap;
+    }
+    .tag {
+      display: inline-block; border-radius: 4px;
+      padding: 2px 9px; font-size: 9px; font-weight: 700;
+      font-family: var(--f-head); letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .tag-bad  { background: var(--red-dim);   color: #ff6b6b; border: 1px solid rgba(255,64,64,0.28); }
+    .tag-ok   { background: var(--yellow-dim); color: var(--yellow); border: 1px solid rgba(232,212,77,0.28); }
+    .tag-good { background: var(--neon-dim);   color: var(--neon);   border: 1px solid var(--border); }
 
-.section-num {
-  font-family: var(--font-head);
-  font-size: 100px;
-  font-weight: 900;
-  color: rgba(57,255,20,0.05);
-  line-height: 1;
-  letter-spacing: 6px;
-  margin-bottom: -32px;
-  user-select: none;
-}
+    /* =====================================================
+       COMPARISON
+    ===================================================== */
+    .compare-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 18px; margin-top: 28px;
+    }
+    .cmp-card {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border-dim);
+      background: var(--surface); backdrop-filter: blur(10px);
+    }
+    .cmp-head {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 20px; border-bottom: 1px solid var(--border-dim);
+    }
+    .cmp-head.bad { background: rgba(255,64,64,0.06); border-bottom-color: rgba(255,64,64,0.12); }
+    .cmp-head.good{ background: var(--neon-dim); border-bottom-color: var(--border); }
+    .cmp-head-lbl {
+      font-family: var(--f-head); font-size: 10px;
+      font-weight: 700; letter-spacing: 0.1em;
+    }
+    .cmp-head.bad  .cmp-head-lbl { color: #ff6b6b; }
+    .cmp-head.good .cmp-head-lbl { color: var(--neon); }
+    .cmp-body { padding: 18px 20px; }
+    .cmp-item {
+      display: flex; gap: 10px; margin-bottom: 9px;
+      font-size: 12px; color: var(--muted);
+      align-items: flex-start; font-family: var(--f-mono);
+      line-height: 1.5;
+    }
+    .cmp-item:last-child { margin-bottom: 0; }
+    .dot {
+      flex-shrink: 0; width: 5px; height: 5px;
+      border-radius: 50%; margin-top: 6px;
+    }
+    .dot-bad  { background: #ff6b6b; box-shadow: 0 0 5px rgba(255,64,64,.5); }
+    .dot-good { background: var(--neon); box-shadow: 0 0 5px var(--neon-glow); }
 
-.section-title {
-  font-family: var(--font-head);
-  font-size: 28px;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 3px;
-  margin-bottom: 14px;
-  position: relative;
-  z-index: 1;
-}
-.section-title .neon { color: var(--neon); text-shadow: 0 0 14px var(--neon-glow); }
-.section-title .yellow { color: var(--yellow); }
+    /* =====================================================
+       SCOPE GRID
+    ===================================================== */
+    .scope-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 18px; margin-top: 24px;
+    }
+    .scope-card {
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius); padding: 22px;
+      background: var(--surface); backdrop-filter: blur(10px);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .scope-card:hover {
+      border-color: var(--neon-mid);
+      box-shadow: 0 0 28px rgba(57,255,20,0.06);
+    }
+    .scope-title {
+      font-family: var(--f-head); font-size: 10px;
+      font-weight: 700; color: var(--neon);
+      letter-spacing: 0.1em; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+      text-shadow: 0 0 10px var(--neon-glow);
+    }
+    .scope-item {
+      display: flex; gap: 8px; font-size: 12px;
+      color: var(--muted); margin-bottom: 7px;
+      font-family: var(--f-mono); line-height: 1.5;
+    }
+    .scope-item span:first-child { color: var(--yellow); flex-shrink: 0; font-weight: 700; }
 
-.section-divider {
-  width: 48px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--neon), transparent);
-  border-radius: 2px;
-  margin-bottom: 16px;
-  box-shadow: 0 0 10px var(--neon-glow);
-}
+    /* =====================================================
+       DELIVERABLES
+    ===================================================== */
+    .del-list { margin-top: 24px; }
+    .del-row {
+      display: flex; gap: 18px; padding: 18px 0;
+      border-bottom: 1px solid var(--border-dim);
+      align-items: flex-start;
+      transition: padding-left .25s;
+    }
+    .del-row:last-child { border-bottom: none; }
+    .del-row:hover { padding-left: 6px; }
+    .del-ico {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--neon-dim);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 12px rgba(57,255,20,0.07);
+    }
+    .del-title {
+      font-family: var(--f-head); font-size: 10px;
+      font-weight: 700; color: var(--text);
+      letter-spacing: 0.06em; margin-bottom: 4px;
+    }
+    .del-desc { font-size: 12px; color: var(--muted); line-height: 1.75; font-family: var(--f-mono); }
 
-.section-intro {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.8;
-  max-width: 660px;
-  font-family: var(--font-mono);
-}
+    /* =====================================================
+       TIMELINE
+    ===================================================== */
+    .tl { margin-top: 28px; }
+    .tl-row { display: flex; gap: 16px; }
+    .tl-left { width: 82px; flex-shrink: 0; text-align: right; padding-top: 1px; }
+    .tl-phase {
+      font-family: var(--f-head); font-size: 10px;
+      color: var(--neon); letter-spacing: 1px;
+      text-shadow: 0 0 8px var(--neon-glow);
+    }
+    .tl-days { font-family: var(--f-mono); font-size: 9px; color: var(--muted); margin-top: 2px; }
+    .tl-conn { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; padding-top: 3px; }
+    .tl-dot {
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--neon); flex-shrink: 0;
+      box-shadow: 0 0 10px var(--neon), 0 0 22px var(--neon-glow);
+    }
+    .tl-line {
+      width: 1px; flex: 1;
+      background: linear-gradient(to bottom, var(--neon-mid), transparent);
+      min-height: 36px;
+    }
+    .tl-right { flex: 1; padding-bottom: 28px; }
+    .tl-title {
+      font-family: var(--f-head); font-size: 11px; font-weight: 700;
+      color: var(--text); letter-spacing: 0.05em; margin-bottom: 4px;
+    }
+    .tl-items { font-family: var(--f-mono); font-size: 11px; color: var(--muted); line-height: 1.9; }
 
-/* ── AUDIT TABLE ── */
-.audit-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 24px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.audit-table th {
-  background: rgba(57,255,20,0.08);
-  color: var(--neon);
-  font-family: var(--font-head);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 14px 18px;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-}
-.audit-table td {
-  padding: 14px 18px;
-  font-size: 12px;
-  border-bottom: 1px solid var(--border-dim);
-  vertical-align: top;
-  color: var(--text-muted);
-  background: var(--surface);
-}
-.audit-table td:first-child { color: var(--text); font-weight: 600; font-family: var(--font-head); font-size: 10px; letter-spacing: 0.05em; }
-.audit-table tr:last-child td { border-bottom: none; }
-.audit-table tr:hover td { background: rgba(57,255,20,0.03); }
+    /* =====================================================
+       INVESTMENT
+    ===================================================== */
+    .inv-tbl-wrap { overflow-x: auto; margin-top: 24px; border-radius: var(--radius); }
+    .inv-tbl {
+      width: 100%; border-collapse: collapse;
+      border: 1px solid var(--border); min-width: 480px;
+    }
+    .inv-tbl th {
+      background: rgba(57,255,20,0.08); color: var(--neon);
+      font-family: var(--f-head); font-size: 9px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 13px 18px; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .inv-tbl th:last-child { text-align: right; }
+    .inv-tbl td {
+      padding: 15px 18px; font-size: 12px;
+      border-bottom: 1px solid var(--border-dim);
+      background: var(--surface); color: var(--muted);
+      font-family: var(--f-mono);
+    }
+    .inv-tbl td:first-child { color: var(--text); font-weight: 600; font-family: var(--f-body); font-size: 13px; }
+    .inv-tbl td:last-child {
+      text-align: right; font-weight: 700;
+      color: var(--neon); font-size: 13px;
+      font-family: var(--f-head); letter-spacing: 0.05em;
+      text-shadow: 0 0 10px var(--neon-glow);
+    }
+    .inv-tbl tr.hi td { background: rgba(57,255,20,0.035); }
+    .inv-tbl tr.total td {
+      background: linear-gradient(90deg, rgba(57,255,20,0.09), rgba(57,255,20,0.04));
+      color: var(--text); font-weight: 700; font-size: 13px;
+      border-bottom: none; border-top: 1px solid var(--border);
+      font-family: var(--f-head); letter-spacing: 0.05em;
+    }
+    .inv-tbl tr.total td:last-child { color: var(--neon); font-size: 20px; text-shadow: 0 0 16px var(--neon-glow); }
+    .inv-note { font-family: var(--f-mono); font-size: 10px; color: var(--muted); margin-top: 10px; }
+    .inv-note::before { content: '* '; color: var(--yellow); }
 
-.tag-bad {
-  display: inline-block;
-  background: rgba(255,64,64,0.12);
-  color: #ff6b6b;
-  border: 1px solid rgba(255,64,64,0.3);
-  border-radius: 4px;
-  padding: 2px 10px;
-  font-size: 10px;
-  font-weight: 700;
-  font-family: var(--font-head);
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-}
-.tag-ok {
-  display: inline-block;
-  background: rgba(232,212,77,0.10);
-  color: var(--yellow);
-  border: 1px solid rgba(232,212,77,0.3);
-  border-radius: 4px;
-  padding: 2px 10px;
-  font-size: 10px;
-  font-weight: 700;
-  font-family: var(--font-head);
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-}
-.tag-good {
-  display: inline-block;
-  background: var(--neon-dim);
-  color: var(--neon);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 2px 10px;
-  font-size: 10px;
-  font-weight: 700;
-  font-family: var(--font-head);
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-}
+    /* Payment cards */
+    .pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px; }
+    .pay-card {
+      border: 1px solid var(--border-dim); border-radius: var(--radius);
+      padding: 26px 22px; text-align: center;
+      background: var(--surface); backdrop-filter: blur(10px);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .pay-card:hover { border-color: var(--neon-mid); box-shadow: 0 0 24px rgba(57,255,20,0.07); }
+    .pay-card.primary {
+      background: linear-gradient(135deg, rgba(57,255,20,0.09), rgba(57,255,20,0.03));
+      border-color: var(--neon-mid);
+      box-shadow: 0 0 32px rgba(57,255,20,0.08);
+    }
+    .pay-lbl { font-family: var(--f-mono); font-size: 9px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+    .pay-amt {
+      font-family: var(--f-count); font-size: 40px;
+      color: var(--neon); margin-bottom: 6px;
+      text-shadow: 0 0 20px var(--neon-glow), 0 0 50px rgba(57,255,20,0.18);
+    }
+    .pay-card:not(.primary) .pay-amt { color: var(--yellow); text-shadow: 0 0 20px rgba(232,212,77,0.3); }
+    .pay-when { font-family: var(--f-mono); font-size: 10px; color: var(--muted); }
 
-/* ── COMPARISON ── */
-.comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 28px;
-}
-.comp-card {
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--border-dim);
-  background: var(--surface);
-  backdrop-filter: blur(10px);
-}
-.comp-header {
-  padding: 16px 22px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 1px solid var(--border-dim);
-}
-.comp-header.old { background: rgba(255,64,64,0.07); border-bottom-color: rgba(255,64,64,0.15); }
-.comp-header.new { background: rgba(57,255,20,0.07); border-bottom-color: var(--border); }
-.comp-title {
-  font-family: var(--font-head);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-.comp-header.old .comp-title { color: #ff6b6b; }
-.comp-header.new .comp-title { color: var(--neon); }
-.comp-body { padding: 20px 22px; }
-.comp-item {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-  font-size: 12px;
-  color: var(--text-muted);
-  align-items: flex-start;
-  font-family: var(--font-mono);
-}
-.comp-item:last-child { margin-bottom: 0; }
-.comp-item .dot {
-  flex-shrink: 0;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  margin-top: 7px;
-}
-.dot-bad { background: #ff6b6b; box-shadow: 0 0 6px rgba(255,64,64,0.4); }
-.dot-good { background: var(--neon); box-shadow: 0 0 6px var(--neon-glow); }
+    /* =====================================================
+       TERMS
+    ===================================================== */
+    .terms { margin-top: 24px; }
+    .term {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .term:last-child { border-bottom: none; }
+    .term-title {
+      font-family: var(--f-head); font-size: 10px;
+      font-weight: 700; color: var(--yellow);
+      margin-bottom: 7px;
+      display: flex; align-items: center; gap: 8px;
+      letter-spacing: 0.08em;
+    }
+    .term-title::before { content: '//'; color: var(--neon); font-family: var(--f-mono); font-size: 12px; }
+    .term p { font-family: var(--f-mono); font-size: 12px; color: var(--muted); line-height: 1.85; }
 
-/* ── SCOPE GRID ── */
-.scope-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 24px;
-}
-.scope-card {
-  border: 1px solid var(--border-dim);
-  border-radius: var(--radius);
-  padding: 24px;
-  background: var(--surface);
-  backdrop-filter: blur(10px);
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.scope-card:hover {
-  border-color: var(--neon-border);
-  box-shadow: 0 0 24px rgba(57,255,20,0.07);
-}
-.scope-card-title {
-  font-family: var(--font-head);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--neon);
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-shadow: 0 0 10px var(--neon-glow);
-}
-.scope-item {
-  display: flex;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  align-items: flex-start;
-  font-family: var(--font-mono);
-}
-.scope-item span:first-child { color: var(--yellow); flex-shrink: 0; font-weight: 700; }
+    /* =====================================================
+       SIGNATURE
+    ===================================================== */
+    .sign-wrap {
+      margin: 0 5% 60px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(57,255,20,0.055), rgba(6,6,9,0.98) 55%, rgba(232,212,77,0.03));
+      padding: 52px;
+      position: relative; overflow: hidden;
+    }
+    .sign-wrap::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(57,255,20,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,255,20,0.025) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .sign-title {
+      font-family: var(--f-head); font-size: clamp(18px,3vw,28px);
+      font-weight: 900; color: #fff;
+      letter-spacing: 3px; margin-bottom: 6px;
+      position: relative; z-index: 1;
+    }
+    .sign-title .neon { color: var(--neon); text-shadow: 0 0 18px var(--neon-glow); }
+    .sign-sub {
+      font-family: var(--f-mono); font-size: 11px;
+      color: var(--muted); margin-bottom: 26px;
+      position: relative; z-index: 1;
+    }
+    .sign-sub::before { content: '// '; color: var(--neon); }
+    .sign-body {
+      font-family: var(--f-mono); font-size: 12px;
+      color: var(--muted); line-height: 1.85; max-width: 560px;
+      margin-bottom: 40px;
+      position: relative; z-index: 1;
+    }
+    .sign-body strong { color: var(--neon); }
+    .sign-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px; position: relative; z-index: 1;
+    }
+    .sign-party {
+      border: 1px solid var(--border-dim); border-radius: var(--radius);
+      padding: 22px; background: var(--surface);
+      backdrop-filter: blur(10px);
+    }
+    .party-lbl { font-family: var(--f-mono); font-size: 8px; color: var(--muted); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px; }
+    .party-name { font-family: var(--f-head); font-size: 12px; color: #fff; font-weight: 800; margin-bottom: 2px; letter-spacing: 0.06em; }
+    .party-role { font-family: var(--f-mono); font-size: 10px; color: var(--neon); margin-bottom: 22px; }
+    .sig-field { margin-top: 18px; }
+    .sig-line {
+      border-bottom: 1px solid rgba(57,255,20,0.22);
+      height: 38px; margin-bottom: 5px;
+    }
+    .sig-lbl { font-family: var(--f-mono); font-size: 8px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* ── DELIVERABLES ── */
-.deliverables-list { margin-top: 24px; }
-.del-row {
-  display: flex;
-  gap: 20px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border-dim);
-  align-items: flex-start;
-  transition: padding-left 0.2s;
-}
-.del-row:last-child { border-bottom: none; }
-.del-row:hover { padding-left: 6px; }
-.del-icon {
-  width: 46px; height: 46px;
-  background: var(--neon-dim);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-  box-shadow: 0 0 12px rgba(57,255,20,0.08);
-}
-.del-title {
-  font-family: var(--font-head);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.06em;
-  margin-bottom: 5px;
-}
-.del-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; font-family: var(--font-mono); }
+    .validity {
+      font-family: var(--f-mono); font-size: 10px;
+      color: var(--muted); margin-top: 36px; text-align: center;
+      padding: 13px 18px;
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.018);
+      position: relative; z-index: 1;
+      line-height: 1.7;
+    }
 
-/* ── TIMELINE ── */
-.timeline { margin-top: 28px; }
-.tl-row { display: flex; gap: 20px; margin-bottom: 4px; }
-.tl-left { width: 90px; flex-shrink: 0; text-align: right; }
-.tl-phase { font-family: var(--font-head); font-size: 11px; color: var(--neon); letter-spacing: 1px; text-shadow: 0 0 8px var(--neon-glow); }
-.tl-days { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-top: 2px; }
-.tl-connector { display: flex; flex-direction: column; align-items: center; padding-top: 3px; flex-shrink: 0; }
-.tl-dot {
-  width: 12px; height: 12px;
-  border-radius: 50%;
-  background: var(--neon);
-  flex-shrink: 0;
-  box-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon-glow);
-}
-.tl-line { width: 1px; flex: 1; background: linear-gradient(to bottom, var(--neon-border), transparent); min-height: 40px; }
-.tl-right { flex: 1; padding-bottom: 28px; }
-.tl-title { font-family: var(--font-head); font-weight: 700; font-size: 12px; color: var(--text); margin-bottom: 5px; padding-top: 1px; letter-spacing: 0.05em; }
-.tl-items { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); line-height: 1.9; }
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    footer {
+      background: rgba(8,11,18,0.98);
+      border-top: 1px solid var(--border);
+      padding: 28px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      position: relative; z-index: 1;
+    }
+    .footer-brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-brand img { height: 28px; width: auto; }
+    .footer-brand-text {
+      font-family: var(--f-head); font-size: 9px;
+      font-weight: 800; color: var(--neon);
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px var(--neon-glow);
+    }
+    .footer-copy {
+      font-family: var(--f-mono); font-size: 10px; color: var(--muted);
+    }
+    .footer-copy span { color: var(--neon); }
+    .footer-links { display: flex; gap: 14px; }
+    .footer-links a {
+      width: 32px; height: 32px;
+      background: var(--neon-dim);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: var(--muted);
+      transition: all .25s;
+    }
+    .footer-links a:hover { background: var(--neon); color: #000; border-color: var(--neon); box-shadow: 0 0 12px var(--neon-glow); }
 
-/* ── INVESTMENT TABLE ── */
-.invest-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 24px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.invest-table th {
-  background: rgba(57,255,20,0.08);
-  color: var(--neon);
-  font-family: var(--font-head);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 14px 20px;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-}
-.invest-table th:last-child { text-align: right; }
-.invest-table td {
-  padding: 16px 20px;
-  font-size: 12px;
-  border-bottom: 1px solid var(--border-dim);
-  background: var(--surface);
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-}
-.invest-table td:first-child { color: var(--text); font-weight: 600; font-family: var(--font-body); }
-.invest-table td:last-child { text-align: right; font-weight: 700; color: var(--neon); font-size: 14px; font-family: var(--font-head); letter-spacing: 0.05em; text-shadow: 0 0 10px var(--neon-glow); }
-.invest-table tr.highlight td { background: rgba(57,255,20,0.04); }
-.invest-table tr.total td {
-  background: linear-gradient(90deg, rgba(57,255,20,0.08), rgba(57,255,20,0.04));
-  color: var(--text);
-  font-weight: 700;
-  font-size: 13px;
-  border-bottom: none;
-  border-top: 1px solid var(--border);
-  font-family: var(--font-head);
-  letter-spacing: 0.05em;
-}
-.invest-table tr.total td:last-child { color: var(--neon); font-size: 20px; text-shadow: 0 0 16px var(--neon-glow); }
-.invest-note { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 12px; }
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+    @media (max-width: 900px) {
+      .cover-meta { grid-template-columns: 1fr 1fr; }
+      .meta-cell:nth-child(2) { border-right: none; }
+      .meta-cell:nth-child(3) { border-top: 1px solid var(--border-dim); }
+      .meta-cell:nth-child(4) { border-top: 1px solid var(--border-dim); border-right: none; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .scope-grid   { grid-template-columns: 1fr; }
+      .pay-grid     { grid-template-columns: 1fr; }
+      .sign-grid    { grid-template-columns: 1fr; }
+      .sign-wrap    { padding: 32px 22px; margin: 0 4% 44px; }
+      .nav-doc-tag  { display: none; }
+    }
 
-/* ── PAYMENT CARDS ── */
-.payment-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 24px;
-}
-.payment-card {
-  border: 1px solid var(--border-dim);
-  border-radius: var(--radius);
-  padding: 28px;
-  text-align: center;
-  background: var(--surface);
-  backdrop-filter: blur(10px);
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.payment-card:hover { border-color: var(--neon-border); box-shadow: 0 0 24px rgba(57,255,20,0.08); }
-.payment-card.primary {
-  background: linear-gradient(135deg, rgba(57,255,20,0.08), rgba(57,255,20,0.03));
-  border-color: var(--neon-border);
-  box-shadow: 0 0 30px rgba(57,255,20,0.08);
-}
-.p-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-.p-amount { font-family: var(--font-count); font-size: 44px; color: var(--neon); margin-bottom: 6px; text-shadow: 0 0 20px var(--neon-glow), 0 0 40px rgba(57,255,20,0.2); }
-.payment-card:not(.primary) .p-amount { color: var(--yellow); text-shadow: 0 0 20px rgba(232,212,77,0.3); }
-.p-when { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+    @media (max-width: 640px) {
+      .cover        { padding: 44px 4% 60px; }
+      .doc-section  { padding: 48px 4%; }
+      .cover-meta   { grid-template-columns: 1fr 1fr; }
+      .cover-title  { letter-spacing: 1px; }
+      .s-num        { font-size: 64px; margin-bottom: -20px; }
+      .s-title      { font-size: 16px; }
+      .tl-left      { width: 64px; }
+      .tl-phase     { font-size: 8px; }
+      .tl-title     { font-size: 10px; }
+      .tl-items     { font-size: 10px; }
+      .del-row      { gap: 12px; }
+      .del-ico      { width: 38px; height: 38px; font-size: 16px; }
+      .sign-wrap    { padding: 24px 16px; margin: 0 3% 36px; }
+      .sign-title   { letter-spacing: 1px; }
+      footer        { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .pay-amt      { font-size: 30px; }
+    }
 
-/* ── TERMS ── */
-.terms-list { margin-top: 24px; }
-.term-item { padding: 20px 0; border-bottom: 1px solid var(--border-dim); }
-.term-item:last-child { border-bottom: none; }
-.term-title {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 11px;
-  color: var(--yellow);
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  letter-spacing: 0.08em;
-}
-.term-title::before { content: '//'; color: var(--neon); font-family: var(--font-mono); font-size: 13px; }
-.term-desc { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); line-height: 1.8; }
+    @media (max-width: 480px) {
+      #navbar { padding: 0 4%; height: 56px; }
+      .nav-mobile-drawer { top: 56px; }
+      .nav-brand-main { font-size: 9px; letter-spacing: 1px; }
+      .cover { padding: 36px 4% 52px; }
+      .doc-section { padding: 40px 4%; }
+      .cover-meta { grid-template-columns: 1fr 1fr; }
+      .meta-cell { padding: 14px 12px; }
+      .meta-val  { font-size: 9px; }
+      .table-wrap .audit-tbl td,
+      .table-wrap .audit-tbl th { padding: 10px 12px; font-size: 11px; }
+      .inv-tbl td, .inv-tbl th { padding: 11px 12px; }
+    }
 
-/* ── SIGN PAGE ── */
-.sign-section {
-  background: linear-gradient(135deg, rgba(57,255,20,0.06) 0%, rgba(6,6,9,0.98) 50%, rgba(232,212,77,0.04) 100%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin: 0 52px 60px;
-  padding: 52px;
-  position: relative;
-  overflow: hidden;
-}
-.sign-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(rgba(57,255,20,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-.sign-title {
-  font-family: var(--font-head);
-  font-size: 28px;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 3px;
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 1;
-}
-.sign-title .neon { color: var(--neon); text-shadow: 0 0 20px var(--neon-glow); }
-.sign-subtitle {
-  font-family: var(--font-mono);
-  color: var(--text-muted);
-  font-size: 13px;
-  margin-bottom: 32px;
-  position: relative;
-  z-index: 1;
-}
-.sign-intro {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-muted);
-  max-width: 560px;
-  line-height: 1.8;
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 1;
-}
-.sign-intro strong { color: var(--neon); }
-
-.sign-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  position: relative;
-  z-index: 1;
-}
-.sign-party {
-  border: 1px solid var(--border-dim);
-  border-radius: var(--radius);
-  padding: 24px;
-  background: var(--surface);
-  backdrop-filter: blur(8px);
-}
-.party-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 10px; }
-.party-name { font-family: var(--font-head); font-size: 13px; color: #fff; font-weight: 700; margin-bottom: 3px; letter-spacing: 0.05em; }
-.party-role { font-family: var(--font-mono); font-size: 11px; color: var(--neon); margin-bottom: 24px; }
-
-.sig-line-wrap { margin-top: 20px; }
-.sig-line { border-bottom: 1px solid rgba(57,255,20,0.25); padding-top: 36px; margin-bottom: 5px; }
-.sig-line-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
-
-.validity-note {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 40px;
-  text-align: center;
-  padding: 14px 20px;
-  border: 1px solid var(--border-dim);
-  border-radius: var(--radius-sm);
-  background: rgba(255,255,255,0.02);
-  position: relative;
-  z-index: 1;
-}
-
-/* ── SECTION-LEVEL BG VARIATION ── */
-.doc-section.alt { background: rgba(57,255,20,0.015); }
-
-/* ── PRINT ── */
-@media print {
-  body { background: #000; }
-  .floating-code-container { display: none; }
-  .page { max-width: 100%; }
-  .doc-section { page-break-inside: avoid; }
-}
-</style>
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+    .reveal-d4 { transition-delay: .4s; }
+  </style>
 </head>
 <body>
 
-<!-- Floating Code Background -->
-<div class="floating-code-container" id="codeContainer"></div>
+<!-- Floating code background -->
+<div class="code-bg" id="codeBg"></div>
+
+<!-- =====================================================
+     NAV
+===================================================== -->
+<nav id="navbar">
+  <a href="https://nexgenixcreativesolutions.github.io" class="nav-logo-wrap">
+    <img src="https://nexgenixcreativesolutions.github.io/assets/images/logo.png" alt="NexGenix Logo">
+    <div class="nav-brand-text">
+      <span class="nav-brand-main">NEX GENIX CREATIVE SOLUTIONS</span>
+      <span class="nav-brand-sub">Web Design &amp; Branding · Zamboanga City, PH</span>
+    </div>
+  </a>
+  <div class="nav-doc-tag">
+    PROPOSAL&nbsp;<span>NGCS-SZM-2026</span>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-mobile-drawer" id="navDrawer">
+  <ul class="drawer-links">
+    <li><a href="https://nexgenixcreativesolutions.github.io">Home</a></li>
+    <li><a href="https://nexgenixcreativesolutions.github.io/about-us">About Us</a></li>
+    <li><a href="https://nexgenixcreativesolutions.github.io/contact">Contact</a></li>
+    <li><a href="#">NGCS-SZM-2026 · Proposal Doc</a></li>
+  </ul>
+</div>
 
 <div class="page">
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  COVER PAGE                            -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="cover">
+  <!-- ===================================================
+       COVER
+  =================================================== -->
+  <section class="cover">
     <div class="cover-glow"></div>
-    <div class="cover-grid-lines"></div>
+    <div class="cover-grid"></div>
+    <div class="cover-content">
 
-    <div class="cover-top">
-      <div class="agency-brand">
-        <div class="agency-name">NEXGENIX CREATIVE SOLUTIONS</div>
-        <div class="agency-sub">Web Design &amp; Branding Agency · Zamboanga City, Philippines</div>
+      <div class="cover-eyebrow">
+        <span class="pulse"></span>
+        Website Revamp Proposal
       </div>
-      <div class="cover-doc-id">
-        <div>DOC TYPE: <span>PROPOSAL</span></div>
-        <div style="margin-top:3px;">DATE: <span id="docDate">[DATE]</span></div>
-        <div style="margin-top:3px;">REF: <span>NGCS-SZM-2026</span></div>
-      </div>
-    </div>
 
-    <div class="cover-body">
-      <div class="cover-badge">Website Revamp Proposal</div>
-
-      <div class="cover-title">
+      <h1 class="cover-title">
         SHUTTER<br>
         ZONE<br>
-        <span class="yellow">MEDIA</span>
-      </div>
+        <span class="t-yellow">MEDIA</span>
+      </h1>
 
-      <div class="cover-subtitle">// A 2026 Digital Transformation Initiative</div>
+      <p class="cover-tagline">A 2026 Digital Transformation Initiative</p>
 
       <div class="cover-meta">
-        <div class="meta-item">
-          <div class="meta-label">Prepared For</div>
+        <div class="meta-cell">
+          <div class="meta-lbl">Prepared For</div>
           <div class="meta-val">Shutter Zone Media</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-label">Project Type</div>
+        <div class="meta-cell">
+          <div class="meta-lbl">Project Type</div>
           <div class="meta-val">Full Website Revamp</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-label">Platform</div>
+        <div class="meta-cell">
+          <div class="meta-lbl">Platform</div>
           <div class="meta-val neon">Wix.com</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-label">Investment</div>
-          <div class="meta-val yellow">$1,800 USD</div>
+        <div class="meta-cell">
+          <div class="meta-lbl">Investment</div>
+          <div class="meta-val gold">$1,800 USD</div>
         </div>
       </div>
 
-      <div class="cover-validity">This proposal is valid for 14 days from the date of issue.</div>
+      <p class="cover-note">This proposal is valid for 14 days from the date of issue. Ref: NGCS-SZM-2026</p>
     </div>
-  </div>
+  </section>
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  01 — CURRENT SITE AUDIT               -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="doc-section">
-    <div class="section-header">
-      <div class="section-num">01</div>
-      <div class="section-title">CURRENT SITE <span class="neon">AUDIT</span></div>
-      <div class="section-divider"></div>
-      <p class="section-intro">// After reviewing shutterzonemedia.com, the following issues were identified — impacting conversions, first impressions, and perceived value with high-end realtors.</p>
+  <!-- ===================================================
+       01 — AUDIT
+  =================================================== -->
+  <section class="doc-section">
+    <div class="section-header reveal">
+      <div class="s-num">01</div>
+      <h2 class="s-title">CURRENT SITE <span class="neon">AUDIT</span></h2>
+      <div class="s-bar"></div>
+      <p class="s-intro">After reviewing shutterzonemedia.com, the following design, UX, and performance issues were identified — directly impacting conversions and first impressions with high-end realtors.</p>
     </div>
-    <table class="audit-table">
-      <thead>
-        <tr>
-          <th>Area</th>
-          <th>Current Issue</th>
-          <th>Impact</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Visual Design</td>
-          <td>Flat, template-style layout with stock illustrations. Feels generic relative to the quality of your work.</td>
-          <td>Reduces perceived value and trust with high-end realtors</td>
-          <td><span class="tag-bad">Critical</span></td>
-        </tr>
-        <tr>
-          <td>Hero Section</td>
-          <td>Two competing "Book in WI / Book in IL" buttons push the headline down and create layout confusion.</td>
-          <td>Cluttered first impression, weakened CTA clarity</td>
-          <td><span class="tag-bad">Critical</span></td>
-        </tr>
-        <tr>
-          <td>Mobile Layout</td>
-          <td>Navigation collapses awkwardly. Booking buttons stack vertically consuming too much screen estate.</td>
-          <td>Poor UX on mobile where 60%+ of traffic originates</td>
-          <td><span class="tag-bad">Critical</span></td>
-        </tr>
-        <tr>
-          <td>Typography</td>
-          <td>Default system fonts with no typographic hierarchy. Headings and body text lack contrast and rhythm.</td>
-          <td>Reduces readability and professional feel</td>
-          <td><span class="tag-ok">Moderate</span></td>
-        </tr>
-        <tr>
-          <td>Services Section</td>
-          <td>Cards cut off on the right side. Some titles appear without context and descriptions are too brief.</td>
-          <td>Visitors miss key services; reduces upsell opportunity</td>
-          <td><span class="tag-bad">Critical</span></td>
-        </tr>
-        <tr>
-          <td>Social Proof</td>
-          <td>Partner logos (KW, First Weber, RE/MAX, Shorewest) present but not visually emphasized.</td>
-          <td>Credibility opportunity being missed</td>
-          <td><span class="tag-ok">Moderate</span></td>
-        </tr>
-        <tr>
-          <td>White Space</td>
-          <td>Excessive empty space between sections creates a disjointed scrolling experience.</td>
-          <td>Feels unfinished; visitors lose engagement mid-scroll</td>
-          <td><span class="tag-ok">Moderate</span></td>
-        </tr>
-        <tr>
-          <td>Color & Branding</td>
-          <td>Teal/dark navy is a solid foundation but lacks a premium accent or consistent visual language.</td>
-          <td>Brand identity feels inconsistent</td>
-          <td><span class="tag-ok">Moderate</span></td>
-        </tr>
-        <tr>
-          <td>Footer</td>
-          <td>Contact details and office hours are scattered with inconsistent indentation and layout hierarchy.</td>
-          <td>Key contact info is harder to find quickly</td>
-          <td><span class="tag-ok">Moderate</span></td>
-        </tr>
-        <tr>
-          <td>SEO Basics</td>
-          <td>Meta descriptions and page titles appear generic. Alt text on images should be verified.</td>
-          <td>Affects organic search visibility</td>
-          <td><span class="tag-ok">Moderate</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="table-wrap reveal reveal-d1">
+      <table class="audit-tbl">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Current Issue</th>
+            <th>Impact</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Visual Design</td><td>Flat, template-style layout with stock illustrations. Feels generic relative to the quality of your work.</td><td>Reduces perceived value and trust</td><td><span class="tag tag-bad">Critical</span></td></tr>
+          <tr><td>Hero Section</td><td>Two competing CTA buttons push the headline down and create layout confusion at the top of the page.</td><td>Cluttered first impression</td><td><span class="tag tag-bad">Critical</span></td></tr>
+          <tr><td>Mobile Layout</td><td>Nav collapses awkwardly. Booking buttons stack vertically consuming too much screen real estate.</td><td>Poor UX — 60%+ of traffic is mobile</td><td><span class="tag tag-bad">Critical</span></td></tr>
+          <tr><td>Typography</td><td>Default system fonts with no typographic hierarchy. Headings and body text lack contrast and rhythm.</td><td>Reduces readability and premium feel</td><td><span class="tag tag-ok">Moderate</span></td></tr>
+          <tr><td>Services Section</td><td>Cards cut off on the right side at all screen sizes. Some descriptions are too brief to communicate value.</td><td>Visitors miss key services</td><td><span class="tag tag-bad">Critical</span></td></tr>
+          <tr><td>Social Proof</td><td>Partner logos (KW, First Weber, RE/MAX, Shorewest) present but not visually emphasized or positioned for trust.</td><td>Credibility opportunity missed</td><td><span class="tag tag-ok">Moderate</span></td></tr>
+          <tr><td>White Space</td><td>Excessive empty space between sections creates a disjointed, unfinished scrolling experience.</td><td>Visitors lose engagement mid-scroll</td><td><span class="tag tag-ok">Moderate</span></td></tr>
+          <tr><td>Color &amp; Branding</td><td>Teal/dark navy is a solid foundation but lacks a premium accent or consistent visual language.</td><td>Brand identity feels inconsistent</td><td><span class="tag tag-ok">Moderate</span></td></tr>
+          <tr><td>Footer</td><td>Contact details and office hours are scattered with inconsistent indentation and layout hierarchy.</td><td>Key contact info is hard to find fast</td><td><span class="tag tag-ok">Moderate</span></td></tr>
+          <tr><td>SEO Basics</td><td>Meta descriptions and page titles appear generic. Alt text on images to be confirmed.</td><td>Affects organic search visibility</td><td><span class="tag tag-ok">Moderate</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  02 — BEFORE vs AFTER                  -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="doc-section alt">
-    <div class="section-header">
-      <div class="section-num">02</div>
-      <div class="section-title">BEFORE <span class="yellow">vs AFTER</span></div>
-      <div class="section-divider"></div>
-      <p class="section-intro">// A clear picture of what changes with the revamp — from the current experience to the new one.</p>
+  <!-- ===================================================
+       02 — BEFORE vs AFTER
+  =================================================== -->
+  <section class="doc-section alt">
+    <div class="section-header reveal">
+      <div class="s-num">02</div>
+      <h2 class="s-title">BEFORE <span class="gold">vs AFTER</span></h2>
+      <div class="s-bar"></div>
+      <p class="s-intro">A clear picture of what changes with the revamp — from the current experience to the new one.</p>
     </div>
-    <div class="comparison">
-      <div class="comp-card">
-        <div class="comp-header old">
-          <span style="font-size:16px">❌</span>
-          <div class="comp-title">Current Website</div>
-        </div>
-        <div class="comp-body">
-          <div class="comp-item"><div class="dot dot-bad"></div><span>Generic Wix template look — not memorable</span></div>
-          <div class="comp-item"><div class="dot dot-bad"></div><span>Cluttered header with competing booking buttons</span></div>
-          <div class="comp-item"><div class="dot dot-bad"></div><span>Stock illustrations mismatched with photography brand</span></div>
-          <div class="comp-item"><div class="dot dot-bad"></div><span>Services cards cut off, missing descriptions</span></div>
-          <div class="comp-item"><div class="dot dot-bad"></div><span>Excessive dead whitespace between sections</span></div>
-          <div class="comp-item"><div class="dot dot-bad"></div><span>Trust signals and stats buried at the bottom</span></div>
-          <div class="comp-item"><div class="dot dot-bad"></div><span>Mobile layout breaks and stacks awkwardly</span></div>
-          <div class="comp-item"><div class="dot dot-bad"></div><span>No visual hierarchy or typographic personality</span></div>
-          <div class="comp-item"><div class="dot dot-bad"></div><span>Footer information disorganized and hard to scan</span></div>
+    <div class="compare-grid">
+      <div class="cmp-card reveal reveal-d1">
+        <div class="cmp-head bad"><span>❌</span><span class="cmp-head-lbl">Current Website</span></div>
+        <div class="cmp-body">
+          <div class="cmp-item"><div class="dot dot-bad"></div><span>Generic Wix template look — not memorable</span></div>
+          <div class="cmp-item"><div class="dot dot-bad"></div><span>Cluttered header with competing booking buttons</span></div>
+          <div class="cmp-item"><div class="dot dot-bad"></div><span>Stock illustrations mismatched with photography brand</span></div>
+          <div class="cmp-item"><div class="dot dot-bad"></div><span>Service cards cut off, descriptions missing</span></div>
+          <div class="cmp-item"><div class="dot dot-bad"></div><span>Excessive dead whitespace between sections</span></div>
+          <div class="cmp-item"><div class="dot dot-bad"></div><span>Trust signals and stats buried at the bottom</span></div>
+          <div class="cmp-item"><div class="dot dot-bad"></div><span>Mobile layout breaks and stacks awkwardly</span></div>
+          <div class="cmp-item"><div class="dot dot-bad"></div><span>No visual hierarchy or typographic personality</span></div>
+          <div class="cmp-item"><div class="dot dot-bad"></div><span>Footer information disorganized and hard to scan</span></div>
         </div>
       </div>
-      <div class="comp-card">
-        <div class="comp-header new">
-          <span style="font-size:16px">✅</span>
-          <div class="comp-title">Revamped Website</div>
-        </div>
-        <div class="comp-body">
-          <div class="comp-item"><div class="dot dot-good"></div><span>Premium dark aesthetic — luxury real estate media feel</span></div>
-          <div class="comp-item"><div class="dot dot-good"></div><span>Clean hero with clear headline, stats, and primary CTA</span></div>
-          <div class="comp-item"><div class="dot dot-good"></div><span>Real estate photography imagery with gold accent palette</span></div>
-          <div class="comp-item"><div class="dot dot-good"></div><span>6 fully described service cards in organized grid</span></div>
-          <div class="comp-item"><div class="dot dot-good"></div><span>Purposeful spacing with visual rhythm throughout</span></div>
-          <div class="comp-item"><div class="dot dot-good"></div><span>Stats, logos, and testimonials placed for maximum trust</span></div>
-          <div class="comp-item"><div class="dot dot-good"></div><span>Fully mobile-responsive — tested on all screen sizes</span></div>
-          <div class="comp-item"><div class="dot dot-good"></div><span>Bebas Neue + DM Serif Display — bold editorial typography</span></div>
-          <div class="comp-item"><div class="dot dot-good"></div><span>Clear organized 4-column footer with all contact info</span></div>
+      <div class="cmp-card reveal reveal-d2">
+        <div class="cmp-head good"><span>✅</span><span class="cmp-head-lbl">Revamped Website</span></div>
+        <div class="cmp-body">
+          <div class="cmp-item"><div class="dot dot-good"></div><span>Premium dark aesthetic — luxury real estate media feel</span></div>
+          <div class="cmp-item"><div class="dot dot-good"></div><span>Clean hero with clear headline, stats, and one primary CTA</span></div>
+          <div class="cmp-item"><div class="dot dot-good"></div><span>Real estate photography imagery with gold accent palette</span></div>
+          <div class="cmp-item"><div class="dot dot-good"></div><span>6 fully described service cards in organized grid</span></div>
+          <div class="cmp-item"><div class="dot dot-good"></div><span>Purposeful spacing with visual rhythm throughout</span></div>
+          <div class="cmp-item"><div class="dot dot-good"></div><span>Stats, logos, and testimonials placed for maximum trust</span></div>
+          <div class="cmp-item"><div class="dot dot-good"></div><span>Fully mobile-responsive — tested on all screen sizes</span></div>
+          <div class="cmp-item"><div class="dot dot-good"></div><span>Bebas Neue + DM Serif Display — bold editorial typography</span></div>
+          <div class="cmp-item"><div class="dot dot-good"></div><span>Clear organized 4-column footer with all contact info</span></div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  03 — SCOPE OF WORK                    -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="doc-section">
-    <div class="section-header">
-      <div class="section-num">03</div>
-      <div class="section-title">SCOPE OF <span class="neon">WORK</span></div>
-      <div class="section-divider"></div>
-      <p class="section-intro">// Everything included in this revamp. All work performed directly inside the Wix editor on your existing account — no migration or new subscriptions needed.</p>
+  <!-- ===================================================
+       03 — SCOPE
+  =================================================== -->
+  <section class="doc-section">
+    <div class="section-header reveal">
+      <div class="s-num">03</div>
+      <h2 class="s-title">SCOPE OF <span class="neon">WORK</span></h2>
+      <div class="s-bar"></div>
+      <p class="s-intro">Everything included in this revamp. All work performed directly inside the Wix editor on your existing account — no migration or new subscriptions needed.</p>
     </div>
     <div class="scope-grid">
-      <div class="scope-card">
-        <div class="scope-card-title"><i class="fas fa-palette" style="font-size:13px"></i> Design &amp; Visual</div>
-        <div class="scope-item"><span>→</span><span>Full visual redesign — new layout, palette, typography</span></div>
+      <div class="scope-card reveal reveal-d1">
+        <div class="scope-title"><i class="fas fa-palette"></i> Design &amp; Visual</div>
+        <div class="scope-item"><span>→</span><span>Full visual redesign — new layout, palette, and typography</span></div>
         <div class="scope-item"><span>→</span><span>Gold/dark premium color scheme aligned to your brand</span></div>
         <div class="scope-item"><span>→</span><span>Bebas Neue + DM Serif Display + DM Sans type system</span></div>
-        <div class="scope-item"><span>→</span><span>Hover effects, scroll animations, microinteractions</span></div>
+        <div class="scope-item"><span>→</span><span>Hover effects, scroll animations, and micro-interactions</span></div>
         <div class="scope-item"><span>→</span><span>Announcement bar with promo code visibility</span></div>
       </div>
-      <div class="scope-card">
-        <div class="scope-card-title"><i class="fas fa-file-alt" style="font-size:13px"></i> Pages Covered</div>
+      <div class="scope-card reveal reveal-d2">
+        <div class="scope-title"><i class="fas fa-file-alt"></i> Pages Covered</div>
         <div class="scope-item"><span>→</span><span>Homepage (complete rebuild)</span></div>
-        <div class="scope-item"><span>→</span><span>Services page (redesigned with all 6 services)</span></div>
+        <div class="scope-item"><span>→</span><span>Services page (all 6 services, redesigned)</span></div>
         <div class="scope-item"><span>→</span><span>Contact page (form + map + office hours)</span></div>
         <div class="scope-item"><span>→</span><span>Footer (navigation + contact + social links)</span></div>
-        <div class="scope-item"><span>→</span><span>Navigation (sticky, responsive)</span></div>
+        <div class="scope-item"><span>→</span><span>Navigation (sticky, responsive, mobile menu)</span></div>
       </div>
-      <div class="scope-card">
-        <div class="scope-card-title"><i class="fas fa-cog" style="font-size:13px"></i> Technical</div>
+      <div class="scope-card reveal reveal-d3">
+        <div class="scope-title"><i class="fas fa-cog"></i> Technical</div>
         <div class="scope-item"><span>→</span><span>Mobile responsive setup across all pages</span></div>
         <div class="scope-item"><span>→</span><span>Wix booking buttons — connected and tested</span></div>
         <div class="scope-item"><span>→</span><span>Client Login link wired to Wix back office</span></div>
         <div class="scope-item"><span>→</span><span>Contact form setup with email notification</span></div>
         <div class="scope-item"><span>→</span><span>Social media links (YouTube, Facebook, Instagram)</span></div>
       </div>
-      <div class="scope-card">
-        <div class="scope-card-title"><i class="fas fa-search" style="font-size:13px"></i> SEO &amp; Launch</div>
+      <div class="scope-card reveal reveal-d4">
+        <div class="scope-title"><i class="fas fa-search"></i> SEO &amp; Launch</div>
         <div class="scope-item"><span>→</span><span>SEO title tags + meta descriptions for all pages</span></div>
         <div class="scope-item"><span>→</span><span>Image alt text on all visuals</span></div>
         <div class="scope-item"><span>→</span><span>Wix SEO Wiz optimization</span></div>
@@ -940,328 +932,273 @@ body {
         <div class="scope-item"><span>→</span><span>Final publish + QA before going live</span></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  04 — DELIVERABLES                     -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="doc-section alt">
-    <div class="section-header">
-      <div class="section-num">04</div>
-      <div class="section-title">WHAT YOU <span class="yellow">RECEIVE</span></div>
-      <div class="section-divider"></div>
-      <p class="section-intro">// At the end of this project, here is exactly what gets handed over to you.</p>
+  <!-- ===================================================
+       04 — DELIVERABLES
+  =================================================== -->
+  <section class="doc-section alt">
+    <div class="section-header reveal">
+      <div class="s-num">04</div>
+      <h2 class="s-title">WHAT YOU <span class="gold">RECEIVE</span></h2>
+      <div class="s-bar"></div>
+      <p class="s-intro">At the end of this project, here is exactly what gets handed over to you.</p>
     </div>
-    <div class="deliverables-list">
-      <div class="del-row">
-        <div class="del-icon">🌐</div>
-        <div>
-          <div class="del-title">Fully Published Wix Website</div>
-          <div class="del-desc">The complete revamped website live on your domain. All pages built, tested on desktop and mobile, and published.</div>
-        </div>
+    <div class="del-list">
+      <div class="del-row reveal reveal-d1">
+        <div class="del-ico">🌐</div>
+        <div><div class="del-title">Fully Published Wix Website</div><div class="del-desc">The complete revamped website live on your domain. All pages built, tested on desktop and mobile, and published.</div></div>
       </div>
-      <div class="del-row">
-        <div class="del-icon">📱</div>
-        <div>
-          <div class="del-title">Mobile-Optimized Layout</div>
-          <div class="del-desc">Every page manually optimized in the Wix mobile editor. Tested across phone and tablet screen sizes before launch.</div>
-        </div>
+      <div class="del-row reveal reveal-d1">
+        <div class="del-ico">📱</div>
+        <div><div class="del-title">Mobile-Optimized Layout</div><div class="del-desc">Every page manually optimized in the Wix mobile editor. Tested across phone and tablet screen sizes before launch.</div></div>
       </div>
-      <div class="del-row">
-        <div class="del-icon">🔍</div>
-        <div>
-          <div class="del-title">SEO Setup</div>
-          <div class="del-desc">Title tags, meta descriptions, image alt text, and Wix SEO Wiz walkthrough complete. Google Search Console submitted.</div>
-        </div>
+      <div class="del-row reveal reveal-d2">
+        <div class="del-ico">🔍</div>
+        <div><div class="del-title">SEO Setup</div><div class="del-desc">Title tags, meta descriptions, image alt text, and Wix SEO Wiz walkthrough complete. Google Search Console submitted.</div></div>
       </div>
-      <div class="del-row">
-        <div class="del-icon">📋</div>
-        <div>
-          <div class="del-title">Handover Document</div>
-          <div class="del-desc">A written guide explaining how to update content, manage your booking app, add blog posts, and handle basic changes yourself.</div>
-        </div>
+      <div class="del-row reveal reveal-d2">
+        <div class="del-ico">📋</div>
+        <div><div class="del-title">Handover Document</div><div class="del-desc">A written guide explaining how to update content, manage your booking app, add blog posts, and handle basic changes yourself.</div></div>
       </div>
-      <div class="del-row">
-        <div class="del-icon">🎥</div>
-        <div>
-          <div class="del-title">Loom Video Walkthrough</div>
-          <div class="del-desc">A screen-recorded walkthrough of your new website — showing you exactly where everything is and how to make changes.</div>
-        </div>
+      <div class="del-row reveal reveal-d3">
+        <div class="del-ico">🎥</div>
+        <div><div class="del-title">Loom Video Walkthrough</div><div class="del-desc">A screen-recorded walkthrough of your new website — showing you exactly where everything is and how to make changes.</div></div>
       </div>
-      <div class="del-row">
-        <div class="del-icon">🛡️</div>
-        <div>
-          <div class="del-title">7-Day Post-Launch Support</div>
-          <div class="del-desc">One week of post-launch support for any bugs, broken links, or small adjustments discovered after going live.</div>
-        </div>
+      <div class="del-row reveal reveal-d3">
+        <div class="del-ico">🛡️</div>
+        <div><div class="del-title">7-Day Post-Launch Support</div><div class="del-desc">One week of post-launch support for any bugs, broken links, or small adjustments discovered after going live.</div></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  05 — TIMELINE                         -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="doc-section">
-    <div class="section-header">
-      <div class="section-num">05</div>
-      <div class="section-title">PROJECT <span class="neon">TIMELINE</span></div>
-      <div class="section-divider"></div>
-      <p class="section-intro">// Estimated at 12–15 working days from the date your downpayment is received and all content assets are submitted.</p>
+  <!-- ===================================================
+       05 — TIMELINE
+  =================================================== -->
+  <section class="doc-section">
+    <div class="section-header reveal">
+      <div class="s-num">05</div>
+      <h2 class="s-title">PROJECT <span class="neon">TIMELINE</span></h2>
+      <div class="s-bar"></div>
+      <p class="s-intro">Estimated at 12–15 working days from the date your downpayment is received and all content assets are submitted.</p>
     </div>
-    <div class="timeline">
+    <div class="tl reveal reveal-d1">
       <div class="tl-row">
         <div class="tl-left"><div class="tl-phase">PHASE 1</div><div class="tl-days">Days 1–2</div></div>
-        <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-right">
-          <div class="tl-title">Discovery &amp; Kickoff</div>
-          <div class="tl-items">Receive Wix collaborator access · Collect all brand assets · Review existing site · Confirm page list and features · Kickoff call (if needed)</div>
-        </div>
+        <div class="tl-conn"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-right"><div class="tl-title">Discovery &amp; Kickoff</div><div class="tl-items">Receive Wix collaborator access · Collect all brand assets · Review existing site · Confirm page list and features · Kickoff call (if needed)</div></div>
       </div>
       <div class="tl-row">
         <div class="tl-left"><div class="tl-phase">PHASE 2</div><div class="tl-days">Days 3–4</div></div>
-        <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-right">
-          <div class="tl-title">Design Direction</div>
-          <div class="tl-items">Finalize color palette and typography · Confirm layout wireframe · Prepare and resize all assets · Duplicate Wix site for staging build</div>
-        </div>
+        <div class="tl-conn"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-right"><div class="tl-title">Design Direction</div><div class="tl-items">Finalize color palette and typography · Confirm layout wireframe · Prepare and resize all assets · Duplicate Wix site for staging build</div></div>
       </div>
       <div class="tl-row">
         <div class="tl-left"><div class="tl-phase">PHASE 3</div><div class="tl-days">Days 5–10</div></div>
-        <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-right">
-          <div class="tl-title">Development &amp; Build</div>
-          <div class="tl-items">Build all pages in Wix editor · Populate content and media · Connect booking, forms, and links · Mobile optimization · Wix app configuration</div>
-        </div>
+        <div class="tl-conn"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-right"><div class="tl-title">Development &amp; Build</div><div class="tl-items">Build all pages in Wix editor · Populate content and media · Connect booking, forms, and links · Mobile optimization · Wix app configuration</div></div>
       </div>
       <div class="tl-row">
         <div class="tl-left"><div class="tl-phase">PHASE 4</div><div class="tl-days">Day 11</div></div>
-        <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-right">
-          <div class="tl-title">SEO &amp; Performance</div>
-          <div class="tl-items">Title tags + meta descriptions · Image alt text · Wix SEO Wiz · Google Search Console + Analytics reconnection · Speed check</div>
-        </div>
+        <div class="tl-conn"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-right"><div class="tl-title">SEO &amp; Performance</div><div class="tl-items">Title tags + meta descriptions · Image alt text · Wix SEO Wiz · Google Search Console + Analytics reconnection · Speed check</div></div>
       </div>
       <div class="tl-row">
         <div class="tl-left"><div class="tl-phase">PHASE 5</div><div class="tl-days">Days 12–14</div></div>
-        <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-right">
-          <div class="tl-title">Client Review &amp; Revisions</div>
-          <div class="tl-items">Preview link shared for review · Collect consolidated feedback · Apply revisions (up to 2 rounds) · Final QA pass · Written approval required before go-live</div>
-        </div>
+        <div class="tl-conn"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-right"><div class="tl-title">Client Review &amp; Revisions</div><div class="tl-items">Preview link shared for review · Collect consolidated feedback · Apply revisions (up to 2 rounds) · Final QA pass · Written approval before go-live</div></div>
       </div>
       <div class="tl-row">
         <div class="tl-left"><div class="tl-phase">PHASE 6</div><div class="tl-days">Day 15</div></div>
-        <div class="tl-connector"><div class="tl-dot"></div></div>
-        <div class="tl-right">
-          <div class="tl-title">Launch &amp; Handover</div>
-          <div class="tl-items">Website published live · Domain + SSL verified · Loom walkthrough delivered · Handover document sent · 7-day support period begins</div>
-        </div>
+        <div class="tl-conn"><div class="tl-dot"></div></div>
+        <div class="tl-right"><div class="tl-title">Launch &amp; Handover</div><div class="tl-items">Website published live · Domain + SSL verified · Loom walkthrough delivered · Handover document sent · 7-day support period begins</div></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  06 — INVESTMENT                       -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="doc-section alt">
-    <div class="section-header">
-      <div class="section-num">06</div>
-      <div class="section-title">INVESTMENT &amp; <span class="yellow">PRICING</span></div>
-      <div class="section-divider"></div>
-      <p class="section-intro">// Growth Package — best suited for an established service business with multiple pages, booking integration, and full SEO optimization.</p>
+  <!-- ===================================================
+       06 — INVESTMENT
+  =================================================== -->
+  <section class="doc-section alt">
+    <div class="section-header reveal">
+      <div class="s-num">06</div>
+      <h2 class="s-title">INVESTMENT &amp; <span class="gold">PRICING</span></h2>
+      <div class="s-bar"></div>
+      <p class="s-intro">Growth Package — ideal for an established service business needing multiple pages, booking integration, and full SEO optimization.</p>
     </div>
-    <table class="invest-table">
-      <thead>
-        <tr>
-          <th>Deliverable</th>
-          <th>Details</th>
-          <th>Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="highlight">
-          <td><strong>Full Website Revamp</strong></td>
-          <td>Up to 8 pages, custom design, mobile responsive</td>
-          <td>$1,800</td>
-        </tr>
-        <tr>
-          <td>Booking System Setup</td>
-          <td>WI + IL booking buttons — connected and tested</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>SEO Optimization</td>
-          <td>All pages — title tags, meta, alt text, Search Console</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>Google Analytics Reconnection</td>
-          <td>Tracking code reintegrated and verified</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>2 Revision Rounds</td>
-          <td>Consolidated feedback applied within 48hrs each round</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>7-Day Post-Launch Support</td>
-          <td>Bug fixes and minor adjustments after launch</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>Handover Document + Loom Walkthrough</td>
-          <td>How-to guide + screen-recorded training video</td>
-          <td>Included</td>
-        </tr>
-        <tr class="total">
-          <td colspan="2"><strong>TOTAL INVESTMENT</strong></td>
-          <td>$1,800 USD</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="invest-note">* Prices in USD. Payment accepted via PayPal, Wise, or mutually agreed method. Wix subscription fees are billed directly by Wix to you and are not included.</p>
-
-    <div class="payment-grid">
-      <div class="payment-card primary">
-        <div class="p-label">Downpayment — Due Before Work Begins</div>
-        <div class="p-amount">$900</div>
-        <div class="p-when">50% · Secures your project slot</div>
+    <div class="inv-tbl-wrap reveal reveal-d1">
+      <table class="inv-tbl">
+        <thead>
+          <tr><th>Deliverable</th><th>Details</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi"><td><strong>Full Website Revamp</strong></td><td>Up to 8 pages, custom design, mobile responsive</td><td>$1,800</td></tr>
+          <tr><td>Booking System Setup</td><td>WI + IL booking buttons — connected and tested</td><td>Included</td></tr>
+          <tr><td>SEO Optimization</td><td>All pages — title tags, meta, alt text, Search Console</td><td>Included</td></tr>
+          <tr><td>Google Analytics Reconnection</td><td>Tracking code reintegrated and verified</td><td>Included</td></tr>
+          <tr><td>2 Revision Rounds</td><td>Consolidated feedback applied within 48hrs each round</td><td>Included</td></tr>
+          <tr><td>7-Day Post-Launch Support</td><td>Bug fixes and minor adjustments after launch</td><td>Included</td></tr>
+          <tr><td>Handover Document + Loom</td><td>How-to guide + screen-recorded training video</td><td>Included</td></tr>
+          <tr class="total"><td colspan="2"><strong>TOTAL INVESTMENT</strong></td><td>$1,800 USD</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="inv-note">Prices in USD. Payment via PayPal, Wise, or mutually agreed method. Wix subscription fees are billed directly by Wix — not included here.</p>
+    <div class="pay-grid reveal reveal-d2">
+      <div class="pay-card primary">
+        <div class="pay-lbl">Downpayment — Due Before Work Begins</div>
+        <div class="pay-amt">$900</div>
+        <div class="pay-when">50% · Secures your project slot</div>
       </div>
-      <div class="payment-card">
-        <div class="p-label">Final Payment — Due Before Site Goes Live</div>
-        <div class="p-amount">$900</div>
-        <div class="p-when">50% · Paid before publish</div>
+      <div class="pay-card">
+        <div class="pay-lbl">Final Payment — Due Before Site Goes Live</div>
+        <div class="pay-amt">$900</div>
+        <div class="pay-when">50% · Paid before publish</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  07 — TERMS & CONDITIONS               -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="doc-section">
-    <div class="section-header">
-      <div class="section-num">07</div>
-      <div class="section-title">TERMS &amp; <span class="neon">CONDITIONS</span></div>
-      <div class="section-divider"></div>
+  <!-- ===================================================
+       07 — TERMS
+  =================================================== -->
+  <section class="doc-section">
+    <div class="section-header reveal">
+      <div class="s-num">07</div>
+      <h2 class="s-title">TERMS &amp; <span class="neon">CONDITIONS</span></h2>
+      <div class="s-bar"></div>
     </div>
-    <div class="terms-list">
-      <div class="term-item">
-        <div class="term-title">Revisions</div>
-        <div class="term-desc">This package includes 2 revision rounds. A revision round is a single consolidated list of changes submitted at one time. Revisions are for corrections and refinements — not redesigns. Additional revision rounds are billed at $80 USD each.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-title">Scope Changes</div>
-        <div class="term-desc">Any request for additional pages, features, or functionality beyond the agreed scope will require a written Change Order with adjusted pricing, issued and approved before work proceeds.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-title">Client Responsibilities</div>
-        <div class="term-desc">The client must provide all content (text, images, logos, videos) in the agreed format before the development phase begins. Delays beyond 5 business days will result in a proportional timeline adjustment with no penalty to the freelancer.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-title">Wix Access</div>
-        <div class="term-desc">Client must provide NexGenix Creative Solutions with Wix Collaborator access (not the main login password) before work begins. The collaborator role will be removed at client request after project completion.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-title">Ownership</div>
-        <div class="term-desc">Upon receipt of full payment, the client retains full ownership of the completed website and all design assets. NexGenix Creative Solutions retains the right to display the completed project in its portfolio and case studies.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-title">Cancellation</div>
-        <div class="term-desc">If the client cancels after work has commenced, the 50% downpayment is non-refundable. Any work completed beyond the 50% mark will be billed proportionally at the agreed project rate.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-title">Third-Party Platforms</div>
-        <div class="term-desc">NexGenix Creative Solutions is not responsible for Wix platform limitations, outages, pricing changes, or app availability. Any Wix subscription or app costs are the client's responsibility.</div>
-      </div>
+    <div class="terms reveal reveal-d1">
+      <div class="term"><div class="term-title">Revisions</div><p>This package includes 2 revision rounds. A revision round is a single consolidated list of changes submitted at one time. Revisions are for corrections and refinements — not redesigns. Additional revision rounds are billed at $80 USD each.</p></div>
+      <div class="term"><div class="term-title">Scope Changes</div><p>Any request for additional pages, features, or functionality beyond the agreed scope will require a written Change Order with adjusted pricing, issued and approved before work proceeds.</p></div>
+      <div class="term"><div class="term-title">Client Responsibilities</div><p>The client must provide all content (text, images, logos, videos) in the agreed format before the development phase begins. Delays beyond 5 business days will result in a proportional timeline adjustment with no penalty to the freelancer.</p></div>
+      <div class="term"><div class="term-title">Wix Access</div><p>Client must provide NexGenix Creative Solutions with Wix Collaborator access (not the main login password) before work begins. The collaborator role will be removed at client request after project completion.</p></div>
+      <div class="term"><div class="term-title">Ownership</div><p>Upon receipt of full payment, the client retains full ownership of the completed website and all design assets. NexGenix Creative Solutions retains the right to display the completed project in its portfolio and case studies.</p></div>
+      <div class="term"><div class="term-title">Cancellation</div><p>If the client cancels after work has commenced, the 50% downpayment is non-refundable. Any work completed beyond the 50% mark will be billed proportionally at the agreed project rate.</p></div>
+      <div class="term"><div class="term-title">Third-Party Platforms</div><p>NexGenix Creative Solutions is not responsible for Wix platform limitations, outages, pricing changes, or app availability. Any Wix subscription or app costs are the client's responsibility.</p></div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  SIGNATURE PAGE                        -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="sign-section">
-    <div class="sign-title">LET'S BUILD SOMETHING <span class="neon">GREAT</span></div>
-    <div class="sign-subtitle">// Sign below to accept this proposal and kick off the project.</div>
-    <p class="sign-intro">To officially begin, please sign and return this document along with your 50% downpayment of <strong>$900 USD</strong>. This proposal expires 14 days from the date issued.</p>
-
+  <!-- ===================================================
+       SIGNATURE
+  =================================================== -->
+  <div class="sign-wrap reveal">
+    <h2 class="sign-title">LET'S BUILD SOMETHING <span class="neon">GREAT</span></h2>
+    <p class="sign-sub">Sign below to accept this proposal and kick off the project.</p>
+    <p class="sign-body">To officially begin, please sign and return this document along with your 50% downpayment of <strong>$900 USD</strong>. This proposal expires 14 days from the date issued. Questions? Message via the agreed channel or email us directly.</p>
     <div class="sign-grid">
       <div class="sign-party">
-        <div class="party-label">Client — Accepting Proposal</div>
-        <div class="party-name">Shutter Zone Media</div>
+        <div class="party-lbl">Client — Accepting Proposal</div>
+        <div class="party-name">SHUTTER ZONE MEDIA</div>
         <div class="party-role">shutterzonemedia.com</div>
-        <div class="sig-line-wrap">
-          <div class="sig-line"></div>
-          <div class="sig-line-label">Signature</div>
-          <div class="sig-line" style="margin-top:32px"></div>
-          <div class="sig-line-label">Date</div>
-          <div class="sig-line" style="margin-top:32px"></div>
-          <div class="sig-line-label">Printed Name</div>
-        </div>
+        <div class="sig-field"><div class="sig-line"></div><div class="sig-lbl">Signature</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="sig-lbl">Date</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="sig-lbl">Printed Name</div></div>
       </div>
       <div class="sign-party">
-        <div class="party-label">Freelancer — NexGenix Creative Solutions</div>
-        <div class="party-name">Arriane Doris Nuevo</div>
+        <div class="party-lbl">Freelancer — NexGenix Creative Solutions</div>
+        <div class="party-name">ARRIANE DORIS NUEVO</div>
         <div class="party-role">Founder, NexGenix Creative Solutions</div>
-        <div class="sig-line-wrap">
-          <div class="sig-line"></div>
-          <div class="sig-line-label">Signature</div>
-          <div class="sig-line" style="margin-top:32px"></div>
-          <div class="sig-line-label">Date</div>
-          <div class="sig-line" style="margin-top:32px"></div>
-          <div class="sig-line-label">Printed Name</div>
-        </div>
+        <div class="sig-field"><div class="sig-line"></div><div class="sig-lbl">Signature</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="sig-lbl">Date</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="sig-lbl">Printed Name</div></div>
       </div>
     </div>
-
-    <div class="validity-note">
-      This proposal is valid for 14 days from the date of issue. &nbsp;|&nbsp; Questions? Email info@nexgenixcreativesolutions.com or message via the agreed channel.
+    <div class="validity">
+      This proposal is valid for 14 days from the date of issue.&nbsp;&nbsp;|&nbsp;&nbsp;
+      Email: info@nexgenixcreativesolutions.com&nbsp;&nbsp;|&nbsp;&nbsp;
+      Ref: NGCS-SZM-2026
     </div>
   </div>
 
 </div><!-- /page -->
 
+<!-- =====================================================
+     FOOTER — matches index.html structure
+===================================================== -->
+<footer>
+  <div class="footer-brand">
+    <img src="https://nexgenixcreativesolutions.github.io/assets/images/logo.png" alt="NexGenix Logo">
+    <span class="footer-brand-text">NEX GENIX CREATIVE SOLUTIONS</span>
+  </div>
+  <div class="footer-copy">&copy; 2026 <span>Nex Genix Creative Solutions</span> All rights reserved.</div>
+  <div class="footer-links">
+    <a href="https://www.facebook.com/nexgenix.creative.solutions" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/nexgenix.creative.solutions" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/+639171063504" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
+
+<!-- =====================================================
+     SCRIPTS
+===================================================== -->
 <script>
-// ── Set today's date ──
-const d = new Date();
-const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-document.getElementById('docDate').textContent =
-  `${months[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')}, ${d.getFullYear()}`;
+  /* ── Floating code background ── */
+  const snippets = [
+    'const nexgenix = () => {',
+    'function createSolution() {',
+    'import { Innovation } from "future"',
+    '<div className="digital-revamp">',
+    'async function buildDreams() {',
+    'export default Excellence;',
+    'return <Success />;',
+    'const vision = await design();',
+    'npm run build && wix publish',
+    'git commit -m "SZM revamp launch"',
+    'grid-template-columns: repeat(3,1fr);',
+    'backdrop-filter: blur(12px);',
+    'border: 1px solid rgba(57,255,20,.2);',
+    'animation: fadeInUp 0.6s ease forwards;',
+    'font-family: "Orbitron", sans-serif;',
+    '@media (max-width: 768px) { ... }',
+    'class Website extends Premium {',
+    'interface Proposal { client: SZM }',
+    'type Investment = "$1,800 USD";',
+    'SELECT * FROM solutions WHERE quality = MAX;',
+  ];
+  (function initCode() {
+    const bg = document.getElementById('codeBg');
+    for (let i = 0; i < 16; i++) {
+      const el = document.createElement('div');
+      el.className = 'code-line';
+      el.textContent = snippets[Math.floor(Math.random() * snippets.length)];
+      const top = 3 + i * 6;
+      const dur = 16 + Math.random() * 14;
+      const del = Math.random() * 22;
+      el.style.cssText = `top:${top}%;animation-duration:${dur}s;animation-delay:${del}s;`;
+      bg.appendChild(el);
+    }
+    setInterval(() => {
+      const el = document.createElement('div');
+      el.className = 'code-line';
+      el.textContent = snippets[Math.floor(Math.random() * snippets.length)];
+      el.style.cssText = `top:${Math.random()*95}%;animation-duration:${16+Math.random()*14}s;animation-delay:0s;`;
+      bg.appendChild(el);
+      setTimeout(() => el.remove(), 33000);
+    }, 2800);
+  })();
 
-// ── Floating Code Lines ──
-const codeSnippets = [
-  'const hero = document.querySelector(".hero");',
-  'grid-template-columns: repeat(3, 1fr);',
-  'transform: translateY(-4px);',
-  'background: rgba(57,255,20,0.08);',
-  'font-family: "Orbitron", sans-serif;',
-  'await fetch("/api/booking", { method: "POST" });',
-  'border: 1px solid rgba(57,255,20,0.22);',
-  '.service-card:hover { box-shadow: 0 0 30px ... }',
-  'const revamp = new Website("shutterzonemedia");',
-  '@media (max-width: 768px) { ... }',
-  'backdrop-filter: blur(12px);',
-  'animation: fadeInUp 0.6s ease forwards;',
-  'letter-spacing: 3px; text-transform: uppercase;',
-  'position: sticky; top: 0; z-index: 999;',
-  'export default function Hero() { return ... }',
-  'npm run build && wix publish --live',
-];
+  /* ── Mobile nav ── */
+  function toggleNav() {
+    const btn = document.getElementById('hamburger');
+    const drawer = document.getElementById('navDrawer');
+    btn.classList.toggle('open');
+    drawer.classList.toggle('open');
+  }
 
-const container = document.getElementById('codeContainer');
-function spawnLine() {
-  const el = document.createElement('div');
-  el.className = 'code-line';
-  el.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-  const top = Math.random() * 100;
-  const duration = 14 + Math.random() * 18;
-  const delay = Math.random() * 4;
-  el.style.cssText = `top:${top}%;animation-duration:${duration}s;animation-delay:${delay}s;`;
-  container.appendChild(el);
-  setTimeout(() => el.remove(), (duration + delay + 1) * 1000);
-}
-for (let i = 0; i < 10; i++) spawnLine();
-setInterval(spawnLine, 2200);
+  /* ── Scroll reveal ── */
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  /* ── Set date ── */
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const now = new Date();
+  const dateStr = `${months[now.getMonth()]} ${String(now.getDate()).padStart(2,'0')}, ${now.getFullYear()}`;
+  // inject into doc tag if visible
+  const tag = document.querySelector('.nav-doc-tag');
+  if (tag) tag.innerHTML = `PROPOSAL&nbsp;<span>${dateStr}</span>`;
 </script>
+
 </body>
 </html>
