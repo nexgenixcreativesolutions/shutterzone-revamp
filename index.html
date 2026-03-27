@@ -7,18 +7,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #0a0d12;
-    --ink2: #111520;
-    --ink3: #1a2030;
-    --gold: #c8a96e;
-    --gold2: #e8c98a;
-    --steel: #8fa0b8;
-    --mist: #d4dce8;
-    --white: #f5f7fa;
-    --glass: rgba(255,255,255,0.04);
-    --glass2: rgba(255,255,255,0.08);
-    --border: rgba(200,169,110,0.2);
-    --border2: rgba(255,255,255,0.08);
+    --ink: #0b0f1a;
+    --ink2: #0d1424;
+    --ink3: #111c30;
+    --gold: #4a9edd;
+    --gold2: #6bb8f5;
+    --steel: #7a9bbf;
+    --mist: #c8d8ee;
+    --white: #e8f0fa;
+    --glass: rgba(74,158,221,0.05);
+    --glass2: rgba(255,255,255,0.06);
+    --border: rgba(74,158,221,0.25);
+    --border2: rgba(74,158,221,0.12);
     --font-display: 'Bebas Neue', sans-serif;
     --font-serif: 'DM Serif Display', serif;
     --font-body: 'DM Sans', sans-serif;
@@ -35,8 +35,8 @@
 
   /* ── ANNOUNCEMENT BAR ── */
   .announce {
-    background: var(--gold);
-    color: var(--ink);
+    background: linear-gradient(90deg, #1a3a5c, #0d2040, #1a3a5c);
+    color: #7ac8f5;
     text-align: center;
     padding: 10px 20px;
     font-size: 13px;
@@ -50,7 +50,7 @@
     position: sticky;
     top: 0;
     z-index: 999;
-    background: rgba(10,13,18,0.95);
+    background: rgba(9,15,28,0.97);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border2);
     padding: 0 5%;
@@ -62,26 +62,14 @@
   .nav-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
     text-decoration: none;
   }
-  .nav-logo-icon {
-    width: 42px;
-    height: 42px;
-    background: var(--gold);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
+  .nav-logo img {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 6px rgba(74,158,221,0.18));
   }
-  .nav-logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-  .nav-logo-text .brand { font-family: var(--font-display); font-size: 22px; color: var(--white); letter-spacing: 2px; }
-  .nav-logo-text .sub { font-size: 9px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
   .nav-links {
     display: flex;
     gap: 28px;
@@ -146,7 +134,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(200,169,110,0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(74,158,221,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
   .hero-badge {
@@ -240,7 +228,7 @@
   .hero-img-bg {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #1a2030 0%, #0d1420 40%, #1a2530 100%);
+    background: linear-gradient(135deg, #0d1e35 0%, #091528 40%, #0d2040 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -250,7 +238,7 @@
     position: absolute;
     bottom: -20px;
     left: -30px;
-    background: rgba(10,13,18,0.95);
+    background: rgba(9,15,28,0.97);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 16px 20px;
@@ -264,13 +252,14 @@
     position: absolute;
     top: -20px;
     right: -20px;
-    background: var(--gold);
+    background: linear-gradient(135deg, #1a5080, #0d3060);
+    border: 1px solid rgba(74,158,221,0.4);
     border-radius: 12px;
     padding: 14px 18px;
     min-width: 160px;
   }
-  .hero-float-card2 .card-label { font-size: 10px; color: var(--ink); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
-  .hero-float-card2 .card-val { font-family: var(--font-display); font-size: 24px; color: var(--ink); letter-spacing: 1px; }
+  .hero-float-card2 .card-label { font-size: 10px; color: #7ac8f5; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  .hero-float-card2 .card-val { font-family: var(--font-display); font-size: 24px; color: var(--white); letter-spacing: 1px; }
 
   /* ── SECTION COMMON ── */
   section { padding: 100px 5%; }
@@ -372,7 +361,7 @@
   .service-num {
     font-family: var(--font-display);
     font-size: 56px;
-    color: rgba(200,169,110,0.1);
+    color: rgba(74,158,221,0.12);
     line-height: 1;
     margin-bottom: 12px;
     letter-spacing: 2px;
@@ -494,7 +483,7 @@
     right: 24px;
     font-family: var(--font-serif);
     font-size: 80px;
-    color: rgba(200,169,110,0.15);
+    color: rgba(74,158,221,0.15);
     line-height: 1;
   }
   .stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
@@ -538,7 +527,9 @@
 
   /* ── CTA BANNER ── */
   .cta-banner {
-    background: var(--gold);
+    background: linear-gradient(135deg, #0d2a50 0%, #091c3a 50%, #0d2a50 100%);
+    border-top: 1px solid rgba(74,158,221,0.2);
+    border-bottom: 1px solid rgba(74,158,221,0.2);
     padding: 80px 5%;
     text-align: center;
     position: relative;
@@ -556,13 +547,13 @@
     letter-spacing: 20px;
     pointer-events: none;
   }
-  .cta-banner h2 { font-family: var(--font-display); font-size: clamp(36px, 4vw, 60px); color: var(--ink); letter-spacing: 3px; margin-bottom: 16px; }
-  .cta-banner p { font-size: 16px; color: rgba(10,13,18,0.7); max-width: 480px; margin: 0 auto 36px; }
+  .cta-banner h2 { font-family: var(--font-display); font-size: clamp(36px, 4vw, 60px); color: var(--white); letter-spacing: 3px; margin-bottom: 16px; }
+  .cta-banner p { font-size: 16px; color: var(--steel); max-width: 480px; margin: 0 auto 36px; }
   .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
   .btn-dark {
     padding: 16px 36px;
     background: var(--ink);
-    color: var(--gold);
+    color: var(--white);
     border-radius: 8px;
     font-size: 13px;
     font-weight: 700;
@@ -574,8 +565,8 @@
   .btn-dark:hover { background: var(--ink2); }
   .btn-outline-dark {
     padding: 16px 36px;
-    border: 2px solid var(--ink);
-    color: var(--ink);
+    border: 2px solid rgba(74,158,221,0.5);
+    color: var(--mist);
     border-radius: 8px;
     font-size: 13px;
     font-weight: 700;
@@ -584,7 +575,7 @@
     text-decoration: none;
     transition: all 0.2s;
   }
-  .btn-outline-dark:hover { background: var(--ink); color: var(--gold); }
+  .btn-outline-dark:hover { background: rgba(74,158,221,0.1); color: var(--gold); }
 
   /* ── FOOTER ── */
   footer {
@@ -676,11 +667,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">📷</div>
-    <div class="nav-logo-text">
-      <span class="brand">SHUTTER ZONE</span>
-      <span class="sub">We See Things Differently</span>
-    </div>
+    <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20900%20340%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%0A%3Cdefs%3E%0A%20%20%3Cstyle%3E%0A%20%20%20%20%40import%20url%28%27https%3A//fonts.googleapis.com/css2%3Ffamily%3DBebas%2BNeue%26amp%3Bdisplay%3Dswap%27%29%3B%0A%20%20%3C/style%3E%0A%3C/defs%3E%0A%0A%0A%3C%21--%20%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%20%20%20%20%20ROOFLINE%20ILLUSTRATION%20%20%28centered%20at%20cx%3D450%29%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%20--%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b5cad4%22%20stroke-linejoin%3D%22miter%22%20stroke-linecap%3D%22square%22%3E%0A%0A%20%20%3C%21--%20BASE%20LINE%20--%3E%0A%20%20%3Crect%20x%3D%22112%22%20y%3D%22152%22%20width%3D%22676%22%20height%3D%224.5%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%0A%20%20%3C%21--%20FAR%20LEFT%20HOUSE%20--%3E%0A%20%20%3Cpolyline%20points%3D%22115%2C154%20202%2C76%20290%2C154%22%20stroke-width%3D%225%22/%3E%0A%20%20%3C%21--%20chimney%20left%20--%3E%0A%20%20%3Crect%20x%3D%22146%22%20y%3D%2288%22%20width%3D%2212%22%20height%3D%2230%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3Crect%20x%3D%22142%22%20y%3D%2282%22%20width%3D%2220%22%20height%3D%229%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%0A%20%20%3C%21--%20CENTER%20HOUSE%20%28tallest%2C%20peak%20at%20y%3D44%29%20--%3E%0A%20%20%3Cpolyline%20points%3D%22265%2C154%20450%2C44%20635%2C154%22%20stroke-width%3D%225%22/%3E%0A%20%20%3C%21--%20chimney%20left%20--%3E%0A%20%20%3Crect%20x%3D%22295%22%20y%3D%2295%22%20width%3D%2213%22%20height%3D%2232%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3Crect%20x%3D%22290%22%20y%3D%2288%22%20width%3D%2223%22%20height%3D%2210%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3C%21--%20chimney%20right%20--%3E%0A%20%20%3Crect%20x%3D%22592%22%20y%3D%2295%22%20width%3D%2213%22%20height%3D%2232%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3Crect%20x%3D%22587%22%20y%3D%2288%22%20width%3D%2223%22%20height%3D%2210%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3C%21--%20window%20--%3E%0A%20%20%3Crect%20x%3D%22435%22%20y%3D%2290%22%20width%3D%2230%22%20height%3D%2226%22%20fill%3D%22none%22%20stroke%3D%22%23b5cad4%22%20stroke-width%3D%223.5%22/%3E%0A%20%20%3Cline%20x1%3D%22450%22%20y1%3D%2290%22%20x2%3D%22450%22%20y2%3D%22116%22%20stroke%3D%22%23b5cad4%22%20stroke-width%3D%222.5%22/%3E%0A%20%20%3Cline%20x1%3D%22435%22%20y1%3D%22103%22%20x2%3D%22465%22%20y2%3D%22103%22%20stroke%3D%22%23b5cad4%22%20stroke-width%3D%222.5%22/%3E%0A%0A%20%20%3C%21--%20FAR%20RIGHT%20HOUSE%20--%3E%0A%20%20%3Cpolyline%20points%3D%22610%2C154%20698%2C76%20785%2C154%22%20stroke-width%3D%225%22/%3E%0A%20%20%3C%21--%20chimney%20right%20--%3E%0A%20%20%3Crect%20x%3D%22742%22%20y%3D%2288%22%20width%3D%2212%22%20height%3D%2230%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3Crect%20x%3D%22738%22%20y%3D%2282%22%20width%3D%2220%22%20height%3D%229%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%0A%3C/g%3E%0A%0A%3C%21--%20%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%20%20%20%20%20LOGOTYPE%20ROW%0A%20%20%20%20%20Total%20text%20width%20needs%20centering%20at%20x%3D450%0A%20%20%20%20%20Bebas%20Neue%20~0.55%20char-width%20ratio%20at%2076px%20%E2%89%88%2042px/char%0A%20%20%20%20%20SHUTTER%20%3D%207%20chars%20%C3%97%2042%20%2B%20spacing%0A%20%20%20%20%20Z%20%20%20%20%20%20%20%20%3D%201%20char%0A%20%20%20%20%20%5BLENS%5D%20%20%20%3D%2058px%20wide%20circle%0A%20%20%20%20%20NE%20%20%20%20%20%20%20%3D%202%20chars%0A%20%20%20%20%20MEDIA%20%20%20%20%3D%205%20chars%0A%20%20%20%20%20Gaps%20between%20words%20~30px%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%20--%3E%0A%0A%3C%21--%20All%20text%20at%20y%3D238%2C%20font-size%2076%20--%3E%0A%3C%21--%20Using%20text-anchor%20start%2C%20manually%20placed%20for%20letter-spacing%3D4%20--%3E%0A%0A%3C%21--%20SHUTTER%20--%3E%0A%3Ctext%20x%3D%2273%22%20y%3D%22238%22%0A%20%20font-family%3D%22%27Bebas%20Neue%27%2C%20%27Arial%20Narrow%27%2C%20Arial%2C%20sans-serif%22%0A%20%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3ESHUTTER%3C/text%3E%0A%0A%3C%21--%20space%20gap%20~28px%20--%3E%0A%0A%3C%21--%20Z%20--%3E%0A%3Ctext%20x%3D%22419%22%20y%3D%22238%22%0A%20%20font-family%3D%22%27Bebas%20Neue%27%2C%20%27Arial%20Narrow%27%2C%20Arial%2C%20sans-serif%22%0A%20%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3EZ%3C/text%3E%0A%0A%3C%21--%20Camera%20aperture%20replacing%20O%2C%20centered%20at%20~x%3D472%2C%20y%3D206%20--%3E%0A%3Cg%20transform%3D%22translate%28472%2C%20205%29%22%3E%0A%20%20%3C%21--%20Outer%20ring%20--%3E%0A%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%2229%22%20fill%3D%22none%22%20stroke%3D%22%23c5d8e2%22%20stroke-width%3D%223.5%22/%3E%0A%20%20%3C%21--%20Mid%20ring%20--%3E%0A%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%2221%22%20fill%3D%22none%22%20stroke%3D%22%23c5d8e2%22%20stroke-width%3D%221.8%22/%3E%0A%20%20%3C%21--%206-blade%20aperture%20%28hexagonal%29%20using%20arcs%20--%3E%0A%20%20%3C%21--%20Blade%20slivers%20at%200%2C%2060%2C%20120%2C%20180%2C%20240%2C%20300%20degrees%20--%3E%0A%20%20%3Cpolygon%20points%3D%225.9%2C-1.3%2020.0%2C0.0%205.9%2C1.3%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%224.1%2C4.4%2010.0%2C17.3%201.8%2C5.7%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%22-1.8%2C5.7%20-10.0%2C17.3%20-4.1%2C4.4%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%22-5.9%2C1.3%20-20.0%2C0.0%20-5.9%2C-1.3%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%22-4.1%2C-4.4%20-10.0%2C-17.3%20-1.8%2C-5.7%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%221.8%2C-5.7%2010.0%2C-17.3%204.1%2C-4.4%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3C%21--%20Center%20dot%20--%3E%0A%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%225%22%20fill%3D%22%23c5d8e2%22/%3E%0A%3C/g%3E%0A%0A%3C%21--%20NE%20--%3E%0A%3Ctext%20x%3D%22504%22%20y%3D%22238%22%0A%20%20font-family%3D%22%27Bebas%20Neue%27%2C%20%27Arial%20Narrow%27%2C%20Arial%2C%20sans-serif%22%0A%20%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3ENE%3C/text%3E%0A%0A%3C%21--%20gap%20--%3E%0A%0A%3C%21--%20MEDIA%20--%3E%0A%3Ctext%20x%3D%22605%22%20y%3D%22238%22%0A%20%20font-family%3D%22%27Bebas%20Neue%27%2C%20%27Arial%20Narrow%27%2C%20Arial%2C%20sans-serif%22%0A%20%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3EMEDIA%3C/text%3E%0A%0A%3C%21--%20%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%20%20%20%20%20TAGLINE%20ROW%20with%20flanking%20lines%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%20--%3E%0A%0A%3C%21--%20Left%20line%20--%3E%0A%3Crect%20x%3D%2273%22%20y%3D%22257%22%20width%3D%22238%22%20height%3D%221.5%22%20fill%3D%22%236a8e9e%22/%3E%0A%3C%21--%20Right%20line%20--%3E%0A%3Crect%20x%3D%22589%22%20y%3D%22257%22%20width%3D%22238%22%20height%3D%221.5%22%20fill%3D%22%236a8e9e%22/%3E%0A%0A%3C%21--%20Tagline%20centered%20--%3E%0A%3Ctext%20x%3D%22450%22%20y%3D%22263%22%0A%20%20font-family%3D%22Arial%2C%20%27Helvetica%20Neue%27%2C%20sans-serif%22%0A%20%20font-size%3D%2211.5%22%20fill%3D%22%237a9cac%22%20letter-spacing%3D%224.5%22%0A%20%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3EWE%20SEE%20THINGS%20DIFFERENTLY%3C/text%3E%0A%0A%3C/svg%3E%0A" alt="Shutter Zone Media" style="height:56px;width:auto;object-fit:contain;" />
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
@@ -963,7 +950,7 @@
       <p>Professional real estate photography, video, and drone services for realtors across Wisconsin and Illinois.</p>
       <div class="footer-contact">
         <a href="tel:4143759151">📞 414.375.9151</a>
-        <a href="mailto:info@shutterzonemedia.com">✉ Info@shutterzonemedia.com</a>
+        <a href="/cdn-cgi/l/email-protection#6a03040c052a19021f1e1e0f181005040f070f0e030b44090507">✉ <span class="__cf_email__" data-cfemail="4e072028210e3d263b3a3a2b3c3421202b232b2a272f602d2123">[email&#160;protected]</span></a>
         <a href="#">📍 3216 S 92nd St, Suite 104, Milwaukee, WI 53227</a>
       </div>
     </div>
@@ -1005,7 +992,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Intersection Observer for scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1016,12 +1003,4 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.service-card, .feature-card, .testimonial-card, .process-step, .trust-stat').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
-</script>
-</body>
-</html>
+  document.querySelectorAll('.service-card, .feature-card, .testim
