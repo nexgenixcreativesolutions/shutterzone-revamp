@@ -4,675 +4,901 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shutter Zone Media — Real Estate Photography & Media</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #0b0f1a;
-    --ink2: #0d1424;
-    --ink3: #111c30;
-    --gold: #4a9edd;
-    --gold2: #6bb8f5;
-    --steel: #7a9bbf;
-    --mist: #c8d8ee;
-    --white: #e8f0fa;
-    --glass: rgba(74,158,221,0.05);
-    --glass2: rgba(255,255,255,0.06);
-    --border: rgba(74,158,221,0.25);
-    --border2: rgba(74,158,221,0.12);
-    --font-display: 'Bebas Neue', sans-serif;
-    --font-serif: 'DM Serif Display', serif;
-    --font-body: 'DM Sans', sans-serif;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font-body);
-    background: var(--ink);
-    color: var(--mist);
-    overflow-x: hidden;
-    line-height: 1.6;
-  }
+/* ═══════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════ */
+:root {
+  --void:    #04060d;
+  --deep:    #070c18;
+  --dark:    #0a1020;
+  --panel:   #0d1528;
+  --card:    #101828;
+  --lift:    #141e32;
+  --blue:    #3b9eff;
+  --blue2:   #5fb5ff;
+  --blue-d:  #1a5fa0;
+  --amber:   #f0a500;
+  --amber2:  #ffc340;
+  --steel:   #6a8aaa;
+  --mist:    #a8c0d8;
+  --white:   #e8f2fc;
+  --glass:   rgba(59,158,255,0.06);
+  --glassw:  rgba(255,255,255,0.03);
+  --b1:      rgba(59,158,255,0.18);
+  --b2:      rgba(59,158,255,0.08);
+  --b3:      rgba(255,255,255,0.05);
+  --scan:    rgba(59,158,255,0.025);
+  --fd:      'Bebas Neue', sans-serif;
+  --fs:      'DM Serif Display', serif;
+  --fb:      'Inter', sans-serif;
+  --fm:      'Space Mono', monospace;
+}
 
-  /* ── ANNOUNCEMENT BAR ── */
-  .announce {
-    background: linear-gradient(90deg, #1a3a5c, #0d2040, #1a3a5c);
-    color: #7ac8f5;
-    text-align: center;
-    padding: 10px 20px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
-  .announce span { margin: 0 8px; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--fb);
+  background:var(--void);
+  color:var(--mist);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
 
-  /* ── NAV ── */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    background: rgba(9,15,28,0.97);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border2);
-    padding: 0 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 72px;
-  }
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  .nav-logo img {
-    height: 56px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 1px 6px rgba(74,158,221,0.18));
-  }
-  .nav-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-    align-items: center;
-  }
-  .nav-links a {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--steel);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-  .nav-ctas { display: flex; gap: 10px; }
-  .btn-ghost {
-    padding: 9px 20px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-decoration: none;
-    cursor: pointer;
-    background: transparent;
-    transition: all 0.2s;
-  }
-  .btn-ghost:hover { background: var(--gold); color: var(--ink); }
-  .btn-solid {
-    padding: 9px 20px;
-    background: var(--gold);
-    border: 1px solid var(--gold);
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-solid:hover { background: var(--gold2); }
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-  .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+/* ── SCAN LINES OVERLAY ── */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--scan) 2px,
+    var(--scan) 4px
+  );
+  pointer-events:none;
+  z-index:9000;
+  opacity:0.4;
+}
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 92vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 80px 5% 80px;
-    gap: 60px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(74,158,221,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--glass);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 28px;
-  }
-  .hero-badge::before { content: '●'; font-size: 8px; color: var(--gold); animation: pulse 2s ease infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(52px, 6vw, 88px);
-    line-height: 0.95;
-    color: var(--white);
-    letter-spacing: 2px;
-    margin-bottom: 24px;
-  }
-  .hero h1 em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
-  .hero-desc {
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--steel);
-    max-width: 460px;
-    margin-bottom: 40px;
-    line-height: 1.7;
-  }
-  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
-  .btn-hero {
-    padding: 16px 32px;
-    background: var(--gold);
-    color: var(--ink);
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.25s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .btn-hero:hover { background: var(--gold2); transform: translateY(-2px); }
-  .btn-hero-ghost {
-    padding: 16px 32px;
-    border: 1px solid var(--border2);
-    color: var(--mist);
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.25s;
-  }
-  .btn-hero-ghost:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-stats {
-    display: flex;
-    gap: 40px;
-    padding-top: 28px;
-    border-top: 1px solid var(--border2);
-  }
-  .stat-item { display: flex; flex-direction: column; }
-  .stat-num { font-family: var(--font-display); font-size: 36px; color: var(--gold); line-height: 1; }
-  .stat-label { font-size: 11px; color: var(--steel); letter-spacing: 0.05em; margin-top: 4px; }
-  .hero-visual {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hero-img-frame {
-    width: 100%;
-    max-width: 560px;
-    aspect-ratio: 4/3;
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--border2);
-  }
-  .hero-img-bg {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #0d1e35 0%, #091528 40%, #0d2040 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 80px;
-  }
-  .hero-float-card {
-    position: absolute;
-    bottom: -20px;
-    left: -30px;
-    background: rgba(9,15,28,0.97);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 20px;
-    backdrop-filter: blur(20px);
-    min-width: 200px;
-  }
-  .hero-float-card .card-label { font-size: 10px; color: var(--steel); letter-spacing: 0.1em; text-transform: uppercase; }
-  .hero-float-card .card-val { font-family: var(--font-display); font-size: 28px; color: var(--gold); letter-spacing: 1px; }
-  .hero-float-card .card-sub { font-size: 11px; color: var(--steel); }
-  .hero-float-card2 {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    background: linear-gradient(135deg, #1a5080, #0d3060);
-    border: 1px solid rgba(74,158,221,0.4);
-    border-radius: 12px;
-    padding: 14px 18px;
-    min-width: 160px;
-  }
-  .hero-float-card2 .card-label { font-size: 10px; color: #7ac8f5; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
-  .hero-float-card2 .card-val { font-family: var(--font-display); font-size: 24px; color: var(--white); letter-spacing: 1px; }
+/* ── NOISE TEXTURE ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:8999;
+  opacity:0.5;
+}
 
-  /* ── SECTION COMMON ── */
-  section { padding: 100px 5%; }
-  .section-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
-  .section-heading {
-    font-family: var(--font-display);
-    font-size: clamp(40px, 4vw, 64px);
-    line-height: 0.95;
-    color: var(--white);
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-  }
-  .section-heading em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
-  .section-sub { font-size: 15px; color: var(--steel); max-width: 520px; line-height: 1.7; }
+/* ════════════════════════════════════
+   ANNOUNCEMENT BAR
+════════════════════════════════════ */
+.announce{
+  position:relative;
+  background:linear-gradient(90deg, var(--deep), var(--panel), var(--deep));
+  border-bottom:1px solid var(--b2);
+  text-align:center;
+  padding:10px 20px;
+  font-family:var(--fm);
+  font-size:11px;
+  letter-spacing:0.12em;
+  color:var(--steel);
+  overflow:hidden;
+}
+.announce::before{
+  content:'';
+  position:absolute;top:0;left:-100%;
+  width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(59,158,255,0.06),transparent);
+  animation:shimmer 4s linear infinite;
+}
+@keyframes shimmer{to{left:200%}}
+.announce strong{color:var(--blue);letter-spacing:0.15em;}
+.announce .sep{margin:0 10px;color:var(--b1);opacity:0.5}
 
-  /* ── LOGOS STRIP ── */
-  .logos-strip {
-    padding: 32px 5%;
-    background: var(--ink2);
-    border-top: 1px solid var(--border2);
-    border-bottom: 1px solid var(--border2);
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    overflow: hidden;
-  }
-  .logos-strip .strip-label {
-    font-size: 11px;
-    color: var(--steel);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .logos-track {
-    display: flex;
-    gap: 60px;
-    align-items: center;
-    flex: 1;
-  }
-  .logo-pill {
-    background: var(--glass);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 10px 24px;
-    font-family: var(--font-display);
-    font-size: 16px;
-    letter-spacing: 2px;
-    color: var(--steel);
-    white-space: nowrap;
-    transition: all 0.2s;
-  }
-  .logo-pill:hover { color: var(--white); border-color: var(--border); }
+/* ════════════════════════════════════
+   NAV
+════════════════════════════════════ */
+nav{
+  position:sticky;top:0;z-index:999;
+  height:68px;
+  background:rgba(4,6,13,0.92);
+  backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--b2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  box-shadow:0 1px 40px rgba(0,0,0,0.6);
+}
+.nav-logo{display:flex;align-items:center}
+.nav-logo img{height:50px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(59,158,255,0.2))}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{
+  font-size:11px;font-weight:500;
+  color:var(--steel);
+  letter-spacing:0.1em;text-transform:uppercase;
+  transition:color 0.2s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:1px;background:var(--blue);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.25s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-ctas{display:flex;gap:8px}
+.btn-ghost{
+  padding:8px 18px;
+  border:1px solid var(--b1);border-radius:4px;
+  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--blue);background:transparent;
+  cursor:pointer;transition:all 0.2s;
+}
+.btn-ghost:hover{background:var(--glass);border-color:var(--blue);}
+.btn-solid{
+  padding:8px 20px;
+  background:var(--blue);border:1px solid var(--blue);border-radius:4px;
+  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--void);cursor:pointer;transition:all 0.2s;
+}
+.btn-solid:hover{background:var(--blue2);box-shadow:0 0 20px rgba(59,158,255,0.35)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s}
 
-  /* ── SERVICES ── */
-  .services { background: var(--ink); }
-  .services-header { margin-bottom: 60px; }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border2);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-  .service-card {
-    background: var(--ink2);
-    padding: 40px 32px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    cursor: default;
-  }
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.3s;
-    transform-origin: left;
-  }
-  .service-card:hover { background: var(--ink3); }
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-num {
-    font-family: var(--font-display);
-    font-size: 56px;
-    color: rgba(74,158,221,0.12);
-    line-height: 1;
-    margin-bottom: 12px;
-    letter-spacing: 2px;
-  }
-  .service-icon { font-size: 32px; margin-bottom: 16px; }
-  .service-title {
-    font-family: var(--font-display);
-    font-size: 26px;
-    color: var(--white);
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-  }
-  .service-desc { font-size: 14px; color: var(--steel); line-height: 1.7; }
-  .service-tag {
-    display: inline-block;
-    margin-top: 20px;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border-bottom: 1px solid var(--gold);
-    padding-bottom: 2px;
-  }
+/* Mobile drawer */
+.nav-drawer{
+  display:none;
+  position:fixed;top:68px;left:0;right:0;bottom:0;
+  background:rgba(4,6,13,0.98);
+  backdrop-filter:blur(20px);
+  z-index:998;
+  padding:40px 5%;
+  flex-direction:column;gap:8px;
+}
+.nav-drawer.open{display:flex}
+.nav-drawer a{
+  display:block;padding:16px 0;
+  border-bottom:1px solid var(--b2);
+  font-family:var(--fd);font-size:28px;letter-spacing:3px;
+  color:var(--mist);transition:color 0.2s;
+}
+.nav-drawer a:hover{color:var(--blue)}
+.nav-drawer .drawer-ctas{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
 
-  /* ── PROCESS ── */
-  .process { background: var(--ink2); }
-  .process-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    margin-top: 60px;
-  }
-  .process-steps { display: flex; flex-direction: column; gap: 0; }
-  .process-step {
-    display: flex;
-    gap: 24px;
-    padding: 32px 0;
-    border-bottom: 1px solid var(--border2);
-    position: relative;
-  }
-  .process-step:last-child { border-bottom: none; }
-  .step-num {
-    font-family: var(--font-display);
-    font-size: 48px;
-    color: var(--gold);
-    line-height: 1;
-    flex-shrink: 0;
-    width: 60px;
-    opacity: 0.4;
-    transition: opacity 0.3s;
-  }
-  .process-step:hover .step-num { opacity: 1; }
-  .step-content {}
-  .step-title { font-family: var(--font-display); font-size: 22px; color: var(--white); letter-spacing: 1px; margin-bottom: 8px; }
-  .step-desc { font-size: 14px; color: var(--steel); line-height: 1.7; }
-  .process-visual {
-    background: var(--ink3);
-    border: 1px solid var(--border2);
-    border-radius: 16px;
-    padding: 40px;
-    text-align: center;
-  }
-  .process-visual .big-icon { font-size: 80px; margin-bottom: 24px; display: block; }
-  .process-cta {
-    font-family: var(--font-display);
-    font-size: 32px;
-    color: var(--white);
-    letter-spacing: 2px;
-    margin-bottom: 16px;
-  }
-  .process-cta span { color: var(--gold); }
-  .turnaround {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-top: 24px;
-    text-align: left;
-  }
-  .turnaround-label { font-size: 10px; color: var(--steel); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
-  .turnaround-val { font-family: var(--font-display); font-size: 36px; color: var(--gold); letter-spacing: 2px; }
+/* ════════════════════════════════════
+   HERO — CINEMATIC SPLIT
+════════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
 
-  /* ── FEATURES ── */
-  .features { background: var(--ink); }
-  .features-header { max-width: 600px; margin-bottom: 60px; }
-  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .feature-card {
-    background: var(--glass);
-    border: 1px solid var(--border2);
-    border-radius: 12px;
-    padding: 32px 28px;
-    transition: all 0.3s;
-  }
-  .feature-card:hover { border-color: var(--border); transform: translateY(-4px); }
-  .feature-icon { font-size: 28px; margin-bottom: 16px; }
-  .feature-title { font-family: var(--font-display); font-size: 20px; color: var(--white); letter-spacing: 1px; margin-bottom: 10px; }
-  .feature-desc { font-size: 13px; color: var(--steel); line-height: 1.7; }
+/* Grid overlay on hero */
+.hero-grid-overlay{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--b2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--b2) 1px,transparent 1px);
+  background-size:60px 60px;
+  opacity:0.5;
+}
 
-  /* ── TESTIMONIALS ── */
-  .testimonials { background: var(--ink2); }
-  .testimonials-header { text-align: center; margin-bottom: 60px; }
-  .testimonials-header .section-tag { justify-content: center; }
-  .testimonials-header .section-tag::before { display: none; }
-  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .testimonial-card {
-    background: var(--ink3);
-    border: 1px solid var(--border2);
-    border-radius: 12px;
-    padding: 32px 28px;
-    position: relative;
-    transition: border-color 0.3s;
-  }
-  .testimonial-card:hover { border-color: var(--border); }
-  .testimonial-card::before {
-    content: '"';
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    font-family: var(--font-serif);
-    font-size: 80px;
-    color: rgba(74,158,221,0.15);
-    line-height: 1;
-  }
-  .stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
-  .testimonial-text { font-size: 14px; color: var(--mist); line-height: 1.8; margin-bottom: 24px; font-style: italic; }
-  .testimonial-author { font-weight: 600; font-size: 14px; color: var(--white); }
-  .testimonial-role { font-size: 12px; color: var(--gold); margin-top: 2px; }
+/* Left panel — content */
+.hero-left{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 8% 80px 5%;
+  background:linear-gradient(135deg, var(--void) 0%, var(--deep) 100%);
+}
+.hero-left::after{
+  content:'';
+  position:absolute;top:0;right:0;bottom:0;
+  width:1px;
+  background:linear-gradient(to bottom,transparent,var(--b1),var(--b1),transparent);
+}
 
-  /* ── TRUST / PARTNERS ── */
-  .trust { background: var(--ink); }
-  .trust-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .trust-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .trust-stat {
-    background: var(--glass);
-    border: 1px solid var(--border2);
-    border-radius: 12px;
-    padding: 28px;
-  }
-  .trust-stat .num { font-family: var(--font-display); font-size: 48px; color: var(--gold); letter-spacing: 2px; line-height: 1; margin-bottom: 6px; }
-  .trust-stat .label { font-size: 12px; color: var(--steel); line-height: 1.5; }
-  .partner-logos { display: flex; flex-direction: column; gap: 16px; }
-  .partner-row { display: flex; gap: 16px; }
-  .partner-logo {
-    background: var(--glass);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 14px 24px;
-    font-family: var(--font-display);
-    font-size: 16px;
-    letter-spacing: 3px;
-    color: var(--steel);
-    flex: 1;
-    text-align: center;
-    transition: all 0.2s;
-  }
-  .partner-logo:hover { color: var(--white); border-color: var(--border); }
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--fm);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:24px;
+}
+.hero-eyebrow::before{
+  content:'';width:32px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--blue));
+}
+.hero-eyebrow::after{
+  content:'';width:32px;height:1px;
+  background:linear-gradient(90deg,var(--blue),transparent);
+}
 
-  /* ── CTA BANNER ── */
-  .cta-banner {
-    background: linear-gradient(135deg, #0d2a50 0%, #091c3a 50%, #0d2a50 100%);
-    border-top: 1px solid rgba(74,158,221,0.2);
-    border-bottom: 1px solid rgba(74,158,221,0.2);
-    padding: 80px 5%;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .cta-banner::before {
-    content: 'SZM';
-    position: absolute;
-    font-family: var(--font-display);
-    font-size: 400px;
-    color: rgba(0,0,0,0.06);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    letter-spacing: 20px;
-    pointer-events: none;
-  }
-  .cta-banner h2 { font-family: var(--font-display); font-size: clamp(36px, 4vw, 60px); color: var(--white); letter-spacing: 3px; margin-bottom: 16px; }
-  .cta-banner p { font-size: 16px; color: var(--steel); max-width: 480px; margin: 0 auto 36px; }
-  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn-dark {
-    padding: 16px 36px;
-    background: var(--ink);
-    color: var(--white);
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-dark:hover { background: var(--ink2); }
-  .btn-outline-dark {
-    padding: 16px 36px;
-    border: 2px solid rgba(74,158,221,0.5);
-    color: var(--mist);
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-outline-dark:hover { background: rgba(74,158,221,0.1); color: var(--gold); }
+.hero h1{
+  font-family:var(--fd);
+  font-size:clamp(54px,6.5vw,96px);
+  line-height:0.9;
+  color:var(--white);
+  letter-spacing:3px;
+  margin-bottom:6px;
+}
+.hero h1 .line2{
+  display:block;
+  font-family:var(--fs);
+  font-style:italic;
+  font-size:clamp(44px,5.5vw,82px);
+  color:var(--amber);
+  letter-spacing:1px;
+}
+.hero h1 .line3{
+  display:block;
+  color:var(--blue);
+  text-shadow:0 0 40px rgba(59,158,255,0.35);
+}
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--ink2);
-    border-top: 1px solid var(--border2);
-    padding: 72px 5% 40px;
-  }
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 60px;
-  }
-  .footer-brand .brand-name { font-family: var(--font-display); font-size: 28px; color: var(--white); letter-spacing: 3px; margin-bottom: 12px; }
-  .footer-brand .brand-tag { font-size: 10px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
-  .footer-brand p { font-size: 13px; color: var(--steel); line-height: 1.7; max-width: 280px; }
-  .footer-contact { margin-top: 20px; }
-  .footer-contact a { display: block; font-size: 13px; color: var(--steel); text-decoration: none; margin-bottom: 6px; transition: color 0.2s; }
-  .footer-contact a:hover { color: var(--gold); }
-  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mist); margin-bottom: 20px; }
-  .footer-col a { display: block; font-size: 13px; color: var(--steel); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
-  .footer-col a:hover { color: var(--gold); }
-  .footer-bottom {
-    border-top: 1px solid var(--border2);
-    padding-top: 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .footer-bottom p { font-size: 12px; color: var(--steel); }
-  .footer-social { display: flex; gap: 12px; }
-  .social-btn {
-    width: 36px;
-    height: 36px;
-    background: var(--glass);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .social-btn:hover { background: var(--gold); border-color: var(--gold); }
+.hero-sub{
+  font-size:15px;font-weight:300;
+  color:var(--steel);line-height:1.75;
+  max-width:420px;
+  margin:28px 0 36px;
+  border-left:2px solid var(--b1);
+  padding-left:18px;
+}
 
-  /* ── MOBILE ── */
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; padding: 60px 5%; text-align: center; }
-    .hero-visual { display: none; }
-    .hero-stats { justify-content: center; }
-    .hero-actions { justify-content: center; }
-    .hero-desc { margin: 0 auto 40px; }
-    .nav-links, .nav-ctas { display: none; }
-    .hamburger { display: flex; }
-    .services-grid { grid-template-columns: 1fr; }
-    .process-grid { grid-template-columns: 1fr; }
-    .features-grid { grid-template-columns: 1fr 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .trust-inner { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .logos-strip { gap: 24px; }
-    .logos-track { gap: 24px; }
-  }
-  @media (max-width: 600px) {
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; }
-    .trust-stats { grid-template-columns: 1fr 1fr; }
-  }
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.btn-cta{
+  padding:14px 28px;
+  background:var(--blue);
+  border-radius:3px;
+  font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--void);
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.25s;
+  position:relative;overflow:hidden;
+}
+.btn-cta::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent);
+  transform:translateX(-100%);transition:transform 0.5s;
+}
+.btn-cta:hover::before{transform:translateX(100%)}
+.btn-cta:hover{background:var(--blue2);box-shadow:0 0 30px rgba(59,158,255,0.4);transform:translateY(-1px)}
+.btn-cta-secondary{
+  padding:14px 28px;
+  border:1px solid var(--b1);border-radius:3px;
+  font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--mist);
+  transition:all 0.25s;
+}
+.btn-cta-secondary:hover{border-color:var(--blue);color:var(--blue)}
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-  .hero-badge { animation: fadeUp 0.6s ease 0.1s both; }
-  .hero h1 { animation: fadeUp 0.7s ease 0.2s both; }
-  .hero-desc { animation: fadeUp 0.7s ease 0.3s both; }
-  .hero-actions { animation: fadeUp 0.7s ease 0.4s both; }
-  .hero-stats { animation: fadeUp 0.7s ease 0.5s both; }
+.hero-stats{
+  display:flex;gap:36px;
+  padding-top:28px;
+  border-top:1px solid var(--b2);
+}
+.stat-item{display:flex;flex-direction:column}
+.stat-n{
+  font-family:var(--fd);font-size:38px;
+  color:var(--blue);line-height:1;
+  text-shadow:0 0 20px rgba(59,158,255,0.3);
+}
+.stat-l{font-family:var(--fm);font-size:9px;color:var(--steel);letter-spacing:0.1em;margin-top:4px;text-transform:uppercase}
+
+/* Right panel — photo mosaic */
+.hero-right{
+  position:relative;overflow:hidden;
+  background:var(--dark);
+}
+.hero-photo-grid{
+  position:absolute;inset:0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr 1fr;
+  gap:2px;
+}
+.hpg-item{
+  position:relative;overflow:hidden;
+  background:var(--panel);
+}
+.hpg-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 6s ease;
+  filter:saturate(0.7) brightness(0.85);
+}
+.hpg-item:hover img{transform:scale(1.06)}
+.hpg-item.span2{grid-column:span 2}
+.hpg-item.tall{grid-row:span 2}
+
+/* Photo placeholders with real estate photography feel */
+.photo-placeholder{
+  width:100%;height:100%;
+  position:relative;overflow:hidden;
+}
+.pp-1{background:linear-gradient(135deg, #0a1628 0%, #0d2040 40%, #081828 100%)}
+.pp-2{background:linear-gradient(135deg, #0c1a2e 0%, #162840 100%)}
+.pp-3{background:linear-gradient(135deg, #080f1e 0%, #0d1a30 100%)}
+.pp-4{background:linear-gradient(160deg, #0a1525 0%, #12223a 100%)}
+.pp-5{background:linear-gradient(135deg, #061018 0%, #0c1e30 100%)}
+
+/* SVG house silhouette scenes inside placeholders */
+.scene-label{
+  position:absolute;bottom:12px;left:12px;
+  font-family:var(--fm);font-size:8px;letter-spacing:0.15em;
+  text-transform:uppercase;color:rgba(59,158,255,0.5);
+}
+
+.hero-right-overlay{
+  position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:
+    linear-gradient(to right, var(--dark) 0%, transparent 15%),
+    linear-gradient(to left, rgba(4,6,13,0.3) 0%, transparent 15%);
+}
+
+/* Floating data cards on hero */
+.hero-card{
+  position:absolute;
+  background:rgba(7,12,24,0.92);
+  border:1px solid var(--b1);
+  border-radius:8px;
+  padding:14px 18px;
+  backdrop-filter:blur(20px);
+  z-index:10;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 0 1px var(--b2);
+}
+.hero-card .hc-label{font-family:var(--fm);font-size:8px;color:var(--steel);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px}
+.hero-card .hc-val{font-family:var(--fd);font-size:26px;color:var(--blue);letter-spacing:1px;line-height:1;text-shadow:0 0 15px rgba(59,158,255,0.3)}
+.hero-card .hc-sub{font-size:10px;color:var(--steel);margin-top:3px}
+.hero-card-a{bottom:10%;left:-20px}
+.hero-card-b{
+  top:8%;right:6%;
+  background:linear-gradient(135deg,rgba(20,50,90,0.95),rgba(10,30,60,0.95));
+  border-color:rgba(59,158,255,0.3);
+}
+.hero-card-b .hc-label{color:rgba(135,195,255,0.7)}
+.hero-card-b .hc-val{color:var(--white);font-size:22px}
+
+/* Live indicator */
+.live-dot{
+  display:inline-block;width:7px;height:7px;
+  border-radius:50%;background:var(--blue);
+  box-shadow:0 0 8px var(--blue);
+  animation:blink 1.5s ease infinite;
+  margin-right:5px;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+/* ════════════════════════════════════
+   TICKER STRIP
+════════════════════════════════════ */
+.ticker{
+  background:var(--dark);
+  border-top:1px solid var(--b2);
+  border-bottom:1px solid var(--b2);
+  padding:0;height:40px;
+  overflow:hidden;
+  display:flex;align-items:center;
+  position:relative;
+}
+.ticker::before,.ticker::after{
+  content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;
+}
+.ticker::before{left:0;background:linear-gradient(to right,var(--dark),transparent)}
+.ticker::after{right:0;background:linear-gradient(to left,var(--dark),transparent)}
+.ticker-track{
+  display:flex;gap:0;
+  animation:ticker 25s linear infinite;
+  white-space:nowrap;
+}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--fm);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--steel);padding:0 32px;
+}
+.ticker-item span{color:var(--blue)}
+.ticker-sep{color:var(--b1);margin:0 4px}
+
+/* ════════════════════════════════════
+   PARTNER LOGOS
+════════════════════════════════════ */
+.logos-strip{
+  padding:28px 5%;
+  background:var(--deep);
+  border-bottom:1px solid var(--b2);
+  display:flex;align-items:center;gap:40px;overflow:hidden;
+}
+.strip-label{
+  font-family:var(--fm);font-size:9px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--steel);
+  white-space:nowrap;flex-shrink:0;
+}
+.logos-track{display:flex;gap:12px;align-items:center;flex:1;flex-wrap:wrap}
+.logo-pill{
+  background:var(--glassw);border:1px solid var(--b2);
+  border-radius:3px;padding:9px 20px;
+  font-family:var(--fd);font-size:14px;letter-spacing:2px;
+  color:var(--steel);white-space:nowrap;
+  transition:all 0.25s;
+}
+.logo-pill:hover{color:var(--white);border-color:var(--b1);background:var(--glass)}
+
+/* ════════════════════════════════════
+   SECTION COMMONS
+════════════════════════════════════ */
+section{padding:100px 5%}
+.section-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--fm);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:14px;
+}
+.section-kicker::before{content:'//';color:rgba(59,158,255,0.4)}
+.section-heading{
+  font-family:var(--fd);
+  font-size:clamp(38px,4vw,66px);
+  line-height:0.92;color:var(--white);
+  letter-spacing:2px;margin-bottom:18px;
+}
+.section-heading em{
+  font-family:var(--fs);font-style:italic;
+  color:var(--amber);
+}
+.section-sub{font-size:15px;color:var(--steel);max-width:500px;line-height:1.75;font-weight:300}
+
+/* Reveal animation */
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.on{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}
+.reveal-d5{transition-delay:.5s}
+
+/* ════════════════════════════════════
+   SERVICES
+════════════════════════════════════ */
+.services{background:var(--void);position:relative;overflow:hidden}
+.services::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,158,255,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.services-hdr{
+  display:flex;justify-content:space-between;
+  align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:24px;
+}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--b2);
+  border:1px solid var(--b2);
+  border-radius:12px;overflow:hidden;
+}
+.svc{
+  background:var(--panel);
+  padding:36px 28px;
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+  cursor:default;
+}
+.svc::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--amber));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s ease;
+}
+.svc::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;top:0;
+  background:radial-gradient(ellipse at top left,rgba(59,158,255,0.04) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.3s;
+}
+.svc:hover{background:var(--lift)}
+.svc:hover::before{transform:scaleX(1)}
+.svc:hover::after{opacity:1}
+.svc-num{
+  font-family:var(--fm);font-size:10px;letter-spacing:0.2em;
+  color:rgba(59,158,255,0.25);margin-bottom:20px;
+}
+.svc-icon-wrap{
+  width:48px;height:48px;
+  background:var(--glass);
+  border:1px solid var(--b2);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:20px;
+  transition:border-color 0.3s,background 0.3s;
+}
+.svc:hover .svc-icon-wrap{border-color:var(--b1);background:rgba(59,158,255,0.08)}
+.svc-title{
+  font-family:var(--fd);font-size:24px;
+  color:var(--white);letter-spacing:1px;margin-bottom:10px;
+}
+.svc-desc{font-size:13px;color:var(--steel);line-height:1.75}
+.svc-tag{
+  display:inline-block;margin-top:18px;
+  font-family:var(--fm);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--amber);
+  border-bottom:1px solid rgba(240,165,0,0.3);
+  padding-bottom:2px;
+}
+
+/* ════════════════════════════════════
+   PROCESS — HORIZONTAL STEPS
+════════════════════════════════════ */
+.process{
+  background:var(--deep);
+  position:relative;overflow:hidden;
+}
+.process::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--b1),transparent);
+}
+.process-steps-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--b2);
+  border:1px solid var(--b2);border-radius:12px;overflow:hidden;
+  margin:60px 0 60px;
+}
+.ps{
+  background:var(--panel);padding:40px 32px;
+  position:relative;overflow:hidden;
+}
+.ps::before{
+  content:attr(data-n);
+  position:absolute;top:-10px;right:20px;
+  font-family:var(--fd);font-size:120px;
+  color:rgba(59,158,255,0.04);
+  line-height:1;pointer-events:none;
+}
+.ps-num{
+  font-family:var(--fm);font-size:11px;letter-spacing:0.15em;
+  color:var(--blue);margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.ps-num::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--b1),transparent)}
+.ps-title{font-family:var(--fd);font-size:26px;color:var(--white);letter-spacing:1px;margin-bottom:10px}
+.ps-desc{font-size:13px;color:var(--steel);line-height:1.75}
+
+.process-bottom{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:32px;align-items:center;
+}
+.process-cta-card{
+  background:var(--card);
+  border:1px solid var(--b1);
+  border-radius:12px;padding:40px;
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+.process-cta-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(59,158,255,0.06) 0%,transparent 70%);
+}
+.pcc-val{
+  font-family:var(--fd);font-size:52px;
+  color:var(--blue);letter-spacing:3px;
+  text-shadow:0 0 30px rgba(59,158,255,0.3);
+  line-height:1;margin-bottom:8px;
+}
+.pcc-label{font-family:var(--fm);font-size:10px;color:var(--steel);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:24px}
+.pcc-book{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;background:var(--blue);
+  border-radius:3px;
+  font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--void);transition:all 0.25s;
+}
+.pcc-book:hover{background:var(--blue2);box-shadow:0 0 24px rgba(59,158,255,0.4)}
+.process-turnaround{
+  background:var(--lift);border:1px solid var(--b2);
+  border-radius:12px;padding:28px;margin-top:20px;
+}
+.pt-label{font-family:var(--fm);font-size:9px;color:var(--steel);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px}
+.pt-val{font-family:var(--fd);font-size:34px;color:var(--blue);letter-spacing:2px}
+
+.process-right p{font-size:14px;color:var(--steel);line-height:1.75;margin-bottom:16px}
+.process-right strong{color:var(--white)}
+
+/* ════════════════════════════════════
+   WHY CHOOSE US — FEATURES
+════════════════════════════════════ */
+.features{background:var(--void);position:relative}
+.features-hdr{max-width:600px;margin-bottom:60px}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat{
+  background:var(--glassw);
+  border:1px solid var(--b2);
+  border-radius:8px;padding:28px 24px;
+  transition:all 0.3s;
+  position:relative;overflow:hidden;
+}
+.feat::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--b1),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.feat:hover{border-color:var(--b1);transform:translateY(-3px);background:var(--glass)}
+.feat:hover::before{opacity:1}
+.feat-icon{
+  width:44px;height:44px;border-radius:8px;
+  background:var(--glass);border:1px solid var(--b2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin-bottom:16px;
+}
+.feat-title{font-family:var(--fd);font-size:19px;color:var(--white);letter-spacing:1px;margin-bottom:8px}
+.feat-desc{font-size:12.5px;color:var(--steel);line-height:1.7}
+
+/* ════════════════════════════════════
+   TESTIMONIALS
+════════════════════════════════════ */
+.testimonials{
+  background:var(--deep);
+  position:relative;overflow:hidden;
+}
+.testimonials::after{
+  content:'';position:absolute;
+  bottom:-100px;left:50%;transform:translateX(-50%);
+  width:800px;height:200px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(59,158,255,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.test-hdr{text-align:center;margin-bottom:60px}
+.test-hdr .section-kicker{justify-content:center}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tcard{
+  background:var(--card);border:1px solid var(--b2);
+  border-radius:10px;padding:28px;
+  position:relative;overflow:hidden;
+  transition:border-color 0.3s,transform 0.3s;
+}
+.tcard:hover{border-color:var(--b1);transform:translateY(-3px)}
+.tcard-quote{
+  position:absolute;top:16px;right:20px;
+  font-family:var(--fs);font-size:72px;
+  color:rgba(59,158,255,0.07);line-height:1;
+}
+.tcard-stars{color:var(--amber);font-size:13px;letter-spacing:3px;margin-bottom:14px}
+.tcard-text{font-size:13.5px;color:var(--mist);line-height:1.8;margin-bottom:22px;font-style:italic;font-weight:300}
+.tcard-author{font-weight:600;font-size:13px;color:var(--white)}
+.tcard-role{font-family:var(--fm);font-size:10px;color:var(--blue);margin-top:2px;letter-spacing:0.08em}
+
+/* ════════════════════════════════════
+   TRUST / NUMBERS
+════════════════════════════════════ */
+.trust{background:var(--void)}
+.trust-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+.trust-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tstat{
+  background:var(--glassw);border:1px solid var(--b2);
+  border-radius:8px;padding:24px;
+  transition:all 0.3s;
+}
+.tstat:hover{border-color:var(--b1);background:var(--glass)}
+.tstat .n{
+  font-family:var(--fd);font-size:46px;
+  color:var(--blue);letter-spacing:2px;line-height:1;
+  margin-bottom:5px;
+  text-shadow:0 0 20px rgba(59,158,255,0.2);
+}
+.tstat .l{font-size:11px;color:var(--steel);line-height:1.5;font-weight:300}
+
+.partner-logos{display:flex;flex-direction:column;gap:14px;margin-top:32px}
+.partner-row{display:flex;gap:12px}
+.partner-logo{
+  background:var(--glassw);border:1px solid var(--b2);
+  border-radius:6px;padding:14px 22px;
+  font-family:var(--fd);font-size:15px;letter-spacing:3px;
+  color:var(--steel);flex:1;text-align:center;
+  transition:all 0.25s;
+}
+.partner-logo:hover{color:var(--white);border-color:var(--b1);background:var(--glass)}
+
+/* ════════════════════════════════════
+   CTA BANNER
+════════════════════════════════════ */
+.cta-banner{
+  background:var(--dark);
+  border-top:1px solid var(--b2);
+  border-bottom:1px solid var(--b2);
+  padding:90px 5%;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:800px;height:400px;
+  background:radial-gradient(ellipse,rgba(59,158,255,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cta-banner::after{
+  content:'SHUTTER ZONE MEDIA';
+  position:absolute;
+  font-family:var(--fd);font-size:min(15vw,200px);
+  color:rgba(59,158,255,0.025);
+  white-space:nowrap;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  letter-spacing:8px;pointer-events:none;
+  line-height:1;
+}
+.cta-banner h2{
+  font-family:var(--fd);
+  font-size:clamp(32px,4vw,60px);
+  color:var(--white);letter-spacing:3px;
+  margin-bottom:14px;position:relative;z-index:1;
+}
+.cta-banner p{
+  font-size:15px;color:var(--steel);
+  max-width:460px;margin:0 auto 36px;
+  font-weight:300;position:relative;z-index:1;
+}
+.cta-btns{
+  display:flex;gap:14px;justify-content:center;
+  flex-wrap:wrap;position:relative;z-index:1;
+}
+.btn-cta-dark{
+  padding:15px 34px;background:var(--blue);
+  border-radius:3px;font-size:11px;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--void);transition:all 0.25s;
+}
+.btn-cta-dark:hover{background:var(--blue2);box-shadow:0 0 28px rgba(59,158,255,0.4)}
+.btn-cta-outline{
+  padding:15px 34px;
+  border:1px solid var(--b1);border-radius:3px;
+  font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--mist);transition:all 0.25s;
+}
+.btn-cta-outline:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ════════════════════════════════════
+   FOOTER
+════════════════════════════════════ */
+footer{
+  background:var(--deep);
+  border-top:1px solid var(--b2);
+  padding:72px 5% 40px;
+}
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:60px;margin-bottom:60px;
+}
+.footer-brand .brand-name{
+  font-family:var(--fd);font-size:26px;
+  color:var(--white);letter-spacing:3px;margin-bottom:8px;
+}
+.footer-brand .brand-tag{
+  font-family:var(--fm);font-size:9px;
+  color:var(--blue);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:16px;
+}
+.footer-brand p{font-size:13px;color:var(--steel);line-height:1.7;max-width:260px;font-weight:300}
+.footer-contact{margin-top:18px}
+.footer-contact a{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;color:var(--steel);
+  text-decoration:none;margin-bottom:7px;
+  transition:color 0.2s;
+}
+.footer-contact a:hover{color:var(--blue)}
+.footer-col h4{
+  font-family:var(--fm);font-size:9px;font-weight:700;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--mist);margin-bottom:18px;
+}
+.footer-col a{
+  display:block;font-size:12px;color:var(--steel);
+  text-decoration:none;margin-bottom:9px;transition:color 0.2s;font-weight:300;
+}
+.footer-col a:hover{color:var(--blue)}
+.footer-bottom{
+  border-top:1px solid var(--b2);padding-top:24px;
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{font-family:var(--fm);font-size:10px;color:var(--steel);letter-spacing:0.05em}
+.footer-social{display:flex;gap:8px}
+.social-btn{
+  width:34px;height:34px;
+  background:var(--glassw);border:1px solid var(--b2);
+  border-radius:6px;display:flex;align-items:center;
+  justify-content:center;font-size:13px;
+  text-decoration:none;transition:all 0.2s;
+  color:var(--steel);
+}
+.social-btn:hover{background:var(--blue);border-color:var(--blue);color:var(--void);box-shadow:0 0 12px rgba(59,158,255,0.3)}
+
+/* ════════════════════════════════════
+   MOBILE
+════════════════════════════════════ */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:80px 5% 60px}
+  .hero-left::after{display:none}
+  .hero-right{min-height:380px;display:block}
+  .hero-card-a{bottom:16px;left:16px}
+  .hero-card-b{top:16px;right:16px}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .process-steps-row{grid-template-columns:1fr}
+  .process-bottom{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .test-grid{grid-template-columns:1fr}
+  .trust-inner{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:768px){
+  .nav-links,.nav-ctas{display:none}
+  .hamburger{display:flex}
+  .services-grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+  .trust-stats{grid-template-columns:1fr 1fr}
+  .logos-strip{flex-direction:column;align-items:flex-start;gap:16px}
+  .logos-track{flex-wrap:wrap}
+  section{padding:72px 5%}
+  .hero-stats{gap:24px}
+}
+@media(max-width:600px){
+  .footer-top{grid-template-columns:1fr}
+  .trust-stats{grid-template-columns:1fr 1fr}
+  .hero h1{letter-spacing:1px}
+  .process-bottom{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column;align-items:center}
+}
+
+/* ════════════════════════════════════
+   HERO ENTRANCE ANIMATIONS
+════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.hero-eyebrow{animation:fadeUp 0.6s ease 0.1s both}
+.hero h1{animation:fadeUp 0.7s ease 0.2s both}
+.hero-sub{animation:fadeUp 0.7s ease 0.35s both}
+.hero-actions{animation:fadeUp 0.7s ease 0.45s both}
+.hero-stats{animation:fadeUp 0.7s ease 0.55s both}
+.hero-right{animation:fadeIn 1.2s ease 0.1s both}
+.hero-card{animation:fadeUp 0.7s ease 0.7s both}
 </style>
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR -->
+<!-- ANNOUNCE -->
 <div class="announce">
-  ⭐ <span>Receive $30 Off Your First Listing</span> · CODE: <strong>NEWFRIEND30</strong> ⭐
+  <span class="live-dot"></span>
+  <strong>NEWFRIEND30</strong>
+  <span class="sep">·</span>
+  Receive $30 off your first listing
+  <span class="sep">·</span>
+  Book online anytime
 </div>
 
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20900%20340%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%0A%3Cdefs%3E%0A%20%20%3Cstyle%3E%0A%20%20%20%20%40import%20url%28%27https%3A//fonts.googleapis.com/css2%3Ffamily%3DBebas%2BNeue%26amp%3Bdisplay%3Dswap%27%29%3B%0A%20%20%3C/style%3E%0A%3C/defs%3E%0A%0A%0A%3C%21--%20%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%20%20%20%20%20ROOFLINE%20ILLUSTRATION%20%20%28centered%20at%20cx%3D450%29%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%20--%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b5cad4%22%20stroke-linejoin%3D%22miter%22%20stroke-linecap%3D%22square%22%3E%0A%0A%20%20%3C%21--%20BASE%20LINE%20--%3E%0A%20%20%3Crect%20x%3D%22112%22%20y%3D%22152%22%20width%3D%22676%22%20height%3D%224.5%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%0A%20%20%3C%21--%20FAR%20LEFT%20HOUSE%20--%3E%0A%20%20%3Cpolyline%20points%3D%22115%2C154%20202%2C76%20290%2C154%22%20stroke-width%3D%225%22/%3E%0A%20%20%3C%21--%20chimney%20left%20--%3E%0A%20%20%3Crect%20x%3D%22146%22%20y%3D%2288%22%20width%3D%2212%22%20height%3D%2230%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3Crect%20x%3D%22142%22%20y%3D%2282%22%20width%3D%2220%22%20height%3D%229%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%0A%20%20%3C%21--%20CENTER%20HOUSE%20%28tallest%2C%20peak%20at%20y%3D44%29%20--%3E%0A%20%20%3Cpolyline%20points%3D%22265%2C154%20450%2C44%20635%2C154%22%20stroke-width%3D%225%22/%3E%0A%20%20%3C%21--%20chimney%20left%20--%3E%0A%20%20%3Crect%20x%3D%22295%22%20y%3D%2295%22%20width%3D%2213%22%20height%3D%2232%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3Crect%20x%3D%22290%22%20y%3D%2288%22%20width%3D%2223%22%20height%3D%2210%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3C%21--%20chimney%20right%20--%3E%0A%20%20%3Crect%20x%3D%22592%22%20y%3D%2295%22%20width%3D%2213%22%20height%3D%2232%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3Crect%20x%3D%22587%22%20y%3D%2288%22%20width%3D%2223%22%20height%3D%2210%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3C%21--%20window%20--%3E%0A%20%20%3Crect%20x%3D%22435%22%20y%3D%2290%22%20width%3D%2230%22%20height%3D%2226%22%20fill%3D%22none%22%20stroke%3D%22%23b5cad4%22%20stroke-width%3D%223.5%22/%3E%0A%20%20%3Cline%20x1%3D%22450%22%20y1%3D%2290%22%20x2%3D%22450%22%20y2%3D%22116%22%20stroke%3D%22%23b5cad4%22%20stroke-width%3D%222.5%22/%3E%0A%20%20%3Cline%20x1%3D%22435%22%20y1%3D%22103%22%20x2%3D%22465%22%20y2%3D%22103%22%20stroke%3D%22%23b5cad4%22%20stroke-width%3D%222.5%22/%3E%0A%0A%20%20%3C%21--%20FAR%20RIGHT%20HOUSE%20--%3E%0A%20%20%3Cpolyline%20points%3D%22610%2C154%20698%2C76%20785%2C154%22%20stroke-width%3D%225%22/%3E%0A%20%20%3C%21--%20chimney%20right%20--%3E%0A%20%20%3Crect%20x%3D%22742%22%20y%3D%2288%22%20width%3D%2212%22%20height%3D%2230%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%20%20%3Crect%20x%3D%22738%22%20y%3D%2282%22%20width%3D%2220%22%20height%3D%229%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%0A%0A%3C/g%3E%0A%0A%3C%21--%20%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%20%20%20%20%20LOGOTYPE%20ROW%0A%20%20%20%20%20Total%20text%20width%20needs%20centering%20at%20x%3D450%0A%20%20%20%20%20Bebas%20Neue%20~0.55%20char-width%20ratio%20at%2076px%20%E2%89%88%2042px/char%0A%20%20%20%20%20SHUTTER%20%3D%207%20chars%20%C3%97%2042%20%2B%20spacing%0A%20%20%20%20%20Z%20%20%20%20%20%20%20%20%3D%201%20char%0A%20%20%20%20%20%5BLENS%5D%20%20%20%3D%2058px%20wide%20circle%0A%20%20%20%20%20NE%20%20%20%20%20%20%20%3D%202%20chars%0A%20%20%20%20%20MEDIA%20%20%20%20%3D%205%20chars%0A%20%20%20%20%20Gaps%20between%20words%20~30px%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%20--%3E%0A%0A%3C%21--%20All%20text%20at%20y%3D238%2C%20font-size%2076%20--%3E%0A%3C%21--%20Using%20text-anchor%20start%2C%20manually%20placed%20for%20letter-spacing%3D4%20--%3E%0A%0A%3C%21--%20SHUTTER%20--%3E%0A%3Ctext%20x%3D%2273%22%20y%3D%22238%22%0A%20%20font-family%3D%22%27Bebas%20Neue%27%2C%20%27Arial%20Narrow%27%2C%20Arial%2C%20sans-serif%22%0A%20%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3ESHUTTER%3C/text%3E%0A%0A%3C%21--%20space%20gap%20~28px%20--%3E%0A%0A%3C%21--%20Z%20--%3E%0A%3Ctext%20x%3D%22419%22%20y%3D%22238%22%0A%20%20font-family%3D%22%27Bebas%20Neue%27%2C%20%27Arial%20Narrow%27%2C%20Arial%2C%20sans-serif%22%0A%20%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3EZ%3C/text%3E%0A%0A%3C%21--%20Camera%20aperture%20replacing%20O%2C%20centered%20at%20~x%3D472%2C%20y%3D206%20--%3E%0A%3Cg%20transform%3D%22translate%28472%2C%20205%29%22%3E%0A%20%20%3C%21--%20Outer%20ring%20--%3E%0A%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%2229%22%20fill%3D%22none%22%20stroke%3D%22%23c5d8e2%22%20stroke-width%3D%223.5%22/%3E%0A%20%20%3C%21--%20Mid%20ring%20--%3E%0A%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%2221%22%20fill%3D%22none%22%20stroke%3D%22%23c5d8e2%22%20stroke-width%3D%221.8%22/%3E%0A%20%20%3C%21--%206-blade%20aperture%20%28hexagonal%29%20using%20arcs%20--%3E%0A%20%20%3C%21--%20Blade%20slivers%20at%200%2C%2060%2C%20120%2C%20180%2C%20240%2C%20300%20degrees%20--%3E%0A%20%20%3Cpolygon%20points%3D%225.9%2C-1.3%2020.0%2C0.0%205.9%2C1.3%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%224.1%2C4.4%2010.0%2C17.3%201.8%2C5.7%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%22-1.8%2C5.7%20-10.0%2C17.3%20-4.1%2C4.4%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%22-5.9%2C1.3%20-20.0%2C0.0%20-5.9%2C-1.3%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%22-4.1%2C-4.4%20-10.0%2C-17.3%20-1.8%2C-5.7%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3Cpolygon%20points%3D%221.8%2C-5.7%2010.0%2C-17.3%204.1%2C-4.4%22%20fill%3D%22%23c5d8e2%22%20opacity%3D%220.85%22/%3E%0A%20%20%3C%21--%20Center%20dot%20--%3E%0A%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%225%22%20fill%3D%22%23c5d8e2%22/%3E%0A%3C/g%3E%0A%0A%3C%21--%20NE%20--%3E%0A%3Ctext%20x%3D%22504%22%20y%3D%22238%22%0A%20%20font-family%3D%22%27Bebas%20Neue%27%2C%20%27Arial%20Narrow%27%2C%20Arial%2C%20sans-serif%22%0A%20%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3ENE%3C/text%3E%0A%0A%3C%21--%20gap%20--%3E%0A%0A%3C%21--%20MEDIA%20--%3E%0A%3Ctext%20x%3D%22605%22%20y%3D%22238%22%0A%20%20font-family%3D%22%27Bebas%20Neue%27%2C%20%27Arial%20Narrow%27%2C%20Arial%2C%20sans-serif%22%0A%20%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3EMEDIA%3C/text%3E%0A%0A%3C%21--%20%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%0A%20%20%20%20%20TAGLINE%20ROW%20with%20flanking%20lines%0A%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%90%20--%3E%0A%0A%3C%21--%20Left%20line%20--%3E%0A%3Crect%20x%3D%2273%22%20y%3D%22257%22%20width%3D%22238%22%20height%3D%221.5%22%20fill%3D%22%236a8e9e%22/%3E%0A%3C%21--%20Right%20line%20--%3E%0A%3Crect%20x%3D%22589%22%20y%3D%22257%22%20width%3D%22238%22%20height%3D%221.5%22%20fill%3D%22%236a8e9e%22/%3E%0A%0A%3C%21--%20Tagline%20centered%20--%3E%0A%3Ctext%20x%3D%22450%22%20y%3D%22263%22%0A%20%20font-family%3D%22Arial%2C%20%27Helvetica%20Neue%27%2C%20sans-serif%22%0A%20%20font-size%3D%2211.5%22%20fill%3D%22%237a9cac%22%20letter-spacing%3D%224.5%22%0A%20%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3EWE%20SEE%20THINGS%20DIFFERENTLY%3C/text%3E%0A%0A%3C/svg%3E%0A" alt="Shutter Zone Media" style="height:56px;width:auto;object-fit:contain;" />
+    <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20900%20340%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Cdefs%3E%3Cstyle%3E%40import%20url%28%27https%3A//fonts.googleapis.com/css2%3Ffamily%3DBebas%2BNeue%26amp%3Bdisplay%3Dswap%27%29%3B%3C/style%3E%3C/defs%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b5cad4%22%20stroke-linejoin%3D%22miter%22%20stroke-linecap%3D%22square%22%3E%3Crect%20x%3D%22112%22%20y%3D%22152%22%20width%3D%22676%22%20height%3D%224.5%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%3Cpolyline%20points%3D%22115%2C154%20202%2C76%20290%2C154%22%20stroke-width%3D%225%22/%3E%3Crect%20x%3D%22146%22%20y%3D%2288%22%20width%3D%2212%22%20height%3D%2230%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%3Crect%20x%3D%22142%22%20y%3D%2282%22%20width%3D%2220%22%20height%3D%229%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%3Cpolyline%20points%3D%22265%2C154%20450%2C44%20635%2C154%22%20stroke-width%3D%225%22/%3E%3Crect%20x%3D%22295%22%20y%3D%2295%22%20width%3D%2213%22%20height%3D%2232%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%3Crect%20x%3D%22290%22%20y%3D%2288%22%20width%3D%2223%22%20height%3D%2210%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%3Crect%20x%3D%22592%22%20y%3D%2295%22%20width%3D%2213%22%20height%3D%2232%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%3Crect%20x%3D%22587%22%20y%3D%2288%22%20width%3D%2223%22%20height%3D%2210%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%3Crect%20x%3D%22435%22%20y%3D%2290%22%20width%3D%2230%22%20height%3D%2226%22%20fill%3D%22none%22%20stroke%3D%22%23b5cad4%22%20stroke-width%3D%223.5%22/%3E%3Cline%20x1%3D%22450%22%20y1%3D%2290%22%20x2%3D%22450%22%20y2%3D%22116%22%20stroke%3D%22%23b5cad4%22%20stroke-width%3D%222.5%22/%3E%3Cline%20x1%3D%22435%22%20y1%3D%22103%22%20x2%3D%22465%22%20y2%3D%22103%22%20stroke%3D%22%23b5cad4%22%20stroke-width%3D%222.5%22/%3E%3Cpolyline%20points%3D%22610%2C154%20698%2C76%20785%2C154%22%20stroke-width%3D%225%22/%3E%3Crect%20x%3D%22742%22%20y%3D%2288%22%20width%3D%2212%22%20height%3D%2230%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%3Crect%20x%3D%22738%22%20y%3D%2282%22%20width%3D%2220%22%20height%3D%229%22%20fill%3D%22%23b5cad4%22%20stroke%3D%22none%22/%3E%3C/g%3E%3Ctext%20x%3D%2273%22%20y%3D%22238%22%20font-family%3D%22%27Bebas%20Neue%27%2CArial%2Csans-serif%22%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3ESHUTTER%3C/text%3E%3Ctext%20x%3D%22419%22%20y%3D%22238%22%20font-family%3D%22%27Bebas%20Neue%27%2CArial%2Csans-serif%22%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3EZ%3C/text%3E%3Ccircle%20cx%3D%22472%22%20cy%3D%22205%22%20r%3D%2229%22%20fill%3D%22none%22%20stroke%3D%22%23c5d8e2%22%20stroke-width%3D%223.5%22/%3E%3Ccircle%20cx%3D%22472%22%20cy%3D%22205%22%20r%3D%2221%22%20fill%3D%22none%22%20stroke%3D%22%23c5d8e2%22%20stroke-width%3D%221.8%22/%3E%3Ccircle%20cx%3D%22472%22%20cy%3D%22205%22%20r%3D%225%22%20fill%3D%22%23c5d8e2%22/%3E%3Ctext%20x%3D%22504%22%20y%3D%22238%22%20font-family%3D%22%27Bebas%20Neue%27%2CArial%2Csans-serif%22%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3ENE%3C/text%3E%3Ctext%20x%3D%22605%22%20y%3D%22238%22%20font-family%3D%22%27Bebas%20Neue%27%2CArial%2Csans-serif%22%20font-size%3D%2276%22%20fill%3D%22%23ddeaf2%22%20letter-spacing%3D%224%22%3EMEDIA%3C/text%3E%3Crect%20x%3D%2273%22%20y%3D%22257%22%20width%3D%22238%22%20height%3D%221.5%22%20fill%3D%22%236a8e9e%22/%3E%3Crect%20x%3D%22589%22%20y%3D%22257%22%20width%3D%22238%22%20height%3D%221.5%22%20fill%3D%22%236a8e9e%22/%3E%3Ctext%20x%3D%22450%22%20y%3D%22263%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2211.5%22%20fill%3D%22%237a9cac%22%20letter-spacing%3D%224.5%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3EWE%20SEE%20THINGS%20DIFFERENTLY%3C/text%3E%3C/svg%3E" alt="Shutter Zone Media">
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
-    <li><a href="#work">Our Work</a></li>
+    <li><a href="#features">Why Us</a></li>
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#">Staging Catalog</a></li>
@@ -681,51 +907,310 @@
     <a href="#" class="btn-ghost">Client Login</a>
     <a href="#" class="btn-solid">Book Now →</a>
   </div>
-  <div class="hamburger"><span></span><span></span><span></span></div>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HERO -->
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#services" onclick="toggleNav()">Services</a>
+  <a href="#process" onclick="toggleNav()">Process</a>
+  <a href="#features" onclick="toggleNav()">Why Us</a>
+  <a href="#testimonials" onclick="toggleNav()">Reviews</a>
+  <a href="#contact" onclick="toggleNav()">Contact</a>
+  <div class="drawer-ctas">
+    <a href="#" class="btn-cta">Book Now →</a>
+    <a href="#" class="btn-cta-secondary">Client Login</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     HERO
+════════════════════════════════════ -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Real Estate Media · Wisconsin & Illinois</div>
-    <h1>Sell Listings <em>Faster</em> With Media That Converts</h1>
-    <p class="hero-desc">Professional real estate photography, cinematic video, and drone footage — engineered to make your listings stand out and close faster.</p>
+  <div class="hero-grid-overlay"></div>
+
+  <!-- LEFT -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">Real Estate Media · Wisconsin &amp; Illinois</div>
+
+    <h1>
+      Sell Listings
+      <span class="line2">Faster</span>
+      <span class="line3">With Media</span>
+    </h1>
+
+    <p class="hero-sub">Professional real estate photography, video, and drone designed to make your listings stand out and get more attention — delivered by 9AM the next morning.</p>
+
     <div class="hero-actions">
-      <a href="#" class="btn-hero">Book in Wisconsin →</a>
-      <a href="#" class="btn-hero-ghost">Book in Illinois →</a>
+      <a href="#" class="btn-cta">Book in Wisconsin →</a>
+      <a href="#" class="btn-cta-secondary">Book in Illinois →</a>
     </div>
+
     <div class="hero-stats">
       <div class="stat-item">
-        <span class="stat-num">9,000+</span>
-        <span class="stat-label">Homes Shot</span>
+        <span class="stat-n">9K+</span>
+        <span class="stat-l">Homes Shot</span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">1,000+</span>
-        <span class="stat-label">Realtor Partners</span>
+        <span class="stat-n">1K+</span>
+        <span class="stat-l">Realtor Partners</span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">$130</span>
-        <span class="stat-label">Starting Price</span>
+        <span class="stat-n">$130</span>
+        <span class="stat-l">Starting Price</span>
       </div>
     </div>
   </div>
-  <div class="hero-visual">
-    <div class="hero-img-frame">
-      <div class="hero-img-bg">🏡</div>
+
+  <!-- RIGHT — photo mosaic -->
+  <div class="hero-right">
+    <!-- SVG architectural photography scenes -->
+    <div class="hero-photo-grid">
+
+      <div class="hpg-item tall">
+        <div class="photo-placeholder pp-1">
+          <svg viewBox="0 0 300 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <defs>
+              <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0a1828"/>
+                <stop offset="100%" stop-color="#112040"/>
+              </linearGradient>
+              <linearGradient id="house1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#162840"/>
+                <stop offset="100%" stop-color="#0d1e30"/>
+              </linearGradient>
+            </defs>
+            <rect width="300" height="500" fill="url(#sky1)"/>
+            <!-- Stars -->
+            <circle cx="40" cy="30" r="1" fill="rgba(255,255,255,0.6)"/>
+            <circle cx="80" cy="60" r="0.8" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="200" cy="25" r="1.2" fill="rgba(255,255,255,0.7)"/>
+            <circle cx="260" cy="50" r="0.7" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="140" cy="40" r="0.9" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="20" cy="80" r="0.6" fill="rgba(255,255,255,0.3)"/>
+            <!-- Moon -->
+            <circle cx="240" cy="70" r="18" fill="rgba(200,225,255,0.08)"/>
+            <circle cx="248" cy="66" r="15" fill="#0a1828"/>
+            <!-- Ground -->
+            <rect x="0" y="400" width="300" height="100" fill="#060e18"/>
+            <!-- Main house facade -->
+            <rect x="30" y="180" width="240" height="220" fill="url(#house1)"/>
+            <!-- Roof -->
+            <polygon points="15,180 150,80 285,180" fill="#0e1e32"/>
+            <line x1="15" y1="180" x2="285" y2="180" stroke="#1a3050" stroke-width="2"/>
+            <!-- Chimney -->
+            <rect x="100" y="100" width="18" height="40" fill="#0c1a2c"/>
+            <!-- Windows - warm glow -->
+            <rect x="60" y="220" width="60" height="50" rx="2" fill="#0a1828"/>
+            <rect x="62" y="222" width="27" height="46" fill="rgba(255,200,80,0.12)"/>
+            <rect x="91" y="222" width="27" height="46" fill="rgba(255,200,80,0.08)"/>
+            <rect x="180" y="220" width="60" height="50" rx="2" fill="#0a1828"/>
+            <rect x="182" y="222" width="27" height="46" fill="rgba(255,200,80,0.15)"/>
+            <rect x="211" y="222" width="27" height="46" fill="rgba(255,200,80,0.1)"/>
+            <!-- Front door -->
+            <rect x="120" y="300" width="60" height="100" rx="3" fill="#08101e"/>
+            <rect x="122" y="302" width="27" height="96" fill="rgba(59,158,255,0.05)"/>
+            <rect x="151" y="302" width="27" height="96" fill="rgba(59,158,255,0.03)"/>
+            <!-- Door handle -->
+            <circle cx="148" cy="360" r="3" fill="rgba(240,165,0,0.6)"/>
+            <!-- Pathway -->
+            <polygon points="135,400 165,400 180,500 120,500" fill="rgba(255,255,255,0.03)"/>
+            <!-- Upper window -->
+            <rect x="120" y="160" width="60" height="40" rx="2" fill="#0a1828"/>
+            <rect x="122" y="162" width="27" height="36" fill="rgba(255,200,80,0.1)"/>
+            <rect x="151" y="162" width="27" height="36" fill="rgba(255,200,80,0.07)"/>
+            <!-- Camera aperture watermark -->
+            <circle cx="260" cy="440" r="20" fill="none" stroke="rgba(59,158,255,0.15)" stroke-width="1.5"/>
+            <circle cx="260" cy="440" r="12" fill="none" stroke="rgba(59,158,255,0.1)" stroke-width="1"/>
+            <circle cx="260" cy="440" r="4" fill="rgba(59,158,255,0.15)"/>
+          </svg>
+          <div class="scene-label">Twilight Exterior</div>
+        </div>
+      </div>
+
+      <div class="hpg-item">
+        <div class="photo-placeholder pp-2">
+          <svg viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <defs>
+              <linearGradient id="int1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0d1e34"/>
+                <stop offset="100%" stop-color="#0a1624"/>
+              </linearGradient>
+            </defs>
+            <rect width="300" height="250" fill="url(#int1)"/>
+            <!-- Floor -->
+            <polygon points="0,200 300,200 260,250 40,250" fill="#080f1c"/>
+            <!-- Wall lines perspective -->
+            <line x1="0" y1="0" x2="80" y2="200" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+            <line x1="300" y1="0" x2="220" y2="200" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+            <!-- Couch silhouette -->
+            <rect x="60" y="155" width="180" height="45" rx="8" fill="#0c1928"/>
+            <rect x="55" y="135" width="190" height="25" rx="6" fill="#0e1e30"/>
+            <rect x="55" y="135" width="20" height="65" rx="4" fill="#0e1e30"/>
+            <rect x="225" y="135" width="20" height="65" rx="4" fill="#0e1e30"/>
+            <!-- Coffee table -->
+            <rect x="100" y="185" width="100" height="8" rx="2" fill="#0a1420"/>
+            <!-- Large window with city view -->
+            <rect x="80" y="10" width="140" height="120" fill="#060e1a"/>
+            <rect x="82" y="12" width="136" height="116" fill="rgba(59,158,255,0.04)"/>
+            <!-- City lights through window -->
+            <rect cx="90" cy="60" width="3" height="3" x="90" y="70" fill="rgba(255,200,80,0.4)"/>
+            <rect x="100" y="80" width="2" height="2" fill="rgba(255,200,80,0.3)"/>
+            <rect x="115" y="65" width="4" height="8" fill="rgba(255,200,80,0.2)"/>
+            <rect x="125" y="75" width="3" height="5" fill="rgba(255,200,80,0.25)"/>
+            <rect x="140" y="60" width="5" height="12" fill="rgba(255,200,80,0.15)"/>
+            <rect x="155" y="70" width="3" height="7" fill="rgba(255,200,80,0.2)"/>
+            <rect x="165" y="55" width="4" height="15" fill="rgba(255,200,80,0.18)"/>
+            <rect x="178" y="68" width="3" height="6" fill="rgba(255,200,80,0.22)"/>
+            <rect x="190" y="72" width="2" height="4" fill="rgba(255,200,80,0.15)"/>
+            <!-- Floor lamp -->
+            <line x1="40" y1="80" x2="40" y2="200" stroke="#0c1828" stroke-width="3"/>
+            <ellipse cx="40" cy="80" rx="15" ry="8" fill="#0e1e30"/>
+            <circle cx="40" cy="76" r="6" fill="rgba(255,220,100,0.2)"/>
+            <!-- Accent light glow -->
+            <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(255,200,80,0.15)"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </radialGradient>
+          </svg>
+          <div class="scene-label">Living Room</div>
+        </div>
+      </div>
+
+      <div class="hpg-item">
+        <div class="photo-placeholder pp-3">
+          <svg viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <rect width="300" height="250" fill="#0a1522"/>
+            <!-- Aerial view grid lines -->
+            <line x1="0" y1="50" x2="300" y2="50" stroke="rgba(59,158,255,0.06)" stroke-width="1"/>
+            <line x1="0" y1="100" x2="300" y2="100" stroke="rgba(59,158,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="150" x2="300" y2="150" stroke="rgba(59,158,255,0.06)" stroke-width="1"/>
+            <line x1="0" y1="200" x2="300" y2="200" stroke="rgba(59,158,255,0.04)" stroke-width="1"/>
+            <line x1="60" y1="0" x2="60" y2="250" stroke="rgba(59,158,255,0.04)" stroke-width="1"/>
+            <line x1="120" y1="0" x2="120" y2="250" stroke="rgba(59,158,255,0.06)" stroke-width="1"/>
+            <line x1="180" y1="0" x2="180" y2="250" stroke="rgba(59,158,255,0.04)" stroke-width="1"/>
+            <line x1="240" y1="0" x2="240" y2="250" stroke="rgba(59,158,255,0.06)" stroke-width="1"/>
+            <!-- House from above -->
+            <rect x="80" y="60" width="140" height="120" rx="3" fill="#0c1c2e"/>
+            <polygon points="80,60 150,20 220,60" fill="#0e2030"/>
+            <!-- Pool -->
+            <rect x="60" y="200" width="80" height="40" rx="8" fill="rgba(59,158,255,0.15)"/>
+            <!-- Trees -->
+            <circle cx="40" cy="80" r="14" fill="rgba(20,60,30,0.8)"/>
+            <circle cx="260" cy="90" r="12" fill="rgba(20,60,30,0.7)"/>
+            <circle cx="255" cy="190" r="10" fill="rgba(20,60,30,0.8)"/>
+            <!-- Drone cross-hair -->
+            <circle cx="150" cy="120" r="40" fill="none" stroke="rgba(59,158,255,0.12)" stroke-width="1" stroke-dasharray="4,4"/>
+            <circle cx="150" cy="120" r="8" fill="none" stroke="rgba(59,158,255,0.2)" stroke-width="1"/>
+            <line x1="130" y1="120" x2="170" y2="120" stroke="rgba(59,158,255,0.15)" stroke-width="1"/>
+            <line x1="150" y1="100" x2="150" y2="140" stroke="rgba(59,158,255,0.15)" stroke-width="1"/>
+          </svg>
+          <div class="scene-label">Drone Aerial</div>
+        </div>
+      </div>
+
+      <div class="hpg-item span2">
+        <div class="photo-placeholder pp-4">
+          <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <defs>
+              <linearGradient id="kit1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0c1a2a"/>
+                <stop offset="100%" stop-color="#0a1620"/>
+              </linearGradient>
+            </defs>
+            <rect width="600" height="250" fill="url(#kit1)"/>
+            <!-- Kitchen counter -->
+            <rect x="0" y="160" width="600" height="90" fill="#080f1a"/>
+            <rect x="0" y="155" width="600" height="10" fill="#0d1e30"/>
+            <!-- Upper cabinets -->
+            <rect x="20" y="20" width="200" height="100" rx="2" fill="#0a1828"/>
+            <rect x="380" y="20" width="200" height="100" rx="2" fill="#0a1828"/>
+            <!-- Cabinet doors -->
+            <rect x="22" y="22" width="95" height="96" fill="#0c1c2e" stroke="rgba(59,158,255,0.08)" stroke-width="1"/>
+            <rect x="123" y="22" width="95" height="96" fill="#0c1c2e" stroke="rgba(59,158,255,0.08)" stroke-width="1"/>
+            <rect x="382" y="22" width="95" height="96" fill="#0c1c2e" stroke="rgba(59,158,255,0.08)" stroke-width="1"/>
+            <rect x="483" y="22" width="95" height="96" fill="#0c1c2e" stroke="rgba(59,158,255,0.08)" stroke-width="1"/>
+            <!-- Handles -->
+            <rect x="60" y="68" width="20" height="3" rx="1.5" fill="rgba(240,165,0,0.4)"/>
+            <rect x="161" y="68" width="20" height="3" rx="1.5" fill="rgba(240,165,0,0.4)"/>
+            <rect x="422" y="68" width="20" height="3" rx="1.5" fill="rgba(240,165,0,0.4)"/>
+            <rect x="523" y="68" width="20" height="3" rx="1.5" fill="rgba(240,165,0,0.4)"/>
+            <!-- Window above sink -->
+            <rect x="230" y="10" width="140" height="110" fill="#060e18"/>
+            <rect x="232" y="12" width="136" height="106" fill="rgba(59,158,255,0.05)"/>
+            <line x1="300" y1="12" x2="300" y2="118" stroke="rgba(59,158,255,0.1)" stroke-width="1"/>
+            <line x1="232" y1="65" x2="368" y2="65" stroke="rgba(59,158,255,0.1)" stroke-width="1"/>
+            <!-- Sink -->
+            <rect x="240" y="155" width="120" height="30" rx="4" fill="#080f1a"/>
+            <rect x="248" y="158" width="49" height="24" rx="3" fill="rgba(59,158,255,0.04)"/>
+            <rect x="303" y="158" width="49" height="24" rx="3" fill="rgba(59,158,255,0.04)"/>
+            <!-- Faucet -->
+            <line x1="295" y1="155" x2="295" y2="140" stroke="#0e1e30" stroke-width="4"/>
+            <path d="M295,140 Q300,130 310,132" fill="none" stroke="#0e1e30" stroke-width="4"/>
+            <!-- Island -->
+            <rect x="150" y="195" width="300" height="50" rx="4" fill="#0c1c2e"/>
+            <rect x="150" y="190" width="300" height="8" rx="2" fill="#0e2030"/>
+            <!-- Bar stools -->
+            <ellipse cx="210" cy="245" rx="16" ry="5" fill="#0a1624"/>
+            <line x1="210" y1="195" x2="210" y2="245" stroke="#0c1828" stroke-width="3"/>
+            <ellipse cx="300" cy="245" rx="16" ry="5" fill="#0a1624"/>
+            <line x1="300" y1="195" x2="300" y2="245" stroke="#0c1828" stroke-width="3"/>
+            <ellipse cx="390" cy="245" rx="16" ry="5" fill="#0a1624"/>
+            <line x1="390" y1="195" x2="390" y2="245" stroke="#0c1828" stroke-width="3"/>
+            <!-- Under-cabinet lighting glow -->
+            <rect x="20" y="118" width="200" height="4" rx="2" fill="rgba(255,220,120,0.15)"/>
+            <rect x="380" y="118" width="200" height="4" rx="2" fill="rgba(255,220,120,0.12)"/>
+          </svg>
+          <div class="scene-label">Kitchen — Virtual Staging</div>
+        </div>
+      </div>
+    </div><!-- /photo grid -->
+
+    <div class="hero-right-overlay"></div>
+
+    <!-- Floating data cards -->
+    <div class="hero-card hero-card-a">
+      <div class="hc-label">Next Delivery</div>
+      <div class="hc-val">9AM</div>
+      <div class="hc-sub">Photos ready the next morning</div>
     </div>
-    <div class="hero-float-card">
-      <div class="card-label">Next Delivery</div>
-      <div class="card-val">MORNING</div>
-      <div class="card-sub">Photos ready by 9AM</div>
+    <div class="hero-card hero-card-b">
+      <div class="hc-label"><span class="live-dot"></span>MLS Upload</div>
+      <div class="hc-val">INCLUDED</div>
     </div>
-    <div class="hero-float-card2">
-      <div class="card-label">MLS Upload</div>
-      <div class="card-val">INCLUDED</div>
-    </div>
-  </div>
+  </div><!-- /hero-right -->
 </section>
 
-<!-- PARTNER LOGOS -->
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item"><span>9,000+</span> Homes Photographed</span>
+    <span class="ticker-item">Wisconsin &amp; Illinois</span>
+    <span class="ticker-item"><span>Next-Morning</span> Delivery</span>
+    <span class="ticker-item">FAA-Certified Drone Pilots</span>
+    <span class="ticker-item"><span>Free</span> MLS Upload</span>
+    <span class="ticker-item">HDR Photography</span>
+    <span class="ticker-item"><span>$130</span> Starting Price</span>
+    <span class="ticker-item">Cinematic Walkthrough Video</span>
+    <span class="ticker-item"><span>1,000+</span> Realtor Partners</span>
+    <span class="ticker-item">Virtual Staging &amp; 360° Tours</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item"><span>9,000+</span> Homes Photographed</span>
+    <span class="ticker-item">Wisconsin &amp; Illinois</span>
+    <span class="ticker-item"><span>Next-Morning</span> Delivery</span>
+    <span class="ticker-item">FAA-Certified Drone Pilots</span>
+    <span class="ticker-item"><span>Free</span> MLS Upload</span>
+    <span class="ticker-item">HDR Photography</span>
+    <span class="ticker-item"><span>$130</span> Starting Price</span>
+    <span class="ticker-item">Cinematic Walkthrough Video</span>
+    <span class="ticker-item"><span>1,000+</span> Realtor Partners</span>
+    <span class="ticker-item">Virtual Staging &amp; 360° Tours</span>
+  </div>
+</div>
+
+<!-- LOGOS -->
 <div class="logos-strip">
   <span class="strip-label">Trusted by</span>
   <div class="logos-track">
@@ -736,188 +1221,203 @@
   </div>
 </div>
 
-<!-- SERVICES -->
+<!-- ═══════════════════════════════════
+     SERVICES
+════════════════════════════════════ -->
 <section class="services" id="services">
-  <div class="services-header">
-    <div class="section-tag">What We Do</div>
-    <h2 class="section-heading">Premium Media <em>Services</em></h2>
-    <p class="section-sub">Every service is designed to help real estate professionals close faster and command higher prices.</p>
+  <div class="services-hdr reveal">
+    <div>
+      <div class="section-kicker">What We Do</div>
+      <h2 class="section-heading">Premium Media <em>Services</em></h2>
+    </div>
+    <p class="section-sub">Every service is engineered to help real estate professionals close faster and command higher prices.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card">
-      <div class="service-num">01</div>
-      <div class="service-icon">📸</div>
-      <div class="service-title">Photography</div>
-      <p class="service-desc">HDR listing photography that captures every room in its best light. Edited, delivered, and MLS-ready by the next morning.</p>
-      <span class="service-tag">Most Popular</span>
+    <div class="svc reveal reveal-d1">
+      <div class="svc-num">01 ·· PHOTOGRAPHY</div>
+      <div class="svc-icon-wrap">📸</div>
+      <div class="svc-title">Photography</div>
+      <p class="svc-desc">HDR listing photography that captures every room in its best light. Edited, delivered, and MLS-ready by the next morning.</p>
+      <span class="svc-tag">Most Popular</span>
     </div>
-    <div class="service-card">
-      <div class="service-num">02</div>
-      <div class="service-icon">🎬</div>
-      <div class="service-title">Listing Videography</div>
-      <p class="service-desc">Cinematic walkthroughs with over 20 years of videography experience. A powerful, immersive experience with every project.</p>
-      <span class="service-tag">Cinematic Quality</span>
+    <div class="svc reveal reveal-d2">
+      <div class="svc-num">02 ·· VIDEO</div>
+      <div class="svc-icon-wrap">🎬</div>
+      <div class="svc-title">Listing Videography</div>
+      <p class="svc-desc">Cinematic walkthroughs with over 20 years of videography experience. A powerful, immersive experience with every project.</p>
+      <span class="svc-tag">Cinematic Quality</span>
     </div>
-    <div class="service-card">
-      <div class="service-num">03</div>
-      <div class="service-icon">🚁</div>
-      <div class="service-title">Drone Aerial</div>
-      <p class="service-desc">FAA-certified drone pilots capturing your listings from a unique bird's-eye perspective. Perfect for acreage, landscaping, and amenities.</p>
-      <span class="service-tag">FAA Certified</span>
+    <div class="svc reveal reveal-d3">
+      <div class="svc-num">03 ·· AERIAL</div>
+      <div class="svc-icon-wrap">🚁</div>
+      <div class="svc-title">Drone Aerial</div>
+      <p class="svc-desc">FAA-certified drone pilots capturing your listings from a unique bird's-eye perspective. Perfect for acreage and amenities.</p>
+      <span class="svc-tag">FAA Certified</span>
     </div>
-    <div class="service-card">
-      <div class="service-num">04</div>
-      <div class="service-icon">🏠</div>
-      <div class="service-title">Virtual Staging</div>
-      <p class="service-desc">Empty listing? No problem. Our virtual staging helps buyers picture themselves in the space — without the cost of physical furniture.</p>
-      <span class="service-tag">Sell Faster</span>
+    <div class="svc reveal reveal-d1">
+      <div class="svc-num">04 ·· STAGING</div>
+      <div class="svc-icon-wrap">🏠</div>
+      <div class="svc-title">Virtual Staging</div>
+      <p class="svc-desc">Empty listing? No problem. Our virtual staging helps buyers picture themselves in the space — without the cost of physical furniture.</p>
+      <span class="svc-tag">Sell Faster</span>
     </div>
-    <div class="service-card">
-      <div class="service-num">05</div>
-      <div class="service-icon">🔄</div>
-      <div class="service-title">Virtual 360 Tours</div>
-      <p class="service-desc">Let buyers explore your listing anytime, anywhere. Immersive 360° tours that keep buyers engaged 24/7 — even after hours.</p>
-      <span class="service-tag">Always On</span>
+    <div class="svc reveal reveal-d2">
+      <div class="svc-num">05 ·· TOURS</div>
+      <div class="svc-icon-wrap">🔄</div>
+      <div class="svc-title">Virtual 360 Tours</div>
+      <p class="svc-desc">Let buyers explore your listing anytime, anywhere. Immersive 360° tours that keep buyers engaged 24/7 — even after hours.</p>
+      <span class="svc-tag">Always On</span>
     </div>
-    <div class="service-card">
-      <div class="service-num">06</div>
-      <div class="service-icon">✨</div>
-      <div class="service-title">Virtual Declutter & Reno</div>
-      <p class="service-desc">We remove distracting items, virtually renovate rooms, and add furniture — showing buyers the full potential of the listing.</p>
-      <span class="service-tag">Free Basic Editing</span>
+    <div class="svc reveal reveal-d3">
+      <div class="svc-num">06 ·· EDITING</div>
+      <div class="svc-icon-wrap">✨</div>
+      <div class="svc-title">Virtual Declutter & Reno</div>
+      <p class="svc-desc">We remove distracting items, virtually renovate rooms, and add furniture — showing buyers the full potential of the listing.</p>
+      <span class="svc-tag">Free Basic Editing</span>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- ═══════════════════════════════════
+     PROCESS
+════════════════════════════════════ -->
 <section class="process" id="process">
-  <div>
-    <div class="section-tag">How It Works</div>
+  <div class="reveal">
+    <div class="section-kicker">How It Works</div>
     <h2 class="section-heading">A Simple <em>3-Step</em> Process</h2>
   </div>
-  <div class="process-grid">
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="step-num">01</div>
-        <div class="step-content">
-          <div class="step-title">Schedule Your Appointment</div>
-          <p class="step-desc">Book online in minutes from your computer, smartphone, or tablet. Track current and past listings through your back-office portal.</p>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">02</div>
-        <div class="step-content">
-          <div class="step-title">Photographer Shoots Your Listing</div>
-          <p class="step-desc">Our team arrives at your chosen date and time. We handle everything — photography, video, drone — in one seamless session.</p>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">03</div>
-        <div class="step-content">
-          <div class="step-title">Receive Media the Next Morning</div>
-          <p class="step-desc">Photos delivered and MLS-uploaded by 9AM the following morning. No waiting, no chasing. Just results.</p>
-        </div>
+  <div class="process-steps-row">
+    <div class="ps reveal reveal-d1" data-n="01">
+      <div class="ps-num">STEP 01</div>
+      <div class="ps-title">Schedule Your Appointment</div>
+      <p class="ps-desc">Book online in minutes from your computer, smartphone, or tablet. Track current and past listings through your back-office portal.</p>
+    </div>
+    <div class="ps reveal reveal-d2" data-n="02">
+      <div class="ps-num">STEP 02</div>
+      <div class="ps-title">We Shoot Your Listing</div>
+      <p class="ps-desc">Our team arrives at your chosen date and time. We handle everything — photography, video, drone — in one seamless session.</p>
+    </div>
+    <div class="ps reveal reveal-d3" data-n="03">
+      <div class="ps-num">STEP 03</div>
+      <div class="ps-title">Receive Media by 9AM</div>
+      <p class="ps-desc">Photos delivered and MLS-uploaded by 9AM the following morning. No waiting, no chasing. Just results, every time.</p>
+    </div>
+  </div>
+  <div class="process-bottom">
+    <div class="process-cta-card reveal">
+      <div class="pcc-label">Typical Turnaround</div>
+      <div class="pcc-val">NEXT<br>MORNING</div>
+      <p style="font-size:13px;color:var(--steel);margin:12px 0 24px;font-weight:300">From booking to MLS-ready media — overnight.</p>
+      <a href="#" class="pcc-book">Book Your Session →</a>
+      <div class="process-turnaround" style="margin-top:24px">
+        <div class="pt-label">Starting Price</div>
+        <div class="pt-val">$130</div>
       </div>
     </div>
-    <div class="process-visual">
-      <span class="big-icon">⚡</span>
-      <div class="process-cta">From booking to<br><span>MLS-ready</span></div>
-      <div class="turnaround">
-        <div class="turnaround-label">Typical Turnaround</div>
-        <div class="turnaround-val">NEXT MORNING</div>
-      </div>
-      <br>
-      <a href="#" class="btn-hero" style="display:inline-flex;margin-top:12px;">Book Your Session →</a>
+    <div class="process-right reveal reveal-d2">
+      <p><strong>We built our workflow specifically for realtors</strong> who can't afford to wait days for their listing media to arrive.</p>
+      <p>Every shoot is scheduled, executed, and delivered with precision — so your listing goes live as fast as possible and looks better than the competition.</p>
+      <p><strong>MLS upload is always included.</strong> One less task on your to-do list. We handle the upload so you can focus on closing.</p>
+      <p>Questions? Our team is available Monday–Friday 9–5 and weekends 10–2 via phone, text, or email.</p>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="features" id="work">
-  <div class="features-header">
-    <div class="section-tag">Why Choose Us</div>
+<!-- ═══════════════════════════════════
+     FEATURES
+════════════════════════════════════ -->
+<section class="features" id="features">
+  <div class="features-hdr reveal">
+    <div class="section-kicker">Why Choose Us</div>
     <h2 class="section-heading">Built for <em>Realtors</em></h2>
     <p class="section-sub">Everything we do is designed to make your workflow faster, your listings look better, and your clients happier.</p>
   </div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">☀️</div>
-      <div class="feature-title">Next Morning Delivery</div>
-      <p class="feature-desc">Edited photos and videos delivered by 9AM the morning after your shoot — ready to list immediately.</p>
+  <div class="feat-grid">
+    <div class="feat reveal reveal-d1">
+      <div class="feat-icon">☀️</div>
+      <div class="feat-title">Next Morning Delivery</div>
+      <p class="feat-desc">Edited photos and videos delivered by 9AM the morning after your shoot — ready to list immediately.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">🏡</div>
-      <div class="feature-title">MLS Upload Included</div>
-      <p class="feature-desc">We upload directly to MLS on your behalf. One less thing on your to-do list.</p>
+    <div class="feat reveal reveal-d2">
+      <div class="feat-icon">🏡</div>
+      <div class="feat-title">MLS Upload Included</div>
+      <p class="feat-desc">We upload directly to MLS on your behalf. One less thing on your to-do list.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">📞</div>
-      <div class="feature-title">7-Day Client Support</div>
-      <p class="feature-desc">Phone, email, and text support Monday–Friday 9–5, weekends 10–2. Someone is always there to help.</p>
+    <div class="feat reveal reveal-d3">
+      <div class="feat-icon">📞</div>
+      <div class="feat-title">7-Day Client Support</div>
+      <p class="feat-desc">Phone, email, and text support Monday–Friday 9–5, weekends 10–2. Someone is always there to help.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">💻</div>
-      <div class="feature-title">Online Booking Portal</div>
-      <p class="feature-desc">Book, track listings, manage payments, and download files — all from your personal back-office dashboard.</p>
+    <div class="feat reveal reveal-d1">
+      <div class="feat-icon">💻</div>
+      <div class="feat-title">Online Booking Portal</div>
+      <p class="feat-desc">Book, track listings, manage payments, and download files — all from your personal back-office dashboard.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">📅</div>
-      <div class="feature-title">Flexible Availability</div>
-      <p class="feature-desc">Our team approach expands coverage so we can accommodate even the most demanding schedules.</p>
+    <div class="feat reveal reveal-d2">
+      <div class="feat-icon">📅</div>
+      <div class="feat-title">Flexible Availability</div>
+      <p class="feat-desc">Our team approach expands coverage so we can accommodate even the most demanding schedules.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎁</div>
-      <div class="feature-title">Free Basic Editing</div>
-      <p class="feature-desc">Every shoot includes free sky replacement, window brightening, screen pop, and virtual twilight at no extra charge.</p>
+    <div class="feat reveal reveal-d3">
+      <div class="feat-icon">🎁</div>
+      <div class="feat-title">Free Basic Editing</div>
+      <p class="feat-desc">Every shoot includes free sky replacement, window brightening, screen pop, and virtual twilight at no extra charge.</p>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- ═══════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════ -->
 <section class="testimonials" id="testimonials">
-  <div class="testimonials-header">
-    <div class="section-tag">Client Reviews</div>
+  <div class="test-hdr reveal">
+    <div class="section-kicker" style="justify-content:center">Client Reviews</div>
     <h2 class="section-heading">What Our <em>Clients</em> Say</h2>
   </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">AMAZING customer service. Someone is always available to talk to — text, phone, or email. Their team is always there, even with short notice. They have gone above and beyond more times than I can mention.</p>
-      <div class="testimonial-author">Jane</div>
-      <div class="testimonial-role">Realtor Partner</div>
+  <div class="test-grid">
+    <div class="tcard reveal reveal-d1">
+      <div class="tcard-quote">"</div>
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">AMAZING customer service. Someone is always available to talk to — text, phone, or email. Their team is always there, even with short notice. They have gone above and beyond more times than I can mention.</p>
+      <div class="tcard-author">Jane</div>
+      <div class="tcard-role">Realtor Partner</div>
     </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">SZM was easy to work with. Online scheduling and payments made it a snap to set up. My photos were beautiful and uploaded by the next morning into the MLS. I couldn't be happier with the entire experience!</p>
-      <div class="testimonial-author">Mary Beth</div>
-      <div class="testimonial-role">Real Estate Agent</div>
+    <div class="tcard reveal reveal-d2">
+      <div class="tcard-quote">"</div>
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">SZM was easy to work with. Online scheduling and payments made it a snap to set up. My photos were beautiful and uploaded by the next morning into the MLS. I couldn't be happier with the entire experience!</p>
+      <div class="tcard-author">Mary Beth</div>
+      <div class="tcard-role">Real Estate Agent</div>
     </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">SZM is the absolute best real estate media company I have ever worked with. Organized, excellent communication, and the photos are always unreal. The editing is phenomenal.</p>
-      <div class="testimonial-author">Alison</div>
-      <div class="testimonial-role">Listing Agent</div>
+    <div class="tcard reveal reveal-d3">
+      <div class="tcard-quote">"</div>
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">SZM is the absolute best real estate media company I have ever worked with. Organized, excellent communication, and the photos are always unreal. The editing is phenomenal.</p>
+      <div class="tcard-author">Alison</div>
+      <div class="tcard-role">Listing Agent</div>
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
+<!-- ═══════════════════════════════════
+     TRUST
+════════════════════════════════════ -->
 <section class="trust">
   <div class="trust-inner">
-    <div>
-      <div class="section-tag">By the Numbers</div>
+    <div class="reveal">
+      <div class="section-kicker">By the Numbers</div>
       <h2 class="section-heading">Trusted Among <em>Industry Leaders</em></h2>
-      <p class="section-sub" style="margin-bottom:40px;">Built on relationships, driven by results. We're proud to be the media partner of choice for top realtors across Wisconsin and Illinois.</p>
+      <p class="section-sub" style="margin-bottom:36px">Built on relationships, driven by results. The media partner of choice for top realtors across Wisconsin and Illinois.</p>
       <div class="trust-stats">
-        <div class="trust-stat"><div class="num">9K+</div><div class="label">Homes Shot</div></div>
-        <div class="trust-stat"><div class="num">1K+</div><div class="label">Realtor Partners</div></div>
-        <div class="trust-stat"><div class="num">20+</div><div class="label">Years Experience</div></div>
-        <div class="trust-stat"><div class="num">2</div><div class="label">States Covered</div></div>
+        <div class="tstat"><div class="n">9K+</div><div class="l">Homes Shot</div></div>
+        <div class="tstat"><div class="n">1K+</div><div class="l">Realtor Partners</div></div>
+        <div class="tstat"><div class="n">20+</div><div class="l">Years Experience</div></div>
+        <div class="tstat"><div class="n">2</div><div class="l">States Covered</div></div>
       </div>
     </div>
-    <div>
+    <div class="reveal reveal-d2">
+      <p style="font-size:11px;color:var(--steel);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;font-family:var(--fm)">Our Partners</p>
       <div class="partner-logos">
-        <p style="font-size:11px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Our Partners</p>
         <div class="partner-row">
           <div class="partner-logo">KW</div>
           <div class="partner-logo">FIRST WEBER</div>
@@ -931,17 +1431,21 @@
   </div>
 </section>
 
-<!-- CTA BANNER -->
+<!-- ═══════════════════════════════════
+     CTA BANNER
+════════════════════════════════════ -->
 <section class="cta-banner">
   <h2>READY TO MAXIMIZE YOUR LISTINGS?</h2>
-  <p>Join over 1,000 real estate professionals who trust Shutter Zone Media to make their listings shine.</p>
+  <p>Join over 1,000 real estate professionals who trust Shutter Zone Media to make their listings stand out and close faster.</p>
   <div class="cta-btns">
-    <a href="#" class="btn-dark">Book in Wisconsin</a>
-    <a href="#" class="btn-outline-dark">Book in Illinois</a>
+    <a href="#" class="btn-cta-dark">Book in Wisconsin</a>
+    <a href="#" class="btn-cta-outline">Book in Illinois</a>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ═══════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
 <footer id="contact">
   <div class="footer-top">
     <div class="footer-brand">
@@ -950,7 +1454,7 @@
       <p>Professional real estate photography, video, and drone services for realtors across Wisconsin and Illinois.</p>
       <div class="footer-contact">
         <a href="tel:4143759151">📞 414.375.9151</a>
-        <a href="/cdn-cgi/l/email-protection#6a03040c052a19021f1e1e0f181005040f070f0e030b44090507">✉ <span class="__cf_email__" data-cfemail="4e072028210e3d263b3a3a2b3c3421202b232b2a272f602d2123">[email&#160;protected]</span></a>
+        <a href="mailto:info@shutterzonemedia.com">✉ info@shutterzonemedia.com</a>
         <a href="#">📍 3216 S 92nd St, Suite 104, Milwaukee, WI 53227</a>
       </div>
     </div>
@@ -968,15 +1472,14 @@
       <a href="#">About Us</a>
       <a href="#">Join Our Team</a>
       <a href="#">Staging Catalog</a>
-      <a href="#">Terms & Conditions</a>
+      <a href="#">Terms &amp; Conditions</a>
       <a href="#">Downloadable Files</a>
     </div>
     <div class="footer-col">
       <h4>Office Hours</h4>
       <a href="#">Mon–Fri: 9am–5pm</a>
-      <a href="#">Sat & Sun: 10am–2pm</a>
-      <br>
-      <h4>Book Now</h4>
+      <a href="#">Sat &amp; Sun: 10am–2pm</a>
+      <h4 style="margin-top:20px">Book Now</h4>
       <a href="#">Book in Wisconsin →</a>
       <a href="#">Book in Illinois →</a>
       <a href="#">Client Login →</a>
@@ -985,22 +1488,47 @@
   <div class="footer-bottom">
     <p>© 2026 Shutter Zone Media. All Rights Reserved.</p>
     <div class="footer-social">
-      <a href="#" class="social-btn">▶</a>
-      <a href="#" class="social-btn">f</a>
-      <a href="#" class="social-btn">📷</a>
+      <a href="#" class="social-btn" title="YouTube">▶</a>
+      <a href="#" class="social-btn" title="Facebook">f</a>
+      <a href="#" class="social-btn" title="Instagram">📷</a>
     </div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Intersection Observer for scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
+<script>
+/* ── Nav toggle ── */
+function toggleNav(){
+  const h=document.getElementById('hamburger');
+  const d=document.getElementById('navDrawer');
+  h.classList.toggle('open');
+  d.classList.toggle('open');
+}
+/* Hamburger open animation */
+document.getElementById('hamburger').addEventListener('click',function(){
+  const spans=this.querySelectorAll('span');
+  if(this.classList.contains('open')){
+    spans[0].style.transform='translateY(7px) rotate(45deg)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='translateY(-7px) rotate(-45deg)';
+  } else {
+    spans[0].style.transform='';spans[1].style.opacity='';spans[2].style.transform='';
+  }
+});
 
-  document.querySelectorAll('.service-card, .feature-card, .testim
+/* ── Scroll reveal ── */
+const revealObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+/* ── Close drawer on link click ── */
+document.querySelectorAll('.nav-drawer a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.getElementById('navDrawer').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
